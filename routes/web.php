@@ -22,7 +22,7 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('siswa')->group(function () {
         Route::get('/', [SiswaController::class, 'index'])->name('admin.siswa');
-        Route::get('/tambah', [SiswaController::class, 'create'])->name('admin.siswa.create');
+        Route::get('/create', [SiswaController::class, 'create'])->name('admin.siswa.create');
     });
 
     Route::prefix('guru')->group(function () {
@@ -41,6 +41,7 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('profil')->group(function () {
         Route::get('/', [ProfilSekolahController::class, 'index'])->name('admin.profil');
+        Route::get('/{id_profil}/edit', [ProfilSekolahController::class, 'edit'])->name('admin.profil.edit');
     });
 
 });

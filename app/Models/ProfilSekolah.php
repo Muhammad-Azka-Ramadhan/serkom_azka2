@@ -12,6 +12,7 @@ class ProfilSekolah extends Model
     protected $table = 'profil_sekolah';
     protected $primaryKey = 'id_profil';
     protected $keyType = 'string';
+    // public $incrementing = false;
 
     protected $guarded = [];
 }

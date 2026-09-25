@@ -1,14 +1,16 @@
 @extends('admin_app')
 
+@section('title', $data['title'])
+
 @section('content')
 <div class="col-12 mt-5">
     <div class="card">
         <div class="card-body">
-            <h4 class="header-title">Basic form</h4>
+            <h4 class="header-title">Tambah Siswa</h4>
             <form>
                 <div class="form-group">
                     <label for="nisn">NISN</label>
-                    <input type="number" class="form-control" id="nisn" aria-describedby="emailHelp">
+                    <input type="number" class="form-control" id="nisn">
                 </div>
                 <div class="form-group">
                     <label for="nama">Nama Siswa</label>

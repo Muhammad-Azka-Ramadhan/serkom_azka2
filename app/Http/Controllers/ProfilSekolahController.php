@@ -47,5 +47,9 @@ class ProfilSekolahController extends Controller
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
+        $profilSekolah->update($validated);
+
+        return redirect()->route('admin.profil')->with('success', 'Profil sekolah behasil diperbarui');
     }
 }

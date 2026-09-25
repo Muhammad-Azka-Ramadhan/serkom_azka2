@@ -22,8 +22,8 @@
         <div class="col-lg-4">
             <div class="card h-100">
                 <div class="card-body text-center">
-                    @if (!empty($profilSekolah->logo) && file_exists(public_path('assets/images/' . $profilSekolah->logo)))
-                    <img src="{{asset('assets/images/' . $profilSekolah->logo)}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
+                    @if (!empty($profilSekolah->logo) && file_exists(public_path('/storage' . $profilSekolah->logo)))
+                    <img src="{{asset('/storage' . $profilSekolah->logo)}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
                     @else
                     <img src="{{asset('assets/images/logo.png')}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
                     @endif
@@ -41,7 +41,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                            
+
                         <div class="col-md-6 mb-4">
                             <small class="text-muted">Nama Sekolah</small>
                             <div class="fw-bold mt-1">{{$profilSekolah->nama_sekolah}}</div>
@@ -89,11 +89,19 @@
                     <h5 class="mb-0">Foto Sekolah</h5>
                 </div>
                 <div class="card-body">
+                    @if (!empty($profilSekolah->foto) && file_exists(public_path('/storage' . $profilSekolah->foto)))
                     <img
-                        src="assets/img/foto-sekolah.jpg"
+                        src="{{ asset('/storage' . $profilSekolah->foto) }}"
                         alt="Foto SMPN 1 Padakembang"
                         class="img-fluid rounded w-100"
                     >
+                    @else
+                    <img
+                        src="{{ asset('assets/images/foto_smp.jpg') }}"
+                        alt="Foto SMPN 1 Padakembang"
+                        class="img-fluid rounded w-100"
+                    >
+                    @endif
                 </div>
             </div>
         </div>
@@ -107,7 +115,7 @@
                     <h5 class="mb-0">Visi & Misi</h5>
                 </div>
                 <div class="card-body">
-                    <p class="text-muted mb-0">{{$profilSekolah->deskripsi}}</p>
+                    <p class="text-muted mb-0">{{$profilSekolah->visi_misi}}</p>
                 </div>
             </div>
         </div>
@@ -121,14 +129,7 @@
                     <h5 class="mb-0">Deskripsi Sekolah</h5>
                 </div>
                 <div class="card-body">
-                    <p class="text-muted mb-0">
-                        SMPN 1 Padakembang merupakan satuan pendidikan
-                        tingkat sekolah menengah pertama yang berada
-                        di wilayah Padakembang, Kabupaten Tasikmalaya.
-                        Sekolah menyelenggarakan pendidikan untuk
-                        mengembangkan potensi akademik maupun
-                        nonakademik peserta didik.
-                    </p>
+                    <p class="text-muted mb-0">{{ $profilSekolah->deskripsi }}</p>
                 </div>
             </div>
         </div>

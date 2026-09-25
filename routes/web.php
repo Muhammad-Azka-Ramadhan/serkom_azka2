@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+Route::get('/', [DashboardController::class, 'publicIndex'])->name('public.dashboard');
 Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
 Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('admin.login_proses');
 
@@ -23,12 +24,16 @@ Route::prefix('admin')->group(function () {
     Route::prefix('siswa')->group(function () {
         Route::get('/', [SiswaController::class, 'index'])->name('admin.siswa');
         Route::get('/create', [SiswaController::class, 'create'])->name('admin.siswa.create');
+        Route::post('/store', [SiswaController::class, 'store'])->name('admin.siswa.store');
+        Route::get('/edit/{id_siswa}',  [SiswaController::class, 'edit'])->name('admin.siswa.edit');
+        Route::put('/{id_siswa}', [SiswaController::class, 'update'])->name('admin.siswa.update');
+        Route::delete('/{id__siswa}', [SiswaController::class, 'destroy'])->name('admin.siswa.destroy');
     });
 
     Route::prefix('guru')->group(function () {
         Route::get('/', [GuruController::class, 'index'])->name('admin.guru');
     });
-    
+
     Route::get('/galeri', [GaleriController::class, 'index'])->name('admin.galeri');
 
     Route::prefix('berita')->group(function () {
@@ -41,7 +46,8 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('profil')->group(function () {
         Route::get('/', [ProfilSekolahController::class, 'index'])->name('admin.profil');
-        Route::get('/{id_profil}/edit', [ProfilSekolahController::class, 'edit'])->name('admin.profil.edit');
+        Route::get('/edit/{id_profil}', [ProfilSekolahController::class, 'edit'])->name('admin.profil.edit');
+        Route::put('/{id_profil}', [ProfilSekolahController::class, 'update'])->name('admin.profil.update');
     });
 
 });

@@ -8,10 +8,10 @@
     Version: 2.0
 
 ----------------------------------------------
-    
+
     CSS INDEX
     ===================
-  
+
     1. Core Css
     2. Dashboard One
         2.1 Sidebar Menu
@@ -3035,6 +3035,7 @@ table.dataTable thead td {
     cursor: pointer;
     transition: 0.2s ease;
     margin: 4px 2px;
+    vertical-align: middle;
 }
 
 .edit-btn {

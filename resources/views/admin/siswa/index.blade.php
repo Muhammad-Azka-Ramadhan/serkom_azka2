@@ -34,13 +34,21 @@
                                     <td>{{ $item->jenis_kelamin }}</td>
                                     <td>{{ $item->tahun_masuk }}</td>
                                     <td>
-                                        <button type="button" class="action-btn edit-btn">
+                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.siswa.edit', $item->id_siswa) }}'">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
+                                       <form action="{{ route('admin.siswa.destroy', $item->id_siswa) }}"
+                                            method="POST"
+                                            style="display: inline;"
+                                            onsubmit="return confirm('Yakin ingin menghapus data ini?')">
 
-                                        <button type="button" class="action-btn delete-btn">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit" class="action-btn delete-btn">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @empty
@@ -58,6 +66,6 @@
         </div>
     </div>
 </div>
-    
+
 
 @endsection

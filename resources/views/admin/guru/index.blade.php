@@ -1,6 +1,7 @@
 @extends('admin_app')
 
 @section('title', $data['title'])
+@section('breadcrumb', $data['breadcrumb'])
 
 @section('content')
 <div class="main-content-inner" id="main-content">
@@ -9,8 +10,8 @@
             <div class="card">
                 <div class="card-body">
                     <div class="container d-flex justify-content-between">
-                        <h4 class="header-title">Data Siswa</h4>
-                        <a href="{{ route('admin.siswa.create') }}" class="action-btn add-siswa-btn"><i class="fa-solid fa-plus"></i>Tambah Siswa</a>
+                        <h4 class="header-title">Data Guru</h4>
+                        <a href="{{ route('admin.guru.create') }}" class="action-btn add-siswa-btn"><i class="fa-solid fa-plus"></i>Tambah Guru</a>
                     </div>
                     <div class="data-tables datatable-dark">
                         <table id="dataTable3" class="text-center w-100">
@@ -31,7 +32,7 @@
                                     <td>{{ $item->nama_guru}}</td>
                                     <td>{{ $item->nip }}</td>
                                     <td>{{ $item->mapel }}</td>
-                                    <td>{{ $item->foto }}</td>
+                                    <td><img width="50px" height="50px" src="{{asset($item->foto)}}" alt=""></td>
                                     <td>
                                         <button type="button" class="action-btn edit-btn">
                                             <i class="fa-regular fa-pen-to-square"></i>

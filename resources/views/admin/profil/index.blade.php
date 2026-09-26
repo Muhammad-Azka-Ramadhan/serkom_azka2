@@ -22,8 +22,8 @@
         <div class="col-lg-4">
             <div class="card h-100">
                 <div class="card-body text-center">
-                    @if (!empty($profilSekolah->logo) && file_exists(public_path('/storage' . $profilSekolah->logo)))
-                    <img src="{{asset('/storage' . $profilSekolah->logo)}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
+                    @if (!empty($profilSekolah->logo) && file_exists(public_path($profilSekolah->logo)))
+                    <img src="{{asset($profilSekolah->logo)}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
                     @else
                     <img src="{{asset('assets/images/logo.png')}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
                     @endif
@@ -89,9 +89,9 @@
                     <h5 class="mb-0">Foto Sekolah</h5>
                 </div>
                 <div class="card-body">
-                    @if (!empty($profilSekolah->foto) && file_exists(public_path('/storage' . $profilSekolah->foto)))
+                    @if (!empty($profilSekolah->foto) && file_exists(public_path($profilSekolah->foto)))
                     <img
-                        src="{{ asset('/storage' . $profilSekolah->foto) }}"
+                        src="{{ asset($profilSekolah->foto) }}"
                         alt="Foto SMPN 1 Padakembang"
                         class="img-fluid rounded w-100"
                     >

@@ -8,6 +8,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EkstrakurikulerController;
 use App\Http\Controllers\ProfilSekolahController;
+use App\Models\Guru;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -32,6 +33,8 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('guru')->group(function () {
         Route::get('/', [GuruController::class, 'index'])->name('admin.guru');
+        Route::get('/create', [GuruController::class, 'create'])->name('admin.guru.create');
+        Route::post('/store', [GuruController::class, 'store'])->name('admin.guru.store');
     });
 
     Route::get('/galeri', [GaleriController::class, 'index'])->name('admin.galeri');

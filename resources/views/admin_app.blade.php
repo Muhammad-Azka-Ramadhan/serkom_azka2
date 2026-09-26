@@ -246,7 +246,7 @@
                             <h1 class="page-title float-start">Dashboard</h1>
                             <ul class="breadcrumbs float-start">
                                 <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                                <li>@yield('title')</li>
+                                <li>@yield('breadcrumb')</li>
                             </ul>
                         </div>
                     </div>

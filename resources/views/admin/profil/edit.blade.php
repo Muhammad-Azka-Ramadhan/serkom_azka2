@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="header-title">Edit Profil</h4>
-            <form action="{{ route('admin.profil.update', $profilSekolah->id_profil) }}" method="POST">
+            <form action="{{ route('admin.profil.update', $profilSekolah->id_profil) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -50,6 +50,14 @@
                 <div class="form-group">
                     <label for="deskripsi">Deskripsi</label>
                     <input type="text" name="deskripsi" class="form-control" id="deskripsi" value="{{ $profilSekolah->deskripsi }}">
+                </div>
+                <div class="form-group">
+                    <label for="logo">Logo</label>
+                    <input type="file" name="logo" id="logo" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="foto">Foto Sekolah</label>
+                    <input type="file" name="foto" id="foto" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary mt-4 pe-4 ps-4">Submit</button>
             </form>

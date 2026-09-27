@@ -7,26 +7,14 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
-    //
     public function index() {
-        $data = [
-            'title' => 'Siswa'
-        ];
+        $siswa = Siswa::latest()->get();
 
-        $siswa = Siswa::orderBy('nama_siswa', 'asc')->paginate(10);
-
-        return view('admin.siswa.index', [
-            'data' => $data,
-            'siswa' => $siswa
-        ]);
+        return view('admin.siswa.index', compact('siswa'));
     }
 
     public function create() {
-        $data = [
-            'title' => 'Siswa'
-        ];
-
-        return view('admin.siswa.create', $data);
+        return view('admin.siswa.create', compact('siswa'));
     }
 
     public function store(Request $request) {
@@ -38,23 +26,23 @@ class SiswaController extends Controller
         ]);
 
         $created = Siswa::create($validated);
-        return redirect()->route('admin.siswa');
+        return redirect()->route('admin.siswa.index');
     }
 
-    public function edit($id_siswa) {
+    public function edit($id) {
         $data = [
             'title' => 'Siswa'
         ];
 
-        $siswa = Siswa::findOrFail($id_siswa);
+        $siswa = Siswa::findOrFail($id);
         return view('admin.siswa.edit', [
             'data' => $data,
             'siswa' => $siswa
         ]);
     }
 
-    public function update(Request $request, $id_siswa) {
-        $siswa = Siswa::findOrFail($id_siswa);
+    public function update(Request $request, $id) {
+        $siswa = Siswa::findOrFail($id);
         $validated = $request->validate([
             'nisn' => 'required|string',
             'nama_siswa' => 'required|string',
@@ -63,13 +51,13 @@ class SiswaController extends Controller
         ]);
 
         $siswa->update($validated);
-        return redirect()->route('admin.siswa')->with('success', 'Data siswa berhasil diperbarui');
+        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil diperbarui');
     }
 
-    public function destroy($id_siswa) {
-        $siswa = Siswa::findOrFail($id_siswa);
+    public function destroy($id) {
+        $siswa = Siswa::findOrFail($id);
         $siswa->delete();
 
-        return redirect()->route('admin.siswa')->with('success', 'Data siswa berhasil dihapus');
+        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil dihapus');
     }
 }

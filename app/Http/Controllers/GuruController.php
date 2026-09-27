@@ -9,29 +9,13 @@ class GuruController extends Controller
 {
     //
     public function index() {
-        $data = [
-            'title' => 'Guru',
-            'breadcrumb' => [
-                'Guru',
-            ]
-        ];
+        $guru = Guru::latest()->get();
 
-        $guru = Guru::paginate(10);
-        return view('admin.guru.index', [
-            'data' => $data,
-            'guru' => $guru
-        ]);
+        return view('admin.guru.index', compact('guru'));
     }
     
     public function create() {
-        $data = [
-            'title' => 'Tambah Guru',
-            'breadcrumb' => [
-                'Guru',
-                'Tambah Guru'
-            ]
-        ];
-        return view('admin.guru.create', $data);
+        return view('admin.guru.create');
     }
 
     public function store(Request $request) {
@@ -58,15 +42,9 @@ class GuruController extends Controller
         return redirect()->route('admin.guru')->with('success', 'Data guru berhasil ditambahkan');
     }
 
-    public function edit($id_guru) {
-        $data = [
-            'title' => 'Edit Guru'
-        ];
-        $guru = Guru::findOrFail($id_guru);
-        return view('admin.guru.edit', [
-            'data' => $data,
-            'guru' => $guru
-        ]);
+    public function edit($id) {
+        $guru = Guru::findOrFail($id);
+        return view('admin.guru.edit', compact('guru'));
 
     }
 }

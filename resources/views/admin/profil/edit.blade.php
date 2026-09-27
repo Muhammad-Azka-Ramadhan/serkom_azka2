@@ -1,6 +1,6 @@
 @extends('admin_app')
 
-@section('title', $data['title'])
+@section('title', 'Edit Profil')
 
 @section('content')
 <div class="col-12 mt-5">
@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="header-title">Edit Profil</h4>
-            <form action="{{ route('admin.profil.update', $profilSekolah->id_profil) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.profil.update', $profilSekolah->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
@@ -53,10 +53,27 @@
                 </div>
                 <div class="form-group">
                     <label for="logo">Logo</label>
-                    <input type="file" name="logo" id="logo" class="form-control">
+                    @if ($profilSekolah->foto && file_exists(public_path($profilSekolah->logo)))
+                        <div class="mb-2">
+                            <img src="{{ asset($profilSekolah->logo) }}"
+                                alt="Foto Sekolah"
+                                class="img-fluid rounded"
+                                style="max-width: 300px;">
+                        </div>
+                    @endif
+
+                    <input type="file" name="logo" id="logo" class="form-control" value="">
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto Sekolah</label>
+                    @if ($profilSekolah->foto && file_exists(public_path($profilSekolah->foto)))
+                        <div class="mb-2">
+                            <img src="{{ asset($profilSekolah->foto) }}"
+                                alt="Foto Sekolah"
+                                class="img-fluid rounded"
+                                style="max-width: 300px;">
+                        </div>
+                    @endif
                     <input type="file" name="foto" id="foto" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-primary mt-4 pe-4 ps-4">Submit</button>

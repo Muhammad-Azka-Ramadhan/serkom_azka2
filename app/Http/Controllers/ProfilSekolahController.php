@@ -10,31 +10,18 @@ class ProfilSekolahController extends Controller
 {
     //
     public function index() {
-        $data = [
-            'title' => 'Profil Sekolah'
-        ];
+        $profilSekolah = ProfilSekolah::latest()->first();
 
-        $profilSekolah = ProfilSekolah::first();
-        return view('admin.profil.index', [
-            'data' => $data,
-            'profilSekolah' => $profilSekolah
-        ]);
+        return view('admin.profil.index', compact('profilSekolah'));
     }
 
-    public function edit($id_profil) {
-        $data = [
-            'title' => 'Profil Sekolah'
-        ];
-
-        $profilSekolah = ProfilSekolah::findOrFail($id_profil);
-        return view('admin.profil.edit', [
-            'data' => $data,
-            'profilSekolah' => $profilSekolah
-        ]);
+    public function edit($id) {
+        $profilSekolah = ProfilSekolah::findOrFail($id);
+        return view('admin.profil.edit', compact('profilSekolah'));
     }
 
-    public function update(Request $request, $id_profil) {
-        $profilSekolah = ProfilSekolah::findOrFail($id_profil);
+    public function update(Request $request, $id) {
+        $profilSekolah = ProfilSekolah::findOrFail($id);
 
         $validated = $request->validate([
             'nama_sekolah' => 'required|max:40',
@@ -88,6 +75,6 @@ class ProfilSekolahController extends Controller
         
         $profilSekolah->update($validated);
 
-        return redirect()->route('admin.profil')->with('success', 'Profil sekolah behasil diperbarui');
+        return redirect()->route('admin.profil.index')->with('success', 'Profil sekolah behasil diperbarui');
     }
 }

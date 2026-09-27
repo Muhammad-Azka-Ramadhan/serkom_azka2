@@ -2,16 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Berita;
+// use Illuminate\Http\Request;
 
 class BeritaController extends Controller
 {
     //
     public function index() {
-        $data = [
-            'title' => 'Berita'
-        ];
+        $berita = Berita::latest()->get();
 
-        return view('admin.berita.index', $data);
+        return view('admin.berita.index', compact('berita'));
     }
 }

@@ -1,7 +1,6 @@
 @extends('admin_app')
 
-@section('title', $data['title'])
-@section('breadcrumb', $data['breadcrumb'])
+@section('title', 'Guru')
 
 @section('content')
 <div class="main-content-inner" id="main-content">

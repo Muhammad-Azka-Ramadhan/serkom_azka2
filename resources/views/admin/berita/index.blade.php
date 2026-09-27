@@ -1,6 +1,6 @@
 @extends('admin_app')
 
-@section('title', $title)
+@section('title', 'Berita')
 
 @section('content')
 

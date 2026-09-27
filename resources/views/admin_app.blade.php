@@ -45,23 +45,23 @@
                             <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                                 <a href="{{ route('admin.dashboard') }}" >dashboard</a>
                             </li>
-                            <li class="{{ request()->routeIs('admin.siswa') ? 'active' : '' }}">
-                                <a href="{{ route('admin.siswa') }}" rel="noopener">Siswa</a>
+                            <li class="{{ request()->routeIs('admin.siswa.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.siswa.index') }}" rel="noopener">Siswa</a>
                             </li>
-                            <li class="{{ request()->routeIs('admin.guru') ? 'active' : '' }}">
-                                <a href="{{ route('admin.guru') }}">Guru</a>
+                            <li class="{{ request()->routeIs('admin.guru.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.guru.index') }}">Guru</a>
                             </li>
-                            <li class="{{ request()->routeIs('admin.galeri') ? 'active' : '' }}">
-                                <a href="{{ route('admin.galeri') }}" >Galeri</a>
+                            <li class="{{ request()->routeIs('admin.galeri.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.galeri.index') }}" >Galeri</a>
                             </li>
-                            <li class="{{ request()->routeIs('admin.berita') ? 'active' : '' }}">
-                                <a href="{{ route('admin.berita') }}"  aria-expanded="true">Berita</a>
+                            <li class="{{ request()->routeIs('admin.berita.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.berita.index') }}"  aria-expanded="true">Berita</a>
                             </li>
-                            <li class="{{ request()->routeIs('admin.eskul') ? 'active' : '' }}">
-                                <a href="{{ route('admin.eskul') }}" aria-expanded="true">Ekstrakurikuler</a>
+                            <li class="{{ request()->routeIs('admin.eskul.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.eskul.index') }}" aria-expanded="true">Ekstrakurikuler</a>
                             </li>
-                            <li class="{{ request()->routeIs('admin.profil') ? 'active' : '' }}">
-                                <a href="{{ route('admin.profil') }}" aria-expanded="true" >Profil Sekolah</a>
+                            <li class="{{ request()->routeIs('admin.profil.index') ? 'active' : '' }}">
+                                <a href="{{ route('admin.profil.index') }}" aria-expanded="true" >Profil Sekolah</a>
                             </li>
                         </ul>
                     </nav>
@@ -246,7 +246,7 @@
                             <h1 class="page-title float-start">Dashboard</h1>
                             <ul class="breadcrumbs float-start">
                                 <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                                <li>@yield('breadcrumb')</li>
+                                <li>@yield('title')</li>
                             </ul>
                         </div>
                     </div>

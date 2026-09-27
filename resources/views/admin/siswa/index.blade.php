@@ -1,6 +1,6 @@
 @extends('admin_app')
 
-@section('title', $data['title'])
+@section('title', 'Siswa')
 
 @section('content')
 
@@ -34,10 +34,10 @@
                                     <td>{{ $item->jenis_kelamin }}</td>
                                     <td>{{ $item->tahun_masuk }}</td>
                                     <td>
-                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.siswa.edit', $item->id_siswa) }}'">
+                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.siswa.edit', $item->id) }}'">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
-                                       <form action="{{ route('admin.siswa.destroy', $item->id_siswa) }}"
+                                       <form action="{{ route('admin.siswa.destroy', $item->id) }}"
                                             method="POST"
                                             style="display: inline;"
                                             onsubmit="return confirm('Yakin ingin menghapus data ini?')">

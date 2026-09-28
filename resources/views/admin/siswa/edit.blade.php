@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-body">
             <h4 class="header-title">Tambah Siswa</h4>
-            <form action="{{ route('admin.siswa.update', $siswa->id_siswa) }}" method="POST">
+            <form action="{{ route('admin.siswa.update', $siswa->id) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="form-group">

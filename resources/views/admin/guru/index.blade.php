@@ -33,7 +33,7 @@
                                     <td>{{ $item->mapel }}</td>
                                     <td><img width="50px" height="50px" src="{{asset($item->foto)}}" alt=""></td>
                                     <td>
-                                        <button type="button" class="action-btn edit-btn">
+                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.guru.edit', $item->id) }}'">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
+use App\Models\Guru;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -34,6 +35,8 @@ Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('admi
             Route::get('/', [GuruController::class, 'index'])->name('admin.guru.index');
             Route::get('/create', [GuruController::class, 'create'])->name('admin.guru.create');
             Route::post('/store', [GuruController::class, 'store'])->name('admin.guru.store');
+            Route::get('/edit/{id}', [GuruController::class, 'edit'])->name('admin.guru.edit');
+            Route::put('/update{id}', [GuruController::class, 'update'])->name('admin.guru.update');
         });
 
         Route::get('/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
@@ -44,6 +47,8 @@ Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('admi
 
         Route::prefix('ekstrakurikuler')->group(function () {
             Route::get('/', [EkstrakurikulerController::class, 'index'])->name('admin.eskul.index');
+            Route::get('/create', [EkstrakurikulerController::class, 'create'])->name('admin.eskul.create');
+            Route::post('/store', [EkstrakurikulerController::class, 'store'])->name('admin.eskul.store');
         });
 
         Route::prefix('profil')->group(function () {

@@ -72,7 +72,7 @@ class ProfilSekolahController extends Controller
             );
             $validated['foto'] = 'storage/' . $nama_foto;
         }
-        
+
         $profilSekolah->update($validated);
 
         return redirect()->route('admin.profil.index')->with('success', 'Profil sekolah behasil diperbarui');

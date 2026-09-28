@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_guru')->constrained('guru', 'id')->onUpdate('cascade')->onDelete('restrict');
             $table->string('nama_eskul', 50);
-            $table->string('pembina', 40);
+            // $table->string('pembina', 40);
             $table->string('jadwal_latihan', 40);
             $table->text('deskripsi');
             $table->string('gambar', 100);

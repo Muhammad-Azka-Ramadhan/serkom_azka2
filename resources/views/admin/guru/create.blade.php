@@ -1,5 +1,5 @@
 @extends('admin_app')
-@section('title', $title)
+@section('title', 'Guru')
 @section('content')
 <div class="card">
     <div class="card-body">

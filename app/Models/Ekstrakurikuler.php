@@ -10,4 +10,8 @@ class Ekstrakurikuler extends Model
     protected $table = 'ekstrakurikuler';
 
     protected $guarded = [];
+
+    public function guru() {
+        return $this->belongsTo(Guru::class);
+    }
 }

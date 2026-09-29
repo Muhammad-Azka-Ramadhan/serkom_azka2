@@ -12,7 +12,7 @@
     </div>
     @endif
     <div class="card-body">
-        <h4 class="header-title">Tambah Guru</h4>
+        <h4 class="header-title">Tambah Ekstrakurikuler</h4>
         <form action="{{ route('admin.eskul.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
@@ -20,7 +20,7 @@
                 <input type="text" class="form-control" name="nama_eskul" id="nama">
             </div>
             <div class="form-group">
-                <label for="jadwal">Jadwal</label>
+                <label for="jadwal">Jadwal Latihan</label>
                 <input type="text" class="form-control" name="jadwal_latihan" id="jadwal">
             </div>
             <div class="form-group">

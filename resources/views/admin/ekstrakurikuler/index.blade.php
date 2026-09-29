@@ -6,12 +6,19 @@
 <div class="main-content-inner" id="main-content">
     <div class="row">
         <div class="col-12 mt-5">
+            <hr>
+            @session('success')
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endsession
             <div class="card">
                 <div class="card-body">
                     <div class="container d-flex justify-content-between">
                         <h4 class="header-title">Data Ekstrakurikuler</h4>
                         <a href="{{ route('admin.eskul.create') }}" class="action-btn add-btn"><i class="fa-solid fa-plus"></i>Tambah Ekstrakurikuler</a>
                     </div>
+                    <div class="data-tables datatable-dark">
                         <table id="dataTable3" class="text-center w-100">
                             <thead class="text-capitalize">
                                 <tr>
@@ -29,18 +36,25 @@
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $item->nama_eskul }}</td>
-                                    <td>{{ $item->pembina }}</td>
+                                    <td>{{ $item->guru->nama_guru }}</td>
                                     <td>{{ $item->jadwal_latihan}}</td>
                                     <td>{{ $item->deskripsi}}</td>
                                     <td><img width="50px" height="50px" src="{{asset($item->gambar)}}" alt=""></td>
                                     <td>
-                                        <button type="button" class="action-btn edit-btn">
+                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.eskul.edit', $item->id) }}'">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
+                                        <form action="{{ route('admin.eskul.destroy', $item->id) }}"
+                                            method="POST"
+                                            class="d-inline"
+                                            onsubmit="return confirm('Yakin ingin menghapus data ini?')">
 
-                                        <button type="button" class="action-btn delete-btn">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="action-btn delete-btn">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @empty

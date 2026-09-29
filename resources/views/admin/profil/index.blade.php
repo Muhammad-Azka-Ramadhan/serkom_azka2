@@ -71,7 +71,7 @@
     <!-- Alamat & Foto -->
     <div class="row mt-4">
         <!-- Alamat -->
-        <div class="col-lg-5">
+        <div class="col-12">
             <div class="card h-100">
                 <div class="card-header">
                     <h5 class="mb-0">Alamat Sekolah</h5>
@@ -82,29 +82,32 @@
             </div>
         </div>
 
-        <!-- Foto Sekolah -->
-        <div class="col-lg-7 mt-4 mt-lg-0">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="mb-0">Foto Sekolah</h5>
-                </div>
-                <div class="card-body">
-                    @if (!empty($profilSekolah->foto) && file_exists(public_path($profilSekolah->foto)))
-                    <img
-                        src="{{ asset($profilSekolah->foto) }}"
-                        alt="Foto SMPN 1 Padakembang"
-                        class="img-fluid rounded w-100"
-                    >
-                    @else
-                    <img
-                        src="{{ asset('assets/images/foto_smp.jpg') }}"
-                        alt="Foto SMPN 1 Padakembang"
-                        class="img-fluid rounded w-100"
-                    >
-                    @endif
+        <div class="row mt-4">
+            <!-- Foto Sekolah -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Foto Sekolah</h5>
+                    </div>
+                    <div class="card-body">
+                        @if (!empty($profilSekolah->foto) && file_exists(public_path($profilSekolah->foto)))
+                        <img
+                            src="{{ asset($profilSekolah->foto) }}"
+                            alt="Foto SMPN 1 Padakembang"
+                            class="img-fluid rounded w-100"
+                        >
+                        @else
+                        <img
+                            src="{{ asset('assets/images/foto_smp.jpg') }}"
+                            alt="Foto SMPN 1 Padakembang"
+                            class="img-fluid rounded w-100"
+                        >
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <!-- Visi & Misi -->

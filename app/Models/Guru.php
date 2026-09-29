@@ -12,6 +12,6 @@ class Guru extends Model
     protected $guarded = [];
 
     public function ekstrakurikuler() {
-        return $this->hasMany(Ekstrakurikuler::class);
+        return $this->hasMany(Ekstrakurikuler::class, 'id_guru', 'id');
     }
 }

@@ -14,7 +14,7 @@ class SiswaController extends Controller
     }
 
     public function create() {
-        return view('admin.siswa.create', compact('siswa'));
+        return view('admin.siswa.create');
     }
 
     public function store(Request $request) {

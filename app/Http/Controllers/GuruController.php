@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Siswa;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class GuruController extends Controller
         }
 
         $created = Guru::create($validated);
-        return redirect()->route('admin.guru')->with('success', 'Data guru berhasil ditambahkan');
+        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil ditambahkan');
     }
 
     public function edit($id) {
@@ -77,6 +78,13 @@ class GuruController extends Controller
         }
         $guru->update($validated);
         return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil diperbarui');
+    }
+
+    public function destroy($id) {
+        $guru = Guru::findOrFail($id);
+        $guru->delete();
+
+        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil dihapus');
     }
 }
 

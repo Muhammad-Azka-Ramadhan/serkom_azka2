@@ -3025,7 +3025,7 @@ table.dataTable thead td {
     }
 }
 
-.action-btn {
+/* .action-btn {
     border: none;
     padding: 7px 14px;
     margin: 0 2px;
@@ -3059,4 +3059,4 @@ table.dataTable thead td {
 
 .add-btn:hover {
     background-color: #5a32a3;
-}
+} */

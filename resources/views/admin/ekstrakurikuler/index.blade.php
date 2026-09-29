@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <div class="container d-flex justify-content-between">
                         <h4 class="header-title">Data Ekstrakurikuler</h4>
-                        <a href="{{ route('admin.eskul.create') }}" class="action-btn add-siswa-btn"><i class="fa-solid fa-plus"></i>Tambah Ekstrakurikuler</a>
+                        <a href="{{ route('admin.eskul.create') }}" class="action-btn add-btn"><i class="fa-solid fa-plus"></i>Tambah Ekstrakurikuler</a>
                     </div>
                         <table id="dataTable3" class="text-center w-100">
                             <thead class="text-capitalize">
@@ -20,7 +20,7 @@
                                     <th>Pembina</th>
                                     <th>Jadwal Latihan</th>
                                     <th>Deskripsi</th>
-                                    <th>Gambar</th>zzz
+                                    <th>Gambar</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

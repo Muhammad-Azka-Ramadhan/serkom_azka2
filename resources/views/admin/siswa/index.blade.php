@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <div class="container d-flex justify-content-between">
                         <h4 class="header-title">Data Siswa</h4>
-                        <a href="{{ route('admin.siswa.create') }}" class="action-btn add-siswa-btn"><i class="fa-solid fa-plus"></i>Tambah Siswa</a>
+                        <a href="{{ route('admin.siswa.create') }}" class="action-btn add-btn"><i class="fa-solid fa-plus"></i>Tambah Siswa</a>
                     </div>
                     <div class="data-tables datatable-dark">
                         <table id="dataTable3" class="text-center w-100">
@@ -39,7 +39,7 @@
                                         </button>
                                        <form action="{{ route('admin.siswa.destroy', $item->id) }}"
                                             method="POST"
-                                            style="display: inline;"
+                                            class="d-inline"
                                             onsubmit="return confirm('Yakin ingin menghapus data ini?')">
 
                                             @csrf

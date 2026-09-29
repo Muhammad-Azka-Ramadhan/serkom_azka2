@@ -1,484 +1,726 @@
 <!doctype html>
-<html lang="en">
+<html lang="id">
 
 <head>
+
     <meta charset="utf-8">
+
     <title>SMPN 1 Padakembang | @yield('title')</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="ICO cryptocurrency dashboard with real-time market data, sales reports, and trading analytics.">
+
+    <meta name="description" content="Sistem Administrasi SMP Negeri 1 Padakembang">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/images/icon/logo.png">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    {{-- Favicon --}}
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ asset('assets/images/icon/logo-smpn1-padakembang.png') }}"
+    >
+
+    {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+
+    {{-- Font Awesome --}}
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
+
+    {{-- Themify Icons --}}
     <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
+
+    {{-- MetisMenu --}}
     <link rel="stylesheet" href="{{ asset('assets/css/metismenujs.min.css') }}">
+
+    {{-- Swiper --}}
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
-    <!-- others css -->
+
+    {{-- Template CSS --}}
     <link rel="stylesheet" href="{{ asset('assets/css/typography.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/default-css.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+
+    {{-- Custom CSS SMPN 1 Padakembang --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+
 </head>
 
+
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <!-- preloader area start -->
+
+    <a href="#main-content" class="skip-link">
+        Skip to main content
+    </a>
+
+
+    {{-- PRELOADER --}}
     <div id="preloader">
         <div class="loader"></div>
     </div>
-    <!-- preloader area end -->
-    <!-- page container area start -->
+
+
+    {{-- PAGE CONTAINER --}}
     <div class="page-container">
-        <!-- sidebar menu area start -->
-        <div class="sidebar-menu">
+
+
+        {{-- =========================
+             SIDEBAR
+        ========================== --}}
+        <div class="sidebar-menu left-sidebar">
+
+            {{-- Logo --}}
             <div class="sidebar-header">
+
                 <div class="logo">
-                    <a href="{{ route('admin.dashboard') }}"><picture><source srcset="{{ asset('assets/images/icon/logo.avif') }}" type="image/avif"><img src="assets/images/icon/logo.png" alt="logo"></picture></a>
+
+                    <a href="{{ route('admin.dashboard') }}">
+
+                        @if (!empty($profilSekolah->logo) && file_exists(public_path($profilSekolah->logo)))
+                        <img src="{{asset($profilSekolah->logo)}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
+                        @else
+                        <img src="{{asset('assets/images/logo.png')}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
+                        @endif
+
+                        <span>SMPN 1 Padakembang</span>
+                    </a>
+
                 </div>
+
             </div>
+
+
+            {{-- Menu --}}
             <div class="main-menu">
+
                 <div class="menu-inner">
+
                     <nav>
+
                         <ul class="metismenu" id="menu">
+
+
+                            {{-- Dashboard --}}
                             <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
-                                <a href="{{ route('admin.dashboard') }}" >dashboard</a>
+
+                                <a href="{{ route('admin.dashboard') }}">
+
+                                    <i class="fa-solid fa-gauge-high"></i>
+
+                                    <span>Dashboard</span>
+
+                                </a>
+
                             </li>
-                            <li class="{{ request()->routeIs('admin.siswa.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.siswa.index') }}" rel="noopener">Siswa</a>
+
+
+                            {{-- Siswa --}}
+                            <li class="{{ request()->routeIs('admin.siswa.*') ? 'active' : '' }}">
+
+                                <a href="{{ route('admin.siswa.index') }}">
+
+                                    <i class="fa-solid fa-user-graduate"></i>
+
+                                    <span>Siswa</span>
+
+                                </a>
+
                             </li>
-                            <li class="{{ request()->routeIs('admin.guru.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.guru.index') }}">Guru</a>
+
+
+                            {{-- Guru --}}
+                            <li class="{{ request()->routeIs('admin.guru.*') ? 'active' : '' }}">
+
+                                <a href="{{ route('admin.guru.index') }}">
+
+                                    <i class="fa-solid fa-chalkboard-user"></i>
+
+                                    <span>Guru</span>
+
+                                </a>
+
                             </li>
-                            <li class="{{ request()->routeIs('admin.galeri.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.galeri.index') }}" >Galeri</a>
+
+
+                            {{-- Galeri --}}
+                            <li class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
+
+                                <a href="{{ route('admin.galeri.index') }}">
+
+                                    <i class="fa-solid fa-images"></i>
+
+                                    <span>Galeri</span>
+
+                                </a>
+
                             </li>
-                            <li class="{{ request()->routeIs('admin.berita.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.berita.index') }}"  aria-expanded="true">Berita</a>
+
+
+                            {{-- Berita --}}
+                            <li class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
+
+                                <a href="{{ route('admin.berita.index') }}">
+
+                                    <i class="fa-solid fa-newspaper"></i>
+
+                                    <span>Berita</span>
+
+                                </a>
+
                             </li>
-                            <li class="{{ request()->routeIs('admin.eskul.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.eskul.index') }}" aria-expanded="true">Ekstrakurikuler</a>
+
+
+                            {{-- Ekstrakurikuler --}}
+                            <li class="{{ request()->routeIs('admin.eskul.*') ? 'active' : '' }}">
+
+                                <a href="{{ route('admin.eskul.index') }}">
+
+                                    <i class="fa-solid fa-people-group"></i>
+
+                                    <span>Ekstrakurikuler</span>
+
+                                </a>
+
                             </li>
-                            <li class="{{ request()->routeIs('admin.profil.index') ? 'active' : '' }}">
-                                <a href="{{ route('admin.profil.index') }}" aria-expanded="true" >Profil Sekolah</a>
+
+
+                            {{-- Profil Sekolah --}}
+                            <li class="{{ request()->routeIs('admin.profil.*') ? 'active' : '' }}">
+
+                                <a href="{{ route('admin.profil.index') }}">
+
+                                    <i class="fa-solid fa-school"></i>
+
+                                    <span>Profil Sekolah</span>
+
+                                </a>
+
                             </li>
+
+
                         </ul>
+
                     </nav>
+
                 </div>
+
             </div>
+
         </div>
-        <!-- sidebar menu area end -->
-        <!-- main content area start -->
+
+
+
+        {{-- =========================
+             MAIN CONTENT
+        ========================== --}}
         <div class="main-content">
-            <!-- header area start -->
+
+
+            {{-- HEADER --}}
             <div class="header-area">
+
                 <div class="row align-items-center">
-                    <!-- nav and search button -->
+
+
+                    {{-- Menu + Search --}}
                     <div class="col-md-6 col-sm-8 clearfix">
+
                         <div class="nav-btn float-start">
+
                             <span></span>
                             <span></span>
                             <span></span>
+
                         </div>
+
+
                         <div class="search-box float-start">
+
                             <form action="#">
-                                <input type="text" name="search" placeholder="Search..." required>
+
+                                <input
+                                    type="text"
+                                    name="search"
+                                    placeholder="Search..."
+                                >
+
                                 <i class="ti-search"></i>
+
                             </form>
+
                         </div>
+
                     </div>
-                    <!-- profile info & task notification -->
+
+
+
+                    {{-- Notification --}}
                     <div class="col-md-6 col-sm-4 clearfix">
+
                         <ul class="notification-area float-end">
-                            <li id="full-view"><i class="ti-fullscreen"></i></li>
-                            <li id="full-view-exit"><i class="ti-zoom-out"></i></li>
+
+
+                            {{-- Fullscreen --}}
+                            <li id="full-view">
+                                <i class="ti-fullscreen"></i>
+                            </li>
+
+                            <li id="full-view-exit">
+                                <i class="ti-zoom-out"></i>
+                            </li>
+
+
+                            {{-- Notification --}}
                             <li class="dropdown">
-                                <i class="ti-bell dropdown-toggle" data-bs-toggle="dropdown">
+
+                                <i
+                                    class="ti-bell dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                >
+
                                     <span>2</span>
+
                                 </i>
+
+
                                 <div class="dropdown-menu bell-notify-box notify-box">
-                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+
+                                    <span class="notify-title">
+                                        Anda memiliki notifikasi baru
+                                        <a href="#">Lihat semua</a>
+                                    </span>
+
+
                                     <div class="notify-list">
+
                                         <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key bg-danger"></i></div>
-                                            <div class="notify-text">
-                                                <p>You have Changed Your Password</p>
-                                                <span>Just Now</span>
+
+                                            <div class="notify-thumb">
+                                                <i class="ti-key bg-danger"></i>
                                             </div>
+
+                                            <div class="notify-text">
+
+                                                <p>Password berhasil diubah</p>
+
+                                                <span>Baru saja</span>
+
+                                            </div>
+
                                         </a>
+
+
                                         <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-comments-smiley bg-info"></i></div>
-                                            <div class="notify-text">
-                                                <p>New Comments On Post</p>
-                                                <span>30 Seconds ago</span>
+
+                                            <div class="notify-thumb">
+                                                <i class="ti-comments-smiley bg-info"></i>
                                             </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key bg-primary"></i></div>
+
                                             <div class="notify-text">
-                                                <p>Some special like you</p>
-                                                <span>Just Now</span>
+
+                                                <p>Komentar baru</p>
+
+                                                <span>30 detik yang lalu</span>
+
                                             </div>
+
                                         </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-comments-smiley bg-info"></i></div>
-                                            <div class="notify-text">
-                                                <p>New Comments On Post</p>
-                                                <span>30 Seconds ago</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key bg-primary"></i></div>
-                                            <div class="notify-text">
-                                                <p>Some special like you</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key bg-danger"></i></div>
-                                            <div class="notify-text">
-                                                <p>You have Changed Your Password</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb"><i class="ti-key bg-danger"></i></div>
-                                            <div class="notify-text">
-                                                <p>You have Changed Your Password</p>
-                                                <span>Just Now</span>
-                                            </div>
-                                        </a>
+
                                     </div>
+
                                 </div>
+
                             </li>
+
+
+                            {{-- Email --}}
                             <li class="dropdown">
-                                <i class="fa-regular fa-envelope dropdown-toggle" data-bs-toggle="dropdown"><span>3</span></i>
+
+                                <i
+                                    class="fa-regular fa-envelope dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                >
+
+                                    <span>3</span>
+
+                                </i>
+
+
                                 <div class="dropdown-menu notify-box nt-enveloper-box">
-                                    <span class="notify-title">You have 3 new notifications <a href="#">view all</a></span>
+
+                                    <span class="notify-title">
+                                        Pesan baru
+                                        <a href="#">Lihat semua</a>
+                                    </span>
+
+
                                     <div class="notify-list">
+
                                         <a href="#" class="notify-item">
+
                                             <div class="notify-thumb">
-                                                <picture><source srcset="assets/images/author/author-img1.avif" type="image/avif"><img src="assets/images/author/author-img1.jpg" alt="image"></picture>
+
+                                                <img
+                                                    src="{{ asset('assets/images/author/author-img1.jpg') }}"
+                                                    alt="User"
+                                                >
+
                                             </div>
+
+
                                             <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
+
+                                                <p>Admin</p>
+
+                                                <span class="msg">
+                                                    Selamat datang di sistem administrasi.
+                                                </span>
+
                                                 <span>3:15 PM</span>
+
                                             </div>
+
                                         </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <picture><source srcset="assets/images/author/author-img2.avif" type="image/avif"><img src="assets/images/author/author-img2.jpg" alt="image"></picture>
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">When you can connect with me...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <picture><source srcset="assets/images/author/author-img3.avif" type="image/avif"><img src="assets/images/author/author-img3.jpg" alt="image"></picture>
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">I missed you so much...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <picture><source srcset="assets/images/author/author-img4.avif" type="image/avif"><img src="assets/images/author/author-img4.jpg" alt="image"></picture>
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Your product is completely Ready...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <picture><source srcset="assets/images/author/author-img2.avif" type="image/avif"><img src="assets/images/author/author-img2.jpg" alt="image"></picture>
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <picture><source srcset="assets/images/author/author-img1.avif" type="image/avif"><img src="assets/images/author/author-img1.jpg" alt="image"></picture>
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="notify-item">
-                                            <div class="notify-thumb">
-                                                <picture><source srcset="assets/images/author/author-img3.avif" type="image/avif"><img src="assets/images/author/author-img3.jpg" alt="image"></picture>
-                                            </div>
-                                            <div class="notify-text">
-                                                <p>Aglae Mayer</p>
-                                                <span class="msg">Hey I am waiting for you...</span>
-                                                <span>3:15 PM</span>
-                                            </div>
-                                        </a>
+
                                     </div>
+
                                 </div>
+
                             </li>
+
+
+                            {{-- Settings --}}
                             <li class="settings-btn">
+
                                 <i class="ti-settings"></i>
+
                             </li>
+
+
                         </ul>
+
                     </div>
+
                 </div>
+
             </div>
-            <!-- header area end -->
-            <!-- page title area start -->  
+
+
+
+            {{-- =========================
+                 PAGE TITLE
+            ========================== --}}
             <div class="page-title-area">
+
                 <div class="row align-items-center">
+
+
                     <div class="col-sm-6">
+
                         <div class="breadcrumbs-area clearfix">
-                            <h1 class="page-title float-start">Dashboard</h1>
+
+                            <h1 class="page-title float-start">
+                                @yield('title')
+                            </h1>
+
+
                             <ul class="breadcrumbs float-start">
-                                <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
-                                <li>@yield('title')</li>
+
+                                <li>
+                                    <a href="{{ route('admin.dashboard') }}">
+                                        Home
+                                    </a>
+                                </li>
+
+                                <li>
+                                    @yield('title')
+                                </li>
+
                             </ul>
+
                         </div>
+
                     </div>
+
+
+                    {{-- User Profile --}}
                     <div class="col-sm-6 clearfix">
+
                         <div class="user-profile float-end">
-                            <picture><source srcset="{{ asset('assets/images/author/avatar.avif') }}" type="image/avif"><img class="avatar user-thumb" src="assets/images/author/avatar.png" alt="avatar"></picture>
-                            <h4 class="user-name dropdown-toggle" data-bs-toggle="dropdown">Aigars Silkalns <i class="fa-solid fa-angle-down"></i></h4>
+
+                            <img
+                                class="avatar user-thumb"
+                                src="{{ asset('assets/images/author/avatar.png') }}"
+                                alt="Avatar"
+                            >
+
+
+                            <h4
+                                class="user-name dropdown-toggle"
+                                data-bs-toggle="dropdown"
+                            >
+
+                                Admin
+
+                                <i class="fa-solid fa-angle-down"></i>
+
+                            </h4>
+
+
                             <div class="dropdown-menu user-dropdown">
-                                <a class="dropdown-item" href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
-                                <a class="dropdown-item" href="notifications.html"><i class="fa-solid fa-envelope"></i> Inbox <span class="badge rounded-pill bg-primary ms-auto">3</span></a>
-                                <a class="dropdown-item" href="settings.html"><i class="fa-solid fa-gear"></i> Account Settings</a>
-                                <a class="dropdown-item" href="screenlock.html"><i class="fa-solid fa-lock"></i> Lock Screen</a>
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-user"></i>
+                                    Profil
+                                </a>
+
+                                <a class="dropdown-item" href="#">
+                                    <i class="fa-solid fa-gear"></i>
+                                    Pengaturan
+                                </a>
+
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item user-dropdown-logout" href="#"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+
+                                <a class="dropdown-item user-dropdown-logout" href="#">
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                    Keluar
+                                </a>
+
                             </div>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
-            <!-- page title area end -->
+
+
+
+            {{-- =========================
+                 CONTENT
+            ========================== --}}
             <div class="main-content-inner" id="main-content">
+
                 @yield('content')
+
             </div>
+
+
         </div>
-        <!-- main content area end -->
-        <!-- footer area start-->
+
+
+
+        {{-- =========================
+             FOOTER
+        ========================== --}}
         <footer>
+
             <div class="footer-area">
-                <p>© Copyright 2026. All right reserved. Template by <a href="https://colorlib.com/wp/">Colorlib</a>.</p>
+
+                <p>
+                    © 2026 SMP Negeri 1 Padakembang.
+                    All rights reserved.
+                </p>
+
             </div>
+
         </footer>
-        <!-- footer area end-->
+
+
     </div>
-    <!-- page container area end -->
-    <!-- offset area start -->
+
+
+
+    {{-- =========================
+         OFFSET AREA
+    ========================== --}}
     <div class="offset-area">
-        <div class="offset-close"><i class="ti-close"></i></div>
-        <ul class="nav offset-menu-tab">
-            <li><a class="active" data-bs-toggle="tab" href="#activity">Activity</a></li>
-            <li><a data-bs-toggle="tab" href="#settings">Settings</a></li>
-        </ul>
-        <div class="offset-content tab-content">
-            <div id="activity" class="tab-pane fade in show active">
-                <div class="recent-activity">
-                    <div class="timeline-task">
-                        <div class="icon bg1">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa-solid fa-check"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Added</h4>
-                            <span class="time"><i class="ti-time"></i>7 Minutes Ago</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa-solid fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>You missed you Password!</h4>
-                            <span class="time"><i class="ti-time"></i>09:20 Am</span>
-                        </div>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="fa-solid fa-bomb"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Member waiting for you Attention</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="ti-signal"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>You Added Kaji Patha few minutes ago</h4>
-                            <span class="time"><i class="ti-time"></i>01 minutes ago</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg1">
-                            <i class="fa-solid fa-envelope"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Ratul Hamba sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Hello sir , where are you, i am egerly waiting for you.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa-solid fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg2">
-                            <i class="fa-solid fa-exclamation-triangle"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="fa-solid fa-bomb"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                    <div class="timeline-task">
-                        <div class="icon bg3">
-                            <i class="ti-signal"></i>
-                        </div>
-                        <div class="tm-title">
-                            <h4>Rashed sent you an email</h4>
-                            <span class="time"><i class="ti-time"></i>09:35</span>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse distinctio itaque at.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div id="settings" class="tab-pane fade">
-                <div class="offset-settings">
-                    <h4>General Settings</h4>
-                    <div class="settings-list">
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Notifications</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch1" />
-                                    <label for="switch1">Toggle</label>
-                                </div>
-                            </div>
-                            <p>Keep it 'On' When you want to get all the notification.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Show recent activity</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch2" />
-                                    <label for="switch2">Toggle</label>
-                                </div>
-                            </div>
-                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Show your emails</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch3" />
-                                    <label for="switch3">Toggle</label>
-                                </div>
-                            </div>
-                            <p>Show email so that easily find you.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Show Task statistics</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch4" />
-                                    <label for="switch4">Toggle</label>
-                                </div>
-                            </div>
-                            <p>The for attribute is necessary to bind our custom checkbox with the input.</p>
-                        </div>
-                        <div class="s-settings">
-                            <div class="s-sw-title">
-                                <h5>Notifications</h5>
-                                <div class="s-swtich">
-                                    <input type="checkbox" id="switch5" />
-                                    <label for="switch5">Toggle</label>
-                                </div>
-                            </div>
-                            <p>Use checkboxes when looking for yes or no answers.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+        <div class="offset-close">
+            <i class="ti-close"></i>
         </div>
+
+
+        <ul class="nav offset-menu-tab">
+
+            <li>
+                <a
+                    class="active"
+                    data-bs-toggle="tab"
+                    href="#activity"
+                >
+                    Activity
+                </a>
+            </li>
+
+
+            <li>
+
+                <a
+                    data-bs-toggle="tab"
+                    href="#settings"
+                >
+                    Settings
+                </a>
+
+            </li>
+
+        </ul>
+
+
+        <div class="offset-content tab-content">
+
+
+            {{-- Activity --}}
+            <div
+                id="activity"
+                class="tab-pane fade in show active"
+            >
+
+                <div class="recent-activity">
+
+
+                    <div class="timeline-task">
+
+                        <div class="icon bg1">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+
+                        <div class="tm-title">
+
+                            <h4>Aktivitas</h4>
+
+                            <span class="time">
+                                <i class="ti-time"></i>
+                                Baru saja
+                            </span>
+
+                        </div>
+
+                        <p>
+                            Selamat datang di dashboard
+                            SMP Negeri 1 Padakembang.
+                        </p>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            {{-- Settings --}}
+            <div
+                id="settings"
+                class="tab-pane fade"
+            >
+
+                <div class="offset-settings">
+
+                    <h4>Pengaturan</h4>
+
+
+                    <div class="settings-list">
+
+
+                        <div class="s-settings">
+
+                            <div class="s-sw-title">
+
+                                <h5>Notifikasi</h5>
+
+                                <div class="s-swtich">
+
+                                    <input
+                                        type="checkbox"
+                                        id="switch1"
+                                    >
+
+                                    <label for="switch1">
+                                        Toggle
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <p>
+                                Aktifkan notifikasi dashboard.
+                            </p>
+
+                        </div>
+
+
+                        <div class="s-settings">
+
+                            <div class="s-sw-title">
+
+                                <h5>Aktivitas</h5>
+
+                                <div class="s-swtich">
+
+                                    <input
+                                        type="checkbox"
+                                        id="switch2"
+                                    >
+
+                                    <label for="switch2">
+                                        Toggle
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <p>
+                                Tampilkan aktivitas terbaru.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
     </div>
-    <!-- offset area end -->
-    <!-- bootstrap 5 js -->
+
+
+
+    {{-- =========================
+         JAVASCRIPT
+    ========================== --}}
+
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
+
     <script src="{{ asset('assets/js/metismenujs.min.js') }}"></script>
 
-    <!-- Chart.js 4 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
-    <!-- all line chart activation -->
+
     <script src="{{ asset('assets/js/line-chart.js') }}"></script>
-    <!-- all pie chart -->
+
     <script src="{{ asset('assets/js/pie-chart.js') }}"></script>
+
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag("js", new Date());
-        gtag("config", "G-XXXXXXXXXX");
-    </script>
+
+
 </body>
 
 </html>

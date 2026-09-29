@@ -36,7 +36,8 @@ Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('admi
             Route::get('/create', [GuruController::class, 'create'])->name('admin.guru.create');
             Route::post('/store', [GuruController::class, 'store'])->name('admin.guru.store');
             Route::get('/edit/{id}', [GuruController::class, 'edit'])->name('admin.guru.edit');
-            Route::put('/update{id}', [GuruController::class, 'update'])->name('admin.guru.update');
+            Route::put('/update/{id}', [GuruController::class, 'update'])->name('admin.guru.update');
+            Route::delete('/{id}', [GuruController::class, 'destroy'])->name('admin.guru.destroy');
         });
 
         Route::get('/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');

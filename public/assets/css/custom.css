@@ -1,0 +1,373 @@
+/* =========================================================
+   SMP NEGERI 1 PADAKEMBANG
+   CUSTOM THEME
+   ========================================================= */
+
+/* Warna utama dari logo */
+:root {
+    --sekolah-biru: #1688D4;
+    --sekolah-biru-hover: #0F76BD;
+    --sekolah-kuning: #FFD900;
+    --sekolah-hijau: #009B55;
+    --sekolah-merah: #ED1C24;
+
+    --sidebar: #172B3A;
+    --background: #F4F8FA;
+    --text: #263238;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.left-sidebar {
+    background-color: var(--sidebar) !important;
+}
+
+
+/* SIDEBAR HEADER */
+.sidebar-header {
+    background-color: var(--sidebar) !important;
+    padding: 20px 15px !important;
+}
+
+.sidebar-header .logo {
+    width: 100%;
+}
+
+.sidebar-header .logo a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.sidebar-header .logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    margin: 0 !important;
+}
+
+.sidebar-header .logo span {
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+}
+
+
+/* Logo / nama sekolah */
+.logo {
+    background-color: var(--sidebar) !important;
+}
+
+.logo a {
+    color: #FFFFFF !important;
+}
+
+
+/* Menu sidebar */
+.metismenu li a {
+    color: #B8C4CC !important;
+    transition: all 0.2s ease;
+}
+
+
+/* Hover menu */
+.metismenu li a:hover {
+    color: #FFFFFF !important;
+    background-color: rgba(22, 136, 212, 0.15) !important;
+}
+
+
+/* Menu aktif */
+.metismenu li.active > a,
+.metismenu li.mm-active > a {
+    color: #FFFFFF !important;
+    background-color: var(--sekolah-biru) !important;
+}
+
+
+/* Icon menu aktif */
+.metismenu li.active > a i,
+.metismenu li.mm-active > a i {
+    color: #FFFFFF !important;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.header-area {
+    background-color: #FFFFFF !important;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+
+/* Search */
+.search-box input {
+    background-color: #F4F8FA !important;
+}
+
+
+/* =========================================================
+   BREADCRUMB / PAGE HEADER
+   ========================================================= */
+
+.page-title-area {
+    background-color: #FFFFFF !important;
+}
+
+
+/* Link breadcrumb */
+.breadcrumb a {
+    color: var(--sekolah-biru) !important;
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.main-content {
+    background-color: var(--background);
+}
+
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.card {
+    border: none !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 12px rgba(23, 43, 58, 0.06);
+}
+
+
+/* Judul card */
+.card-title {
+    color: var(--text);
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   BUTTON PRIMARY
+   ========================================================= */
+
+.btn-primary {
+    background-color: var(--sekolah-biru) !important;
+    border-color: var(--sekolah-biru) !important;
+    color: #FFFFFF !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--sekolah-biru-hover) !important;
+    border-color: var(--sekolah-biru-hover) !important;
+}
+
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table thead th {
+    background-color: var(--sekolah-biru) !important;
+    color: #FFFFFF !important;
+    border: none !important;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(22, 136, 212, 0.05);
+}
+
+
+/* =========================================================
+   TOMBOL EDIT
+   ========================================================= */
+
+.btn-edit,
+.btn-warning {
+    background-color: var(--sekolah-biru) !important;
+    border-color: var(--sekolah-biru) !important;
+    color: #FFFFFF !important;
+}
+
+
+/* =========================================================
+   ACTION BUTTON
+   ========================================================= */
+
+.action-btn {
+    border: none;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 4px 2px;
+}
+
+
+/* =========================================================
+   TOMBOL TAMBAH
+   ========================================================= */
+
+.add-btn {
+    background-color: var(--sekolah-biru) !important;
+    color: #FFFFFF !important;
+    padding: 8px 14px;
+    text-decoration: none !important;
+    font-size: 14px;
+    gap: 7px;
+}
+
+.add-btn:hover,
+.add-btn:focus,
+.add-btn:active {
+    background-color: var(--sekolah-biru-hover) !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+}
+
+
+/* =========================================================
+   TOMBOL EDIT
+   ========================================================= */
+
+.edit-btn {
+    width: 34px;
+    height: 34px;
+    background-color: var(--sekolah-kuning) !important;
+    color: #263238 !important;
+}
+
+.edit-btn:hover,
+.edit-btn:focus,
+.edit-btn:active {
+    background-color: #E6C300 !important;
+    color: #263238 !important;
+}
+
+
+/* =========================================================
+   TOMBOL DELETE
+   ========================================================= */
+
+.delete-btn {
+    width: 34px;
+    height: 34px;
+    background-color: var(--sekolah-merah) !important;
+    color: #FFFFFF !important;
+}
+
+.delete-btn:hover,
+.delete-btn:focus,
+.delete-btn:active {
+    background-color: #C9151C !important;
+    color: #FFFFFF !important;
+}
+
+
+/* =========================================================
+   BOOTSTRAP DELETE
+   ========================================================= */
+
+.btn-danger {
+    background-color: var(--sekolah-merah) !important;
+    border-color: var(--sekolah-merah) !important;
+}
+
+
+/* =========================================================
+   STATUS SUCCESS
+   ========================================================= */
+
+.btn-success {
+    background-color: var(--sekolah-hijau) !important;
+    border-color: var(--sekolah-hijau) !important;
+}
+
+
+/* =========================================================
+   BADGE
+   ========================================================= */
+
+.badge-success,
+.bg-success {
+    background-color: var(--sekolah-hijau) !important;
+}
+
+.badge-warning,
+.bg-warning {
+    background-color: var(--sekolah-kuning) !important;
+    color: #222222 !important;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.page-item.active .page-link {
+    background-color: var(--sekolah-biru) !important;
+    border-color: var(--sekolah-biru) !important;
+}
+
+.page-link {
+    color: var(--sekolah-biru);
+}
+
+.page-link:hover {
+    color: var(--sekolah-biru-hover);
+}
+
+
+/* =========================================================
+   FORM INPUT
+   ========================================================= */
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--sekolah-biru) !important;
+    box-shadow: 0 0 0 0.15rem rgba(22, 136, 212, 0.15) !important;
+}
+
+
+/* =========================================================
+   ALERT
+   ========================================================= */
+
+.alert-success {
+    border-left: 4px solid var(--sekolah-hijau);
+}
+
+.alert-danger {
+    border-left: 4px solid var(--sekolah-merah);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.footer-area {
+    background-color: #FFFFFF !important;
+    border-top: 1px solid #E5E7EB;
+}

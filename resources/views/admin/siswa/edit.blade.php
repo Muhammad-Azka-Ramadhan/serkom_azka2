@@ -1,6 +1,6 @@
 @extends('admin_app')
 
-@section('title', $data['title'])
+@section('title', 'Siswa')
 
 @section('content')
 <div class="col-12 mt-5">

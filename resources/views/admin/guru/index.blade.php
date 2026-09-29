@@ -6,11 +6,17 @@
 <div class="main-content-inner" id="main-content">
     <div class="row">
         <div class="col-12 mt-5">
+            <hr>
+            @session('success')
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endsession
             <div class="card">
                 <div class="card-body">
                     <div class="container d-flex justify-content-between">
                         <h4 class="header-title">Data Guru</h4>
-                        <a href="{{ route('admin.guru.create') }}" class="action-btn add-siswa-btn"><i class="fa-solid fa-plus"></i>Tambah Guru</a>
+                        <a href="{{ route('admin.guru.create') }}" class="action-btn add-btn mb-2"><i class="fa-solid fa-plus"></i>Tambah Guru</a>
                     </div>
                     <div class="data-tables datatable-dark">
                         <table id="dataTable3" class="text-center w-100">
@@ -37,9 +43,18 @@
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
 
-                                        <button type="button" class="action-btn delete-btn">
+                                        <form action="{{ route('admin.guru.destroy', $item->id) }}"
+                                            method="POST"
+                                            class="d-inline"
+                                            onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="action-btn delete-btn">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
+                                    </form>
                                     </td>
                                 </tr>
                                 @empty

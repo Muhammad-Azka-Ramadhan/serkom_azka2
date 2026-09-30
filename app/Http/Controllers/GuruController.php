@@ -28,16 +28,12 @@ class GuruController extends Controller
             'nip' => 'required|string',
             'mapel' => 'required|string',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
-        ]);
+        ],
+        );
 
         if ($request->hasFile('foto')) {
             $validated['foto'] = $request->file('foto')->store('guru', 'public');
         }
-        
-        // if ($request->hasFile('foto')) {
-        //     if ($guru->foto && Storage::disk('public')->exists($guru->foto));
-        // }
-
 
         // if ($request->hasFile('foto')) {
         //     $foto = $request->file('foto');

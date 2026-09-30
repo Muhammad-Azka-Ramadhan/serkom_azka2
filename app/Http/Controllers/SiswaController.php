@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class SiswaController extends Controller
 {
@@ -30,24 +31,17 @@ class SiswaController extends Controller
     }
 
     public function edit($id) {
-        $data = [
-            'title' => 'Siswa'
-        ];
-
-        $siswa = Siswa::findOrFail($id);
-        return view('admin.siswa.edit', [
-            'data' => $data,
-            'siswa' => $siswa
-        ]);
+        $siswa = Siswa::findOrFail(Crypt::decrypt($id));
+        return view('admin.siswa.edit', compact('siswa'));
     }
 
     public function update(Request $request, $id) {
         $siswa = Siswa::findOrFail($id);
         $validated = $request->validate([
-            'nisn' => 'required|string',
+            'nisn' => 'required|string|unique:siswa,nisn,' . ($id ?? 'NULL') . ',id',
             'nama_siswa' => 'required|string',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-            'tahun_masuk' => 'required|string|numeric'
+            'tahun_masuk' => 'required|string|integer'
         ]);
 
         $siswa->update($validated);

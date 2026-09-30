@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ekstrakurikuler;
 use App\Models\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 // use Illuminate\Http\Request;
 
@@ -47,7 +48,7 @@ class EkstrakurikulerController extends Controller
     }
 
     public function edit($id) {
-        $ekstrakurikuler = Ekstrakurikuler::findOrFail($id);
+        $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
         $guru = Guru::all();
         return view(
             'admin.ekstrakurikuler.edit',

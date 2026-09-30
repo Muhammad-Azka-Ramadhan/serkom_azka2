@@ -6,6 +6,8 @@ use App\Models\Guru;
 use App\Models\Siswa;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 class GuruController extends Controller
 {
@@ -29,23 +31,32 @@ class GuruController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            $foto = $request->file('foto');
-
-            $nama_foto = $foto->getClientOriginalName();
-
-            $foto->move(
-                public_path('storage/'),
-                $nama_foto
-            );
-            $validated['foto'] = 'storage/' . $nama_foto;
+            $validated['foto'] = $request->file('foto')->store('guru', 'public');
         }
+        
+        // if ($request->hasFile('foto')) {
+        //     if ($guru->foto && Storage::disk('public')->exists($guru->foto));
+        // }
+
+
+        // if ($request->hasFile('foto')) {
+        //     $foto = $request->file('foto');
+
+        //     $nama_foto = $foto->getClientOriginalName();
+
+        //     $foto->move(
+        //         public_path('storage/'),
+        //         $nama_foto
+        //     );
+        //     $validated['foto'] = 'storage/' . $nama_foto;
+        // }
 
         $created = Guru::create($validated);
         return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil ditambahkan');
     }
 
     public function edit($id) {
-        $guru = Guru::findOrFail($id);
+        $guru = Guru::findOrFail(Crypt::decrypt($id));
         return view('admin.guru.edit', compact('guru'));
     }
 

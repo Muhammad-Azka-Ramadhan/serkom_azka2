@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <title>SMPN 1 Padakembang | @yield('title')</title>
@@ -10,8 +11,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    {{-- Favicon --}}
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/icon/logo-smpn1-padakembang.png') }}">
+    {{-- Favicon
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/icon/logo-smpn1-padakembang.png') }}"> --}}
     {{-- Bootstrap --}}
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     {{-- Font Awesome --}}
@@ -29,8 +30,11 @@
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     {{-- Custom CSS SMPN 1 Padakembang --}}
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/datatables/css/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/datatables/css/datatables.min.css') }}">
 
 </head>
+
 <body>
     <a href="#main-content" class="skip-link">
         Skip to main content
@@ -390,6 +394,7 @@
     {{-- =========================
          JAVASCRIPT
     ========================== --}}
+
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/metismenujs.min.js') }}"></script>
@@ -397,5 +402,17 @@
     <script src="{{ asset('assets/js/line-chart.js') }}"></script>
     <script src="{{ asset('assets/js/pie-chart.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ asset('assets/datatables/js/datatables.js') }}"></script>
+    <script src="{{ asset('assets/datatables/js/datatables.min.js') }}"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            $('.table').DataTable();
+        });
+    </script>
+    @stack('scripts')
 </body>
+
 </html>

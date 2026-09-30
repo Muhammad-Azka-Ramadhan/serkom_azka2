@@ -4,68 +4,67 @@
 
 @section('content')
 
-<div class="main-content-inner" id="main-content">
-    <div class="row">
-        <div class="col-12 mt-5">
-            <div class="card">
-                <div class="card-body">
-                    <div class="container d-flex justify-content-between">
-                        <h4 class="header-title">Data Siswa</h4>
-                        <a href="{{ route('admin.siswa.create') }}" class="action-btn add-btn"><i class="fa-solid fa-plus"></i>Tambah Siswa</a>
-                    </div>
-                    <div class="data-tables datatable-dark">
-                        <table id="dataTable3" class="text-center w-100">
-                            <thead class="text-capitalize">
-                                <tr>
-                                    <th>No</th>
-                                    <th>NISN</th>
-                                    <th>Nama</th>
-                                    <th>Jenis Kelamin</th>
-                                    <th>Tahun Masuk</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($siswa as $index => $item)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $item->nisn }}</td>
-                                    <td>{{ $item->nama_siswa }}</td>
-                                    <td>{{ $item->jenis_kelamin }}</td>
-                                    <td>{{ $item->tahun_masuk }}</td>
-                                    <td>
-                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.siswa.edit', $item->id) }}'">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </button>
-                                       <form action="{{ route('admin.siswa.destroy', $item->id) }}"
-                                            method="POST"
-                                            class="d-inline"
-                                            onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit" class="action-btn delete-btn">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @empty
+    <div class="main-content-inner" id="main-content">
+        <div class="row">
+            <div class="col-12 mt-5">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="container d-flex justify-content-between">
+                            <h4 class="header-title">Data Siswa</h4>
+                            <a href="{{ route('admin.siswa.create') }}" class="action-btn add-btn"><i
+                                    class="fa-solid fa-plus"></i>Tambah Siswa</a>
+                        </div>
+                        <div class="datatable-dark">
+                            <table id="" class="table text-center w-100">
+                                <thead class="text-capitalize">
                                     <tr>
-                                        <td>
-                                            Belum ada data siswa
-                                        </td>
+                                        <th>No</th>
+                                        <th>NISN</th>
+                                        <th>Nama</th>
+                                        <th>Jenis Kelamin</th>
+                                        <th>Tahun Masuk</th>
+                                        <th>Aksi</th>
                                     </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @forelse ($siswa as $index => $item)
+                                        <tr>
+                                            <td>{{ $index + 1 }}</td>
+                                            <td>{{ $item->nisn }}</td>
+                                            <td>{{ $item->nama_siswa }}</td>
+                                            <td>{{ $item->jenis_kelamin }}</td>
+                                            <td>{{ $item->tahun_masuk }}</td>
+                                            <td>
+                                                <button type="button" class="action-btn edit-btn"
+                                                    onclick="window.location.href='{{ route('admin.siswa.edit', Crypt::encrypt($item->id)) }}'">
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </button>
+                                                <form action="{{ route('admin.siswa.destroy', $item->id) }}" method="POST"
+                                                    class="d-inline"
+                                                    onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="action-btn delete-btn">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td>
+                                                Belum ada data siswa
+                                            </td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
 @endsection

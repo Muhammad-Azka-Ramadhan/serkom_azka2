@@ -11,7 +11,7 @@
                         <a href="" class="action-btn add-btn"><i class="fa-solid fa-plus"></i>Tambah Pengelola</a>
                     </div>
                     <div class="data-tables datatable-dark">
-                        <table id="dataTable3" class="text-center w-100">
+                        <table id="" class="table text-center w-100">
                             <thead class="text-capitalize">
                                 <tr>
                                     <th>No</th>

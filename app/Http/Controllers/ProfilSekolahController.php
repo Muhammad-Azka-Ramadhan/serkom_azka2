@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\File;
 
 class ProfilSekolahController extends Controller
@@ -16,7 +17,7 @@ class ProfilSekolahController extends Controller
     }
 
     public function edit($id) {
-        $profilSekolah = ProfilSekolah::findOrFail($id);
+        $profilSekolah = ProfilSekolah::findOrFail(Crypt::decrypt($id));
         return view('admin.profil.edit', compact('profilSekolah'));
     }
 

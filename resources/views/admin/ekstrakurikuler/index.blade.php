@@ -18,8 +18,8 @@
                         <h4 class="header-title">Data Ekstrakurikuler</h4>
                         <a href="{{ route('admin.eskul.create') }}" class="action-btn add-btn"><i class="fa-solid fa-plus"></i>Tambah Ekstrakurikuler</a>
                     </div>
-                    <div class="data-tables datatable-dark">
-                        <table id="dataTable3" class="text-center w-100">
+                    <div class="datatable-dark">
+                        <table id="" class="table text-center w-100">
                             <thead class="text-capitalize">
                                 <tr>
                                     <th>No</th>
@@ -32,7 +32,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($ekstrakurikuler as $index => $item)
+                                @foreach ($ekstrakurikuler as $index => $item)
                                 <tr>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $item->nama_eskul }}</td>
@@ -41,7 +41,7 @@
                                     <td>{{ $item->deskripsi}}</td>
                                     <td><img width="50px" height="50px" src="{{asset($item->gambar)}}" alt=""></td>
                                     <td>
-                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.eskul.edit', $item->id) }}'">
+                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.eskul.edit', Crypt::encrypt($item->id)) }}'">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
                                         <form action="{{ route('admin.eskul.destroy', $item->id) }}"
@@ -57,13 +57,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                                @empty
-                                    <tr>
-                                        <td>
-                                            Belum ada data ekstrakurikuler
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

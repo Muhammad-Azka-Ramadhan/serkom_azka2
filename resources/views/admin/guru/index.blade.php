@@ -19,7 +19,7 @@
                         <a href="{{ route('admin.guru.create') }}" class="action-btn add-btn mb-2"><i class="fa-solid fa-plus"></i>Tambah Guru</a>
                     </div>
                     <div class="data-tables datatable-dark">
-                        <table id="dataTable3" class="text-center w-100">
+                        <table id="" class="table text-center w-100">
                             <thead class="text-capitalize">
                                 <tr>
                                     <th>No</th>
@@ -31,15 +31,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($guru as $index => $item)
+                                @foreach ($guru as $item)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nama_guru}}</td>
                                     <td>{{ $item->nip }}</td>
                                     <td>{{ $item->mapel }}</td>
-                                    <td><img width="50px" height="50px" src="{{asset($item->foto)}}" alt=""></td>
+                                    <td><img width="50px" height="50px" src="{{asset('storage/' . $item->foto)}}" alt=""></td>
                                     <td>
-                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.guru.edit', $item->id) }}'">
+                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.guru.edit', Crypt::encrypt($item->id)) }}'">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
 
@@ -57,13 +57,7 @@
                                     </form>
                                     </td>
                                 </tr>
-                                @empty
-                                    <tr>
-                                        <td>
-                                            Belum ada data guru
-                                        </td>
-                                    </tr>
-                                @endforelse
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

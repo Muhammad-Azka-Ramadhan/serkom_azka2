@@ -12,7 +12,7 @@
                     <h3 class="fw-bold mb-1">Profil Sekolah</h3>
                     <p class="text-muted mb-0">Profil SMPN 1 Padakembang</p>
                 </div>
-                <a href="{{route('admin.profil.edit', $profilSekolah->id)}}" class="btn btn-primary"><i class="fas fa-edit me-1"></i>Edit Profil</a>
+                <a href="{{route('admin.profil.edit', Crypt::encrypt($profilSekolah->id))}}" class="btn btn-primary"><i class="fas fa-edit me-1"></i>Edit Profil</a>
             </div>
         </div>
     </div>

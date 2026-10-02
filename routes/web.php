@@ -41,7 +41,11 @@ Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('admi
             Route::delete('/{id}', [GuruController::class, 'destroy'])->name('admin.guru.destroy');
         });
 
-        Route::get('/galeri', [GaleriController::class, 'index'])->name('admin.galeri.index');
+        route::prefix('galeri')->group(function () {
+            Route::get('/', [GaleriController::class, 'index'])->name('admin.galeri.index');
+            Route::get('/create', [GaleriController::class, 'create'])->name('admin.galeri.create');
+            Route::post('/store', [GaleriController::class, 'store'])->name('admin.galeri.store');
+        });
 
         Route::prefix('berita')->group(function () {
             Route::get('/', [BeritaController::class, 'index'])->name('admin.berita.index');

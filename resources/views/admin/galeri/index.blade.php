@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <div class="container d-flex justify-content-between">
                         <h4 class="header-title">Galeri</h4>
-                        <a href="" class="action-btn add-btn mb-2"><i class="fa-solid fa-plus"></i>Tambah Galeri</a>
+                        <a href="{{route('admin.galeri.create')}}" class="action-btn add-btn mb-2"><i class="fa-solid fa-plus"></i>Tambah Galeri</a>
                     </div>
                     <div class="data-tables datatable-dark">
                         <table class="table text-center w-100">
@@ -28,14 +28,15 @@
                                     <th>File</th>
                                     <th>Kategori</th>
                                     <th>Tanggal</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($galeri as $item)a
+                                @foreach ($galeri as $item)
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
-                                    <td>{{$galeri->judul}}</td>
-                                    <td>{{$galeri->keterangan}}</td>
+                                    <td>{{$item->judul}}</td>
+                                    <td>{{$item->keterangan}}</td>
                                     <td><img width="50px" height="50px" src="{{ asset('storage/' . $item->file) }}" alt=""></td>
                                     <td>{{$item->kategori}}</td>
                                     <td>{{$item->tanggal}}</td>

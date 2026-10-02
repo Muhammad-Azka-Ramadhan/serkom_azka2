@@ -14,8 +14,6 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'user';
-    protected $primaryKey = 'id_user';
-    protected $keyType = 'string';
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +25,10 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function berita() {
+        return $this->hasMany(Berita::class, 'id_user', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

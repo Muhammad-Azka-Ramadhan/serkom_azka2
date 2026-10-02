@@ -9,6 +9,7 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
+use App\Models\Berita;
 use App\Models\Guru;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,7 @@ Route::get('/', [DashboardController::class, 'publicIndex'])->name('public.dashb
 Route::get('/login', [AuthController::class, 'login'])->name('admin.login');
 Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('admin.login_proses');
 
-    Route::prefix('admin')->group(function () {
+    Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
         Route::prefix('siswa')->group(function () {
@@ -45,11 +46,16 @@ Route::post('/login-proses', [AuthController::class, 'prosesLogin'])->name('admi
             Route::get('/', [GaleriController::class, 'index'])->name('admin.galeri.index');
             Route::get('/create', [GaleriController::class, 'create'])->name('admin.galeri.create');
             Route::post('/store', [GaleriController::class, 'store'])->name('admin.galeri.store');
+            Route::get('/edit/{id}', [GaleriController::class, 'edit'])->name('admin.galeri.edit');
+            Route::put('/update/{id}', [GaleriController::class, 'update'])->name('admin.galeri.update');
+            Route::delete('/destroy/{id}', [GaleriController::class, 'destroy'])->name('admin.galeri.destroy');
         });
 
         Route::prefix('berita')->group(function () {
             Route::get('/', [BeritaController::class, 'index'])->name('admin.berita.index');
-        });
+            Route::get('/create', [BeritaController::class, 'create'])->name('admin.berita.create');
+            Route::post('/store', [BeritaController::class, 'store'])->name('admin.berita.store');
+            });
 
         Route::prefix('ekstrakurikuler')->group(function () {
             Route::get('/', [EkstrakurikulerController::class, 'index'])->name('admin.eskul.index');

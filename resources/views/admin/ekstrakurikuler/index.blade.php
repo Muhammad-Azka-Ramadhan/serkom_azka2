@@ -15,7 +15,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="container d-flex justify-content-between">
-                        <h4 class="header-title">Data Ekstrakurikuler</h4>
+                        <h4 class="header   -title">Data Ekstrakurikuler</h4>
                         <a href="{{ route('admin.eskul.create') }}" class="action-btn add-btn"><i class="fa-solid fa-plus"></i>Tambah Ekstrakurikuler</a>
                     </div>
                     <div class="datatable-dark">

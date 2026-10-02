@@ -41,11 +41,13 @@
                                     <td>{{$item->kategori}}</td>
                                     <td>{{$item->tanggal}}</td>
                                     <td>
-                                        <button type="submit" class="action-btn edit-btn">
+                                        <button type="submit" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.galeri.edit', Crypt::encrypt($item->id)) }}'">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </button>
 
-                                        <form action="" method="POST" class="d-inline">
+                                        <form action="{{ route('admin.galeri.destroy', $item->id) }}" method="POST" class="d-inline" method="POST" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                            @csrf
+                                            @method('DELETE')
                                             <button type="submit" class="action-btn delete-btn">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>

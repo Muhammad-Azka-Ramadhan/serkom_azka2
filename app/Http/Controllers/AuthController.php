@@ -18,7 +18,7 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'password' => 'required'
             ],
-            
+
             [
                 'email.required' => 'Email wajib diisi',
                 'email.email' => 'Email tidak valid',
@@ -28,6 +28,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            // dd(Auth::check(), Auth::id(), Auth::user());
 
             return redirect()->intended(route('admin.dashboard'))->with('success', 'Selamat datang kembali');
         }

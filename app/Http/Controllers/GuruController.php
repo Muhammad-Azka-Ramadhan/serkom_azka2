@@ -32,7 +32,7 @@ class GuruController extends Controller
         );
 
         if ($request->hasFile('foto')) {
-            $validated['foto'] = $request->file('foto')->store('guru', 'public');
+            $validated['foto'] = $request->file('foto')->store('guru');
         }
 
         // if ($request->hasFile('foto')) {
@@ -66,23 +66,9 @@ class GuruController extends Controller
         ]);
 
         if ($request->hasFile('foto')) {
-            if (!empty($guru->foto)) {
-                $fotolama = public_path($guru->foto);
-
-                if (File::exists($fotolama)) {
-                    File::delete($fotolama);
-                }
-            }
-            $foto = $request->file('foto');
-
-            $nama_foto = $foto->getClientOriginalName();
-
-            $foto->move(
-                public_path('storage/'),
-                $nama_foto
-            );
-            $validated['foto'] = 'storage/' . $nama_foto;
+            $validated['foto'] = $request->file('foto')->store('guru');
         }
+        
         $guru->update($validated);
         return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil diperbarui');
     }

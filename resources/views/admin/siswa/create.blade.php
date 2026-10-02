@@ -14,8 +14,10 @@
     </div>
     @endif
     <div class="card">
+        <div class="card-header">
+            <h4 class="header-title mb-0">Tambah Siswa</h4>
+        </div>
         <div class="card-body">
-            <h4 class="header-title">Tambah Siswa</h4>
             <form action="{{ route('admin.siswa.store') }}" method="POST">
                 @csrf
                 <div class="form-group">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Siswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class SiswaController extends Controller
 {
@@ -18,11 +19,19 @@ class SiswaController extends Controller
     }
 
     public function store(Request $request) {
+        $siswa = Siswa::all();
+
         $validated = $request->validate([
-            'nisn' => 'required|string',
+            'nisn' => 'required|string|unique:siswa,nisn',
             'nama_siswa' => 'required|string',
             'jenis_kelamin' => 'required|in:Laki-laki, Perempuan',
             'tahun_masuk' => 'required|string|numeric'
+        ], [
+            'nisn.required' => 'NISN wajib diisi.',
+            'nisn.unique' => 'NISN sudah digunakan.',
+            'nama_siswa.required' => 'Nama siswa wajib diisi.',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
+            'tahun_masuk.required' => 'Tahun masuk wajib diisi.',
         ]);
 
         $created = Siswa::create($validated);
@@ -35,6 +44,7 @@ class SiswaController extends Controller
         ];
 
         $siswa = Siswa::findOrFail($id);
+
         return view('admin.siswa.edit', [
             'data' => $data,
             'siswa' => $siswa
@@ -42,22 +52,34 @@ class SiswaController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $siswa = Siswa::findOrFail($id);
+        $siswa = Siswa::findOrFail(Crypt::decrypt($id));
+
         $validated = $request->validate([
-            'nisn' => 'required|string',
+            'nisn' => 'required|string|unique:siswa,nisn,' . $siswa->id,
             'nama_siswa' => 'required|string',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-            'tahun_masuk' => 'required|string|numeric'
+            'tahun_masuk' => 'required|string|integer'
+        ], [
+            'nisn.required' => 'NISN wajib diisi.',
+            'nisn.unique' => 'NISN sudah digunakan.',
+            'nama_siswa.required' => 'Nama siswa wajib diisi.',
+            'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
+            'tahun_masuk.required' => 'Tahun masuk wajib diisi.',
         ]);
 
         $siswa->update($validated);
+
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil diperbarui');
     }
 
     public function destroy($id) {
-        $siswa = Siswa::findOrFail($id);
+        $siswa = Siswa::findOrFail(Crypt::decrypt($id));
         $siswa->delete();
 
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil dihapus');
+    }
+
+    public function publicSiswa() {
+        return view('public.siswa');
     }
 }

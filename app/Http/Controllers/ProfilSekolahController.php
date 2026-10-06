@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
 
 class ProfilSekolahController extends Controller
 {
@@ -21,7 +23,7 @@ class ProfilSekolahController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $profilSekolah = ProfilSekolah::findOrFail($id);
+        $profilSekolah = ProfilSekolah::findOrFail(Crypt::decrypt($id));
 
         $validated = $request->validate([
             'nama_sekolah' => 'required|max:40',
@@ -31,50 +33,50 @@ class ProfilSekolahController extends Controller
             'npsn' => 'required|string|max:10',
             'alamat' => 'required|string',
             'kontak' => 'required|string|max:15',
-            'visi_misi' => 'required|string',
+            'visi' => 'required|string',
+            'misi' => 'required|string',
             'tahun_berdiri' => 'required|integer',
             'deskripsi' => 'required|string',
+        ], [
+            'nama_sekolah.required' => 'Nama sekolah wajib diisi.',
+            'kepala_sekolah.required' => 'Nama kepala sekolah wajib diisi.',
+            'logo.required' => 'Logo sekolah wajib diunggah.',
+            'logo.image' => 'Logo harus berupa file gambar.',
+            'logo.mimes' => 'Logo harus berupa file dengan format jpg, jpeg, atau png.',
+            'logo.max' => 'Ukuran logo maksimal 2MB.',
+            'foto.required' => 'Foto sekolah wajib diunggah.',
+            'foto.image' => 'Foto harus berupa file gambar.',
+            'foto.mimes' => 'Foto harus berupa file dengan format jpg, jpeg, atau png.',
+            'foto.max' => 'Ukuran foto maksimal 2MB.',
+            'npsn.required' => 'NPSN wajib diisi.',
+            'alamat.required' => 'Alamat sekolah wajib diisi.',
+            'kontak.required' => 'Kontak sekolah wajib diisi.',
+            'visi.required' => 'Visi sekolah wajib diisi.',
+            'misi.required' => 'Misi sekolah wajib diisi.',
+            'tahun_berdiri.required' => 'Tahun berdiri sekolah wajib diisi.',
+            'deskripsi.required' => 'Deskripsi sekolah wajib diisi.'
         ]);
+
         if ($request->hasFile('logo')) {
-            if (!empty($profilSekolah->logo)) {
-                $logolama = public_path($profilSekolah->logo);
-
-                if (File::exists($logolama)) {
-                    File::delete($logolama);
-                }
+            if ($profilSekolah->logo && Storage::disk('public')->exists($profilSekolah->logo)) {
+                Storage::disk('public')->delete($profilSekolah->logo);
             }
-            $logo = $request->file('logo');
-
-            $nama_logo = $logo->getClientOriginalName();
-
-            $logo->move(
-                public_path('storage/'),
-                $nama_logo
-            );
-            $validated['logo'] = 'storage/' . $nama_logo;
+            $validated['logo'] = $request->file('logo')->store('profil_sekolah', 'public');
         }
 
         if ($request->hasFile('foto')) {
-            if (!empty($profilSekolah->foto)) {
-                $fotolama = public_path($profilSekolah->foto);
-
-                if (File::exists($fotolama)) {
-                    File::delete($fotolama);
-                }
+            if ($profilSekolah->foto && Storage::disk('public')->exists($profilSekolah->foto)) {
+                Storage::disk('public')->delete($profilSekolah->foto);
             }
-            $foto = $request->file('foto');
-
-            $nama_foto = $foto->getClientOriginalName();
-
-            $foto->move(
-                public_path('storage/'),
-                $nama_foto
-            );
-            $validated['foto'] = 'storage/' . $nama_foto;
+            $validated['foto'] = $request->file('foto')->store('profil_sekolah', 'public');
         }
 
         $profilSekolah->update($validated);
 
         return redirect()->route('admin.profil.index')->with('success', 'Profil sekolah behasil diperbarui');
+    }
+
+    public function publicProfil_sekolah() {
+        return view('public.profil');
     }
 }

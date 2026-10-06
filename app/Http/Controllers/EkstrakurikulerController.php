@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Ekstrakurikuler;
 use App\Models\Guru;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Storage;
 
 // use Illuminate\Http\Request;
 
@@ -31,15 +33,7 @@ class EkstrakurikulerController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            $gambar = $request->file('gambar');
-
-            $nama_gambar = $gambar->getClientOriginalName();
-
-            $gambar->move(
-                public_path('storage/'),
-                $nama_gambar
-            );
-            $validated['gambar'] ='storage/' . $nama_gambar;
+            $validated['gambar'] = $request->file('gambar')->store('ekstrakurikuler', 'public');
         }
 
         $created = Ekstrakurikuler::create($validated);
@@ -56,26 +50,30 @@ class EkstrakurikulerController extends Controller
     }
 
     public function update(Request $request, $id) {
-        $ekstrakurikuler = Ekstrakurikuler::findOrFail($id);
+        $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
 
         $validated = $request->validate([
             'nama_eskul' => 'required|string',
             'id_guru' => 'required|exists:guru,id',
             'jadwal_latihan' => 'required|string',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png'
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ], [
+            'nama_eskul.required' => 'Nama ekstrakurikuler wajib diisi.',
+            'id_guru.required' => 'Guru pembimbing wajib dipilih.',
+            'id_guru.exists' => 'Guru pembimbing sudah membimbing ekstrakurikuler lain.',
+            'jadwal_latihan.required' => 'Jadwal latihan wajib diisi.',
+            'deskripsi.required' => 'Deskripsi ekstrakurikuler wajib diisi.',
+            'gambar.image' => 'Gambar harus berupa file gambar.',
+            'gambar.mimes' => 'Gambar harus berupa file dengan format jpg, jpeg, atau png.',
+            'gambar.max' => 'Ukuran gambar maksimal 2MB.'
         ]);
 
         if ($request->hasFile('gambar')) {
-            $gambar = $request->file('gambar');
-
-            $nama_gambar = $gambar->getClientOriginalName();
-
-            $gambar->move(
-                public_path('storage/'),
-                $nama_gambar
-            );
-            $validated['gambar'] ='storage/' . $nama_gambar;
+            if ($ekstrakurikuler->gambar && Storage::disk('public')->exists($ekstrakurikuler->gambar)) {
+                Storage::disk('public')->delete($ekstrakurikuler->gambar);
+            }
+            $validated['gambar'] = $request->file('gambar')->store('ekstrakurikuler', 'public');
         }
 
         $ekstrakurikuler->update($validated);
@@ -83,9 +81,13 @@ class EkstrakurikulerController extends Controller
     }
 
     public function destroy($id) {
-        $ekstrakurikuler = Ekstrakurikuler::findOrFail($id);
+        $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
         $ekstrakurikuler->delete();
 
         return redirect()->route('admin.eskul.index')->with('success', 'Data berhasil dihapus');
+    }
+
+    public function publicEkstrakurikuler() {
+        return view('public.ekstrakurikuler');
     }
 }

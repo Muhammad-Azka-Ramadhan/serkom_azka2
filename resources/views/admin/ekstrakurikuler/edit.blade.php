@@ -1,55 +1,225 @@
-@extends('admin_app')
-@section('content')
+@extends('layouts.admin_app')
+
 @section('title', 'Ekstrakurikuler')
-<div class="card"></div>
-    <div class="card-body">
-        @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
+
+@section('content')
+
+<div class="container-fluid py-4">
+
+    {{-- Error Validation --}}
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+
+            <strong>
+                <i class="fa-solid fa-circle-exclamation me-1"></i>
+                Terdapat kesalahan:
+            </strong>
+
+            <ul class="mb-0 mt-2">
                 @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                    <li>{{ $error }}</li>
                 @endforeach
             </ul>
+
+            <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close">
+            </button>
+
         </div>
-        @endif
-        <h4 class="header-title">Edit Ekstrakurikuler</h4>
-        <form action="{{ route('admin.eskul.update', $ekstrakurikuler->id) }}" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="nama">Nama Ekstrakurikuler</label>
-                <input type="text" name="nama_eskul" id="nama" class="form-control" value="{{ $ekstrakurikuler->nama_eskul }}">
-            </div>
-            <div class="form-group">
-                <label for="jadwal">Jadwal Latihan</label>
-                <input type="text" name="jadwal_latihan" id="jadwal" class="form-control" value="{{ $ekstrakurikuler->jadwal_latihan }}">
-            </div>
-            <div class="form-group">
-                <label for="pembina">Pembina</label>
-                <select name="id_guru" id="pembina" class="form-select">
-                    @foreach ($guru as $item)
-                    <option value="{{ $item->id }}" {{ $item->id == $ekstrakurikuler->id_guru ? 'selected' : '' }} >{{$item->nama_guru}}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="deskripsi">Deskripsi</label>
-                <input type="text" class="form-control" name="deskripsi" id="deskripsi" value="{{ $ekstrakurikuler->deskripsi }}">
-            </div>
-            <div class="form-group">
-                <label for="gambar">Gambar</label>
-                @if ($ekstrakurikuler->gambar && file_exists(public_path($ekstrakurikuler->gambar)))
-                    <div class="mb-2">
-                        <img src="{{ asset($ekstrakurikuler->gambar) }}"
-                            alt="Foto Sekolah"
-                            class="img-fluid rounded"
-                            style="max-width: 300px;">
+    @endif
+
+
+    {{-- Card --}}
+    <div class="card border-0 shadow-sm">
+
+        {{-- Header --}}
+        <div class="card-header bg-white border-0 px-4 pt-4">
+
+            <h4 class="fw-semibold mb-1">
+                Edit Ekstrakurikuler
+            </h4>
+
+            <p class="text-muted small mb-0">
+                Perbarui informasi ekstrakurikuler sekolah
+            </p>
+
+        </div>
+
+
+        {{-- Body --}}
+        <div class="card-body px-4 pb-4">
+
+            <form
+                action="{{ route('admin.eskul.update', Crypt::encrypt($ekstrakurikuler->id)) }}"
+                method="POST"
+                enctype="multipart/form-data">
+
+                @csrf
+                @method('PUT')
+
+
+                <div class="row g-4">
+
+                    {{-- Nama --}}
+                    <div class="col-md-6">
+
+                        <label for="nama" class="form-label fw-semibold">
+                            Nama Ekstrakurikuler
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nama_eskul"
+                            id="nama"
+                            class="form-control"
+                            value="{{ old('nama_eskul', $ekstrakurikuler->nama_eskul) }}"
+                            placeholder="Masukkan nama ekstrakurikuler">
+
                     </div>
-                @endif
-                <input type="file" class="form-control" name="gambar" id="gambar" value="">
-            </div>
-            <button type="submit" class="btn btn-primary mt-4 pe-4 ps-4">Submit</button>
-        </form>
+
+
+                    {{-- Jadwal --}}
+                    <div class="col-md-6">
+
+                        <label for="jadwal" class="form-label fw-semibold">
+                            Jadwal Latihan
+                        </label>
+
+                        <input
+                            type="text"
+                            name="jadwal_latihan"
+                            id="jadwal"
+                            class="form-control"
+                            value="{{ old('jadwal_latihan', $ekstrakurikuler->jadwal_latihan) }}"
+                            placeholder="Contoh: Sabtu, 08.00 - 10.00">
+
+                    </div>
+
+
+                    {{-- Pembina --}}
+                    <div class="col-md-6">
+
+                        <label for="pembina" class="form-label fw-semibold">
+                            Pembina
+                        </label>
+
+                        <select
+                            name="id_guru"
+                            id="pembina"
+                            class="form-select">
+
+                            <option value="">
+                                -- Pilih Pembina --
+                            </option>
+
+                            @foreach ($guru as $item)
+
+                                <option
+                                    value="{{ $item->id }}"
+                                    {{ $item->id == $ekstrakurikuler->id_guru ? 'selected' : '' }}>
+
+                                    {{ $item->nama_guru }}
+
+                                </option>
+
+                            @endforeach
+
+                        </select>
+
+                    </div>
+
+
+                    {{-- Deskripsi --}}
+                    <div class="col-md-6">
+
+                        <label for="deskripsi" class="form-label fw-semibold">
+                            Deskripsi
+                        </label>
+
+                        <textarea
+                            name="deskripsi"
+                            id="deskripsi"
+                            class="form-control"
+                            rows="3"
+                            placeholder="Masukkan deskripsi ekstrakurikuler">{{ old('deskripsi', $ekstrakurikuler->deskripsi) }}</textarea>
+
+                    </div>
+
+
+                    {{-- Gambar --}}
+                    <div class="col-12">
+
+                        <label for="gambar" class="form-label fw-semibold">
+                            Gambar
+                        </label>
+
+
+                        {{-- Gambar saat ini --}}
+                        @if ($ekstrakurikuler->gambar && Storage::disk('public')->exists($ekstrakurikuler->gambar))
+
+                            <div class="mb-3">
+
+                                <p class="text-muted small mb-2">
+                                    Gambar saat ini:
+                                </p>
+
+                                <img
+                                    src="{{ asset('storage/' . $ekstrakurikuler->gambar) }}"
+                                    alt="{{ $ekstrakurikuler->nama_eskul }}"
+                                    class="img-thumbnail"
+                                    style="max-width: 200px;">
+
+                            </div>
+
+                        @endif
+
+
+                        <input
+                            type="file"
+                            name="gambar"
+                            id="gambar"
+                            class="form-control">
+
+                        <div class="form-text">
+                            Pilih gambar baru jika ingin mengganti gambar saat ini.
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                {{-- Button --}}
+                <div class="d-flex gap-2 mt-4 pt-3 border-top">
+
+                    <button
+                        type="submit"
+                        class="btn btn-simpan px-4">
+
+                        <i class="fa-solid fa-save me-1"></i>
+                        Simpan Perubahan
+
+                    </button>
+
+                    <a
+                        href="{{ route('admin.eskul.index') }}"
+                        class="btn btn-outline-secondary px-4">
+
+                        <i class="fa-solid fa-arrow-left me-1"></i>
+                        Kembali
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
     </div>
+
 </div>
+
 @endsection

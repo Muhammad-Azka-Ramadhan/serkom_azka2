@@ -1,44 +1,203 @@
-@extends('admin_app')
+@extends('layouts.admin_app')
 
-@section('title', 'Guru')
+@section('title', 'Edit Guru')
 
 @section('content')
-<div class="col-12 mt-5">
+
+<div class="container-fluid py-4">
+
+    {{-- Error Validation --}}
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+
+            <strong>
+                <i class="fa-solid fa-circle-exclamation me-1"></i>
+                Terdapat kesalahan:
+            </strong>
+
+            <ul class="mb-0 mt-2">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close">
+            </button>
+
+        </div>
     @endif
-    <div class="card">
-        <div class="card-body">
-            <h4 class="header-title">Edit Guru</h4>
-            <form action="{{ route('admin.guru.update', $guru->id) }}" method="POST" enctype="multipart/form-data">
+
+
+    {{-- Card --}}
+    <div class="card border-0 shadow-sm">
+
+        {{-- Header --}}
+        <div class="card-header bg-white border-0 px-4 pt-4">
+
+            <h4 class="fw-semibold mb-1">
+                Edit Guru
+            </h4>
+
+            <p class="text-muted small mb-0">
+                Perbarui data guru sekolah
+            </p>
+
+        </div>
+
+
+        {{-- Body --}}
+        <div class="card-body px-4 pb-4">
+
+            <form
+                action="{{ route('admin.guru.update', Crypt::encrypt($guru->id)) }}"
+                method="POST"
+                enctype="multipart/form-data">
+
                 @csrf
                 @method('PUT')
-                <div class="form-group">
-                    <label for="nama_guru">Nama</label>
-                    <input type="text" class="form-control" name="nama_guru" id="nama" value="{{ $guru->nama_guru }}">
+
+                <div class="row g-4">
+
+                    {{-- Nama --}}
+                    <div class="col-md-6">
+
+                        <label
+                            for="nama_guru"
+                            class="form-label fw-semibold">
+
+                            Nama Guru
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nama_guru"
+                            id="nama_guru"
+                            class="form-control"
+                            value="{{ old('nama_guru', $guru->nama_guru) }}"
+                            placeholder="Masukkan nama guru">
+
+                    </div>
+
+
+                    {{-- NIP --}}
+                    <div class="col-md-6">
+
+                        <label
+                            for="nip"
+                            class="form-label fw-semibold">
+
+                            NIP
+
+                        </label>
+
+                        <input
+                            type="number"
+                            name="nip"
+                            id="nip"
+                            class="form-control"
+                            value="{{ old('nip', $guru->nip) }}"
+                            placeholder="Masukkan NIP">
+
+                    </div>
+
+
+                    {{-- Mapel --}}
+                    <div class="col-md-6">
+
+                        <label
+                            for="mapel"
+                            class="form-label fw-semibold">
+
+                            Mata Pelajaran
+
+                        </label>
+
+                        <input
+                            type="text"
+                            name="mapel"
+                            id="mapel"
+                            class="form-control"
+                            value="{{ old('mapel', $guru->mapel) }}"
+                            placeholder="Masukkan mata pelajaran">
+
+                    </div>
+
+
+                    {{-- Foto --}}
+                    <div class="col-md-6">
+
+                        <label
+                            for="foto"
+                            class="form-label fw-semibold">
+
+                            Foto Guru
+
+                        </label>
+
+                        @if ($guru->foto)
+
+                            <div class="mb-3">
+
+                                <img
+                                    src="{{ asset('storage/' . $guru->foto) }}"
+                                    alt="Foto {{ $guru->nama_guru }}"
+                                    class="rounded"
+                                    style="width: 100px; height: 100px; object-fit: cover;">
+
+                            </div>
+
+                        @endif
+
+                        <input
+                            type="file"
+                            name="foto"
+                            id="foto"
+                            class="form-control">
+
+                        <div class="form-text">
+                            Pilih foto baru jika ingin mengganti foto guru.
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="form-group">
-                    <label for="nip">NIP</label>
-                    <input type="number" class="form-control" name="nip" id="nip" value="{{ $guru->nip }}">
+
+
+                {{-- Button --}}
+                <div class="d-flex gap-2 mt-4 pt-3 border-top">
+
+                    <button
+                        type="submit"
+                        class="btn btn-simpan px-4">
+
+                        <i class="fa-solid fa-save me-1"></i>
+                        Simpan
+
+                    </button>
+
+
+                    <a
+                        href="{{ route('admin.guru.index') }}"
+                        class="btn btn-outline-secondary px-4">
+
+                        <i class="fa-solid fa-arrow-left me-1"></i>
+                        Kembali
+
+                    </a>
+
                 </div>
-                <div class="form-group">
-                    <label for="mapel">Mapel</label>
-                    <input type="text" class="form-control" name="mapel" id="mapel" value="{{ $guru->mapel }}">
-                </div>
-                <div class="form-group">
-                    <label for="foto">Foto</label>
-                    <img src="{{ asset('storage/'.$guru->foto) }}" alt="" style="width: 200px; height: 200px;">
-                    <input type="file" class="form-control" name="foto" id="foto">
-                </div>
-                <button type="submit" class="btn btn-primary mt-4 pe-4 ps-4">Submit</button>
+
             </form>
+
         </div>
+
     </div>
+
 </div>
+
 @endsection

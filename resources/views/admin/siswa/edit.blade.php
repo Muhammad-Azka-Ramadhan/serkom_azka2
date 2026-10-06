@@ -1,59 +1,221 @@
-@extends('admin_app')
+@extends('layouts.admin_app')
 
-@section('title', 'Siswa')
+@section('title', 'Edit Siswa')
 
 @section('content')
-<div class="col-12 mt-5">
+
+<div class="container-fluid py-4">
+
+    {{-- Error Validation --}}
     @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul class="mb-0">
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+
+            <strong>
+                <i class="fa-solid fa-circle-exclamation me-1"></i>
+                Terdapat kesalahan:
+            </strong>
+
+            <ul class="mb-0 mt-2">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+
+            <button type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close">
+            </button>
+
+        </div>
     @endif
-    <div class="card">
-        <div class="card-body">
-            <h4 class="header-title">Tambah Siswa</h4>
-            <form action="{{ route('admin.siswa.update', $siswa->id) }}" method="POST">
+
+
+    {{-- Card --}}
+    <div class="card border-0 shadow-sm">
+
+        {{-- Header --}}
+        <div class="card-header bg-white border-0 px-4 pt-4">
+
+            <h4 class="fw-semibold mb-1">
+                Edit Siswa
+            </h4>
+
+            <p class="text-muted small mb-0">
+                Perbarui data siswa
+            </p>
+
+        </div>
+
+
+        {{-- Body --}}
+        <div class="card-body px-4 pb-4">
+
+            <form
+                action="{{ route('admin.siswa.update', Crypt::encrypt($siswa->id)) }}"
+                method="POST">
+
                 @csrf
                 @method('PUT')
-                <div class="form-group">
-                    <label for="nisn">NISN</label>
-                    <input type="number" class="form-control" name="nisn" id="nisn" value="{{ $siswa->nisn }}">
+
+                <div class="row g-4">
+
+                    {{-- NISN --}}
+                    <div class="col-md-6">
+
+                        <label for="nisn" class="form-label fw-semibold">
+                            NISN
+                        </label>
+
+                        <input
+                            type="number"
+                            name="nisn"
+                            id="nisn"
+                            class="form-control"
+                            value="{{ old('nisn', $siswa->nisn) }}"
+                            placeholder="Masukkan NISN">
+
+                    </div>
+
+
+                    {{-- Nama --}}
+                    <div class="col-md-6">
+
+                        <label for="nama" class="form-label fw-semibold">
+                            Nama Siswa
+                        </label>
+
+                        <input
+                            type="text"
+                            name="nama_siswa"
+                            id="nama"
+                            class="form-control"
+                            value="{{ old('nama_siswa', $siswa->nama_siswa) }}"
+                            placeholder="Masukkan nama siswa">
+
+                    </div>
+
+
+                    {{-- Jenis Kelamin --}}
+                    <div class="col-12">
+
+                        <label class="form-label fw-semibold d-block">
+                            Jenis Kelamin
+                        </label>
+
+                        <div class="d-flex gap-4">
+
+                            <div class="form-check">
+
+                                <input
+                                    type="radio"
+                                    id="laki-laki"
+                                    name="jenis_kelamin"
+                                    class="form-check-input"
+                                    value="Laki-laki"
+                                    {{ old('jenis_kelamin', $siswa->jenis_kelamin) == 'Laki-laki' ? 'checked' : '' }}>
+
+                                <label
+                                    class="form-check-label"
+                                    for="laki-laki">
+
+                                    Laki-laki
+
+                                </label>
+
+                            </div>
+
+
+                            <div class="form-check">
+
+                                <input
+                                    type="radio"
+                                    id="perempuan"
+                                    name="jenis_kelamin"
+                                    class="form-check-input"
+                                    value="Perempuan"
+                                    {{ old('jenis_kelamin', $siswa->jenis_kelamin) == 'Perempuan' ? 'checked' : '' }}>
+
+                                <label
+                                    class="form-check-label"
+                                    for="perempuan">
+
+                                    Perempuan
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    {{-- Tahun Masuk --}}
+                    <div class="col-md-6">
+
+                        <label
+                            for="tahun_masuk"
+                            class="form-label fw-semibold">
+
+                            Tahun Masuk
+
+                        </label>
+
+                        <input
+                            type="number"
+                            name="tahun_masuk"
+                            id="tahun_masuk"
+                            class="form-control @error('tahun_masuk') is-invalid @enderror"
+                            min="2010"
+                            max="{{ date('Y') }}"
+                            value="{{ old('tahun_masuk', $siswa->tahun_masuk) }}"
+                            placeholder="Masukkan tahun masuk"
+                            required>
+
+                        @error('tahun_masuk')
+
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+
+                        @enderror
+
+                    </div>
+
                 </div>
-                <div class="form-group">
-                    <label for="nama">Nama Siswa</label>
-                    <input type="text" class="form-control" name="nama_siswa" id="nama" value="{{ $siswa->nama_siswa }}">
+
+
+                {{-- Button --}}
+                <div class="d-flex gap-2 mt-4 pt-3 border-top">
+
+                    <button
+                        type="submit"
+                        class="btn btn-simpan px-4">
+
+                        <i class="fa-solid fa-save me-1"></i>
+                        Simpan
+
+                    </button>
+
+
+                    <a
+                        href="{{ route('admin.siswa.index') }}"
+                        class="btn btn-outline-secondary px-4">
+
+                        <i class="fa-solid fa-arrow-left me-1"></i>
+                        Kembali
+
+                    </a>
+
                 </div>
-                <div class="form-check">
-                    <input type="radio" id="laki-laki" name="jenis_kelamin" class="form-check-input" value="Laki-laki"{{ $siswa->jenis_kelamin == 'Laki-laki' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="laki-laki">Laki-laki</label>
-                </div>
-                <div class="form-check">
-                    <input type="radio" id="perempuan" name="jenis_kelamin" class="form-check-input" value="Perempuan"{{ $siswa->jenis_kelamin == 'Perempuan' ? 'checked' : '' }}>
-                    <label class="form-check-label" for="perempuan">Perempuan</label>
-                </div>
-                <div class="form-group">
-                    <label for="tahun_masuk" class="form-label">Tahun Masuk</label>
-                    <input
-                        type="number"
-                        name="tahun_masuk"
-                        id="tahun_masuk"
-                        class="form-control @error('tahun_masuk') is-invalid @enderror"
-                        min="2010"
-                        max="{{ date('Y') }}"
-                        value="{{ old('tahun_masuk', $siswa->tahun_masuk) }}"
-                        required
-                    >
-                    @error('tahun_masuk')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                    @enderror
-                </div>
-                <button type="submit" class="btn btn-primary mt-4 pe-4 ps-4">Submit</button>
+
             </form>
+
         </div>
+
     </div>
+
 </div>
+
 @endsection

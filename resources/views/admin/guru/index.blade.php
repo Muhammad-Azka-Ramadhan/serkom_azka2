@@ -1,75 +1,161 @@
-    @extends('admin_app')
+@extends('layouts.admin_app')
 
 @section('title', 'Guru')
 
 @section('content')
-<div class="main-content-inner" id="main-content">
-    <div class="row">
-        <div class="col-12 mt-5">
-            <hr>
-            @session('success')
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-            @endsession
-            <div class="card">
-                <div class="card-body">
-                    <div class="container d-flex justify-content-between">
-                        <h4 class="header-title">Data Guru</h4>
-                        <a href="{{ route('admin.guru.create') }}" class="action-btn add-btn mb-2"><i class="fa-solid fa-plus"></i>Tambah Guru</a>
-                    </div>
-                    <div class="data-tables datatable-dark">
-                        <table id="dataTable3" class="text-center w-100">
-                            <thead class="text-capitalize">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>Mapel</th>
-                                    <th>Foto</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($guru as $index => $item)
-                                <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $item->nama_guru}}</td>
-                                    <td>{{ $item->nip }}</td>
-                                    <td>{{ $item->mapel }}</td>
-                                    <td><img width="50px" height="50px" src="{{asset($item->foto)}}" alt=""></td>
-                                    <td>
-                                        <button type="button" class="action-btn edit-btn" onclick="window.location.href='{{ route('admin.guru.edit', $item->id) }}'">
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </button>
 
-                                        <form action="{{ route('admin.guru.destroy', $item->id) }}"
+<div class="container-fluid py-4">
+
+    @session('success')
+        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+
+            <i class="fa-solid fa-circle-check me-2"></i>
+            {{ session('success') }}
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close">
+            </button>
+
+        </div>
+    @endsession
+
+    <div class="card border-0 shadow-sm">
+
+        {{-- Header --}}
+        <div class="card-header bg-white border-0 px-4 pt-4 pb-3">
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+
+                <div>
+                    <h4 class="fw-semibold mb-1">
+                        Data Guru
+                    </h4>
+
+                    <p class="text-muted small mb-0">
+                        Daftar guru SMP Negeri 1 Padakembang
+                    </p>
+                </div>
+
+                <a
+                    href="{{ route('admin.guru.create') }}"
+                    class="btn btn-add">
+
+                    <i class="fa-solid fa-plus me-1"></i>
+                    Tambah Guru
+
+                </a>
+
+            </div>
+
+        </div>
+
+        {{-- Body --}}
+        <div class="card-body px-4 pb-4">
+
+            <div class="table-responsive">
+
+                <table
+                    id="dataTable"
+                    class="table table-hover table-bordered align-middle text-center w-100">
+
+                    <thead class="text-capitalize">
+
+                        <tr>
+                            <th>No</th>
+                            <th>Nama</th>
+                            <th>NIP</th>
+                            <th>Mapel</th>
+                            <th>Foto</th>
+                            <th>Aksi</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach ($guru as $item)
+
+                            <tr>
+
+                                <td>
+                                    {{ $loop->iteration }}
+                                </td>
+
+                                <td class="fw-semibold">
+                                    {{ $item->nama_guru }}
+                                </td>
+
+                                <td>
+                                    {{ $item->nip }}
+                                </td>
+
+                                <td>
+                                    {{ $item->mapel }}
+                                </td>
+
+                                <td>
+
+                                    <img
+                                        src="{{ asset('storage/' . $item->foto) }}"
+                                        alt="{{ $item->nama_guru }}"
+                                        class="table-image">
+
+                                </td>
+
+                                <td>
+
+                                    <div class="d-flex justify-content-center align-items-center gap-2">
+
+                                        {{-- Edit --}}
+                                        <a
+                                            href="{{ route('admin.guru.edit', Crypt::encrypt($item->id)) }}"
+                                            class="btn btn-sm btn-outline-primary btn-edit">
+
+                                            <i class="fa-regular fa-pen-to-square"></i>
+
+                                        </a>
+
+                                        {{-- Delete --}}
+                                        <form
+                                            action="{{ route('admin.guru.destroy', Crypt::encrypt($item->id)) }}"
                                             method="POST"
                                             class="d-inline"
                                             onsubmit="return confirm('Yakin ingin menghapus data ini?')">
 
-                                        @csrf
-                                        @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
 
-                                        <button type="submit" class="action-btn delete-btn">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
-                                    </td>
-                                </tr>
-                                @empty
-                                    <tr>
-                                        <td>
-                                            Belum ada data guru
-                                        </td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                            <button
+                                                type="submit"
+                                                class="btn btn-sm btn-outline-danger btn-delete">
+
+                                                <i class="fa-solid fa-trash"></i>
+
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                </td>
+
+                            </tr>
+
+                        @endforeach
+
+                    </tbody>
+
+                </table>
+
             </div>
+
         </div>
+
     </div>
+
 </div>
+
 @endsection

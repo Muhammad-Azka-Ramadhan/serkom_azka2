@@ -36,7 +36,7 @@
     <div class="login-area">
         <div class="container">
             <div class="login-box ptb--100">
-                <form action="{{ route('admin.login_proses') }}" method="POST">
+                <form action="{{ route('login_proses') }}" method="POST">
                     @csrf
                     <div class="login-form-head">
                         <h4>Sign In</h4>

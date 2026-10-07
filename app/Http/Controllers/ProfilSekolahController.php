@@ -18,7 +18,7 @@ class ProfilSekolahController extends Controller
     }
 
     public function edit($id) {
-        $profilSekolah = ProfilSekolah::findOrFail($id);
+        $profilSekolah = ProfilSekolah::findOrFail(Crypt::decrypt($id));
         return view('admin.profil.edit', compact('profilSekolah'));
     }
 

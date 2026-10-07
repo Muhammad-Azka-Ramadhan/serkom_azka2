@@ -22,13 +22,14 @@ class SiswaController extends Controller
         $siswa = Siswa::all();
 
         $validated = $request->validate([
-            'nisn' => 'required|string|unique:siswa,nisn',
+            'nisn' => 'required|string|unique:siswa,nisn|max:10',
             'nama_siswa' => 'required|string',
-            'jenis_kelamin' => 'required|in:Laki-laki, Perempuan',
+            'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'tahun_masuk' => 'required|string|numeric'
         ], [
             'nisn.required' => 'NISN wajib diisi.',
             'nisn.unique' => 'NISN sudah digunakan.',
+            'nisn.max' => 'NISN maksimal 10 digit',
             'nama_siswa.required' => 'Nama siswa wajib diisi.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
             'tahun_masuk.required' => 'Tahun masuk wajib diisi.',
@@ -39,29 +40,23 @@ class SiswaController extends Controller
     }
 
     public function edit($id) {
-        $data = [
-            'title' => 'Siswa'
-        ];
+        $siswa = Siswa::findOrFail(Crypt::decrypt($id));
 
-        $siswa = Siswa::findOrFail($id);
-
-        return view('admin.siswa.edit', [
-            'data' => $data,
-            'siswa' => $siswa
-        ]);
+        return view('admin.siswa.edit', compact('siswa'));
     }
 
     public function update(Request $request, $id) {
         $siswa = Siswa::findOrFail(Crypt::decrypt($id));
 
         $validated = $request->validate([
-            'nisn' => 'required|string|unique:siswa,nisn,' . $siswa->id,
+            'nisn' => 'required|string|unique:siswa,nisn,' . $siswa->id . '|max:10',
             'nama_siswa' => 'required|string',
             'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
             'tahun_masuk' => 'required|string|integer'
         ], [
             'nisn.required' => 'NISN wajib diisi.',
             'nisn.unique' => 'NISN sudah digunakan.',
+            'nisn.max' => 'NISN maksimal 10 digit',
             'nama_siswa.required' => 'Nama siswa wajib diisi.',
             'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
             'tahun_masuk.required' => 'Tahun masuk wajib diisi.',

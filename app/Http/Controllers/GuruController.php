@@ -25,9 +25,18 @@ class GuruController extends Controller
     public function store(Request $request) {
         $validated = $request->validate([
             'nama_guru' => 'required|string',
-            'nip' => 'required|string',
+            'nip' => 'required|string|unique:guru,nip|max:15',
             'mapel' => 'required|string',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+        ], [
+            'nama_guru.required' => 'Nama guru wajib diisi.',
+            'nip.required' => 'NIP wajib diisi.',
+            'nip.unique' => 'NIP sudah digunakan.',
+            'nip.max' => 'NIP maksimal 15 digit',
+            'mapel.required' => 'Mata pelajaran wajib diisi.',
+            'foto.image' => 'Foto harus berupa file gambar.',
+            'foto.mimes' => 'Foto harus berupa file dengan format jpg, jpeg, atau png.',
+            'foto.max' => 'Ukuran foto maksimal 2MB.'
         ]);
 
         if ($request->hasFile('foto')) {
@@ -39,7 +48,7 @@ class GuruController extends Controller
     }
 
     public function edit($id) {
-        $guru = Guru::findOrFail($id);
+        $guru = Guru::findOrFail(Crypt::decrypt($id));
         return view('admin.guru.edit', compact('guru'));
     }
 
@@ -47,13 +56,14 @@ class GuruController extends Controller
         $guru = Guru::findOrFail(Crypt::decrypt($id));
         $validated = $request->validate([
             'nama_guru' => 'required|string',
-            'nip' => 'required|string|unique:guru,nip,' . $guru->id,
+            'nip' => 'required|string|unique:guru,nip,' . $guru->id . '|max:15',
             'mapel' => 'required|string',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ], [
             'nama_guru.required' => 'Nama guru wajib diisi.',
             'nip.required' => 'NIP wajib diisi.',
             'nip.unique' => 'NIP sudah digunakan.',
+            'nip.max' => 'NIP maksimal 15 digit',
             'mapel.required' => 'Mata pelajaran wajib diisi.',
             'foto.image' => 'Foto harus berupa file gambar.',
             'foto.mimes' => 'Foto harus berupa file dengan format jpg, jpeg, atau png.',

@@ -1,0 +1,155 @@
+/* =========================================================
+   LOGIN ADMIN
+   SMP NEGERI 1 PADAKEMBANG
+   ========================================================= */
+
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+    background: #F4F8FA;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: #FFFFFF;
+    border: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 25px rgba(23, 43, 58, 0.08);
+}
+
+.login-header {
+    background: #172B3A;
+    padding: 32px 30px;
+    text-align: center;
+}
+
+.login-logo {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+    background: #FFFFFF;
+    padding: 8px;
+    border-radius: 50%;
+    margin-bottom: 18px;
+}
+
+.login-header h4 {
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.login-header p {
+    color: #B9C7D1;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.login-body {
+    padding: 30px;
+}
+
+.login-title {
+    color: #263238;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.login-subtitle {
+    color: #718096;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.login-body .form-label {
+    color: #263238;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.login-body .input-group-text {
+    background: #FFFFFF;
+    border-color: #E4EAF0;
+    border-right: 0;
+    color: #718096;
+}
+
+.login-body .form-control {
+    min-height: 44px;
+    border-color: #E4EAF0;
+    border-left: 0;
+    font-size: 13px;
+    box-shadow: none !important;
+}
+
+.login-body .input-group:focus-within .input-group-text,
+.login-body .input-group:focus-within .form-control {
+    border-color: #126FAF;
+}
+
+.btn-login {
+    width: 100%;
+    min-height: 44px;
+    border: 0;
+    border-radius: 6px;
+    background: #126FAF;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.btn-login:hover {
+    background: #0F5F95;
+    color: #FFFFFF;
+}
+
+.login-footer {
+    border-top: 1px solid #E4EAF0;
+    margin-top: 25px;
+    padding-top: 20px;
+    text-align: center;
+}
+
+.login-footer p {
+    color: #718096;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.login-footer span {
+    color: #126FAF;
+    font-weight: 600;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 575.98px) {
+
+    .login-wrapper {
+        padding: 20px 15px;
+    }
+
+    .login-header {
+        padding: 28px 20px;
+    }
+
+    .login-body {
+        padding: 25px 20px;
+    }
+
+    .login-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+}

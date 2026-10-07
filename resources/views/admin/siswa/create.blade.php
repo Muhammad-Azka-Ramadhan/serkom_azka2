@@ -107,8 +107,7 @@
                                     id="laki-laki"
                                     name="jenis_kelamin"
                                     class="form-check-input"
-                                    value="Laki-laki"
-                                    {{ old('jenis_kelamin') == 'Laki-laki' ? 'checked' : '' }}>
+                                    value="Laki-laki">
 
                                 <label
                                     class="form-check-label"
@@ -125,8 +124,7 @@
                                     id="perempuan"
                                     name="jenis_kelamin"
                                     class="form-check-input"
-                                    value="Perempuan"
-                                    {{ old('jenis_kelamin') == 'Perempuan' ? 'checked' : '' }}>
+                                    value="Perempuan">
 
                                 <label
                                     class="form-check-label"

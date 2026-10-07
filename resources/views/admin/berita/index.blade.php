@@ -4,7 +4,6 @@
 
 @section('content')
 <div class="container-fluid py-4">
-
     {{-- Alert --}}
     @session('success')
         <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
@@ -19,47 +18,26 @@
             </button>
         </div>
     @endsession
-
     {{-- Card --}}
     <div class="card border-0 shadow-sm">
-
         {{-- Card Header --}}
         <div class="card-header bg-white border-0 px-4 pt-4 pb-3">
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
-
                 <div>
-                    <h4 class="fw-semibold mb-1">
-                        Data Berita
-                    </h4>
-
-                    <p class="text-muted mb-0 small">
-                        Daftar berita SMPN 1 Padakembang
-                    </p>
+                    <h4 class="fw-semibold mb-1">Data Berita</h4>
+                    <p class="text-muted mb-0 small">Daftar berita SMPN 1 Padakembang</p>
                 </div>
-
-                <a
-                    href="{{ route('admin.berita.create') }}"
-                    class="btn btn-add">
-
+                <a href="{{ route('admin.berita.create') }}" class="btn btn-add">
                     <i class="fa-solid fa-plus me-1"></i>
                     Tambah Berita
-
                 </a>
-
             </div>
         </div>
-
         {{-- Card Body --}}
         <div class="card-body px-4 pb-4">
-
             <div class="table-responsive">
-
-                <table
-                    id="dataTable"
-                    class="table table-hover table-bordered align-middle text-center w-100">
-
+                <table id="dataTable" class="table table-hover table-bordered align-middle text-center w-100">
                     <thead class="table-primary">
-
                         <tr>
                             <th>No</th>
                             <th>Judul</th>
@@ -69,86 +47,49 @@
                             <th>Pembuat Berita</th>
                             <th>Aksi</th>
                         </tr>
-
                     </thead>
-
                     <tbody>
-
                         @foreach ($berita as $item)
-
                             <tr>
-
+                                <td>{{ $loop->iteration }}</td>
+                                <td class="fw-semibold">{{ $item->judul }}</td>
+                                <td class="text-start">{{ $item->isi }}</td>
+                                <td>{{ $item->tanggal }}</td>
                                 <td>
-                                    {{ $loop->iteration }}
-                                </td>
-
-                                <td class="fw-semibold">
-                                    {{ $item->judul }}
-                                </td>
-
-                                <td class="text-start">
-                                    {{ $item->isi }}
-                                </td>
-
-                                <td>
-                                    {{ $item->tanggal }}
-                                </td>
-
-                                <td>
-
                                     <img
                                         src="{{ asset('storage/' . $item->gambar) }}"
                                         alt="{{ $item->judul }}"
                                         class="table-image">
-
                                 </td>
-
-                                <td>
-                                    {{ $item->user->name }}
-                                </td>
-
+                                <td>{{ $item->user->name ?? 'Tidak diketahui' }}</td>
                                 <td>
                                     <div class="d-flex justify-content-center gap-2">
-
                                         <a
                                             href="{{ route('admin.berita.edit', Crypt::encrypt($item->id)) }}"
-                                            class="btn btn-sm btn-outline-primary btn-edit">
+                                            class="btn btn-sm btn-outline-primary">
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
-
                                         <form
                                             action="{{ route('admin.berita.destroy', Crypt::encrypt($item->id)) }}"
                                             method="POST"
                                             class="d-inline"
                                             onsubmit="return confirm('Yakin ingin menghapus data ini?')">
-
                                             @csrf
                                             @method('DELETE')
-
                                             <button
                                                 type="submit"
-                                                class="btn btn-sm btn-outline-danger btn-delete">
+                                                class="btn btn-sm btn-outline-danger">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
-
                                         </form>
-
                                     </div>
                                 </td>
-
                             </tr>
-
                         @endforeach
-
                     </tbody>
-
                 </table>
-
             </div>
-
         </div>
-
     </div>
-
 </div>
 @endsection

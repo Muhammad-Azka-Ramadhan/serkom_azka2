@@ -31,7 +31,7 @@
 
     {{-- CUSTOM CSS --}}
     <link rel="stylesheet"
-        href="{{ asset('assets/css/custom.css') }}">
+        href="{{ asset('assets/css/admin.css') }}">
 
     @stack('styles')
 </head>
@@ -303,87 +303,34 @@
                 =========================================== --}}
                 <div class="admin-profile-wrapper">
 
-                    <button
-                        type="button"
-                        class="admin-profile"
-                        id="adminProfileButton">
+                    <input type="checkbox" id="profileToggle" class="profile-checkbox">
 
-                        <img
-                            src="{{ asset('assets/images/author/avatar.png') }}"
-                            alt="Admin">
+                    <label for="profileToggle" class="admin-profile">
+                        <img src="{{ asset('assets/images/author/avatar.png') }}"
+                            alt="{{ Auth::user()->name }}">
 
-                        <span>
-                            Admin
-                        </span>
+                        <span>{{ Auth::user()->name }}</span>
 
                         <i class="fa-solid fa-chevron-down"></i>
+                    </label>
 
-                    </button>
-
-
-                    {{-- Dropdown --}}
-                    <div
-                        class="profile-dropdown"
-                        id="profileDropdown">
+                    <div class="profile-dropdown">
 
                         <div class="profile-dropdown-header">
-
-                            <img
-                                src="{{ asset('assets/images/author/avatar.png') }}"
-                                alt="Admin">
+                            <img src="{{ asset('assets/images/author/avatar.png') }}"
+                                alt="{{ Auth::user()->name }}">
 
                             <div>
-
-                                <strong>
-                                    Admin
-                                </strong>
-
-                                <small>
-                                    Administrator
-                                </small>
-
+                                <strong>{{ Auth::user()->name }}</strong>
+                                <small>{{ ucfirst(Auth::user()->role) }}</small>
                             </div>
-
                         </div>
 
-
                         <div class="profile-dropdown-divider"></div>
 
-
-                        <a href="#">
-
-                            <i class="fa-solid fa-user"></i>
-
-                            <span>
-                                Profil
-                            </span>
-
-                        </a>
-
-
-                        <a href="#">
-
-                            <i class="fa-solid fa-gear"></i>
-
-                            <span>
-                                Pengaturan
-                            </span>
-
-                        </a>
-
-
-                        <div class="profile-dropdown-divider"></div>
-
-
-                        <a href="#"
-                            class="logout-link">
-
+                        <a href="{{ route('logout') }}" class="logout-link">
                             <i class="fa-solid fa-right-from-bracket"></i>
-
-                            <span>
-                                Keluar
-                            </span>
-
+                            <span>Keluar</span>
                         </a>
 
                     </div>
@@ -452,5 +399,4 @@
     @stack('scripts')
     @yield('scripts')
 </body>
-
 </html>

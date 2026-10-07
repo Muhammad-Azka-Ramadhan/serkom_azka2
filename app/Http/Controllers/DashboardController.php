@@ -8,6 +8,7 @@ use App\Models\Ekstrakurikuler;
 use App\Models\User;
 use App\Models\Berita;
 use App\Models\Galeri;
+use App\Models\ProfilSekolah;
 
 // use Illuminate\Http\Request;
 
@@ -58,6 +59,27 @@ class DashboardController extends Controller
     }
 
     public function publicBeranda() {
-        return view('public.beranda');
+        $siswa = Siswa::latest()->get();
+        $guru = Guru::latest()->get();
+        $berita = Berita::latest()->get();
+        $galeri = Galeri::latest()->get();
+        $ekstrakurikuler = Ekstrakurikuler::with('guru')->latest()->get();
+        $profilSekolah = ProfilSekolah::first();
+
+        $jumlahGuru = Guru::count();
+        $jumlahSiswa = Siswa::count();
+        $jumlahEskul = Ekstrakurikuler::count();
+
+        return view('public.beranda', compact(
+            'siswa',
+            'guru',
+            'berita',
+            'galeri',
+            'ekstrakurikuler',
+            'profilSekolah',
+            'jumlahGuru',
+            'jumlahSiswa',
+            'jumlahEskul'
+        ));
     }
 }

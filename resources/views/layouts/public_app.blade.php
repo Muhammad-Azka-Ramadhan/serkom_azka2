@@ -1,59 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMPN 1 Padakembang @yield('title')</title>
-    <link rel="stylesheet" href="{{ asset('assets/dist/css/bootstrap.min.css') }}">
-</head>
-<body>
-    <nav
-        class="navbar navbar-expand-lg bg-body-tertiary rounded"
-        aria-label="Thirteenth navbar example"
-    >
-        <div class="container-fluid">
-        <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarsExample11"
-            aria-controls="navbarsExample11"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-        >
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-            class="collapse navbar-collapse d-lg-flex"
-            id="navbarsExample11"
-        >
-            <a class="navbar-brand col-lg-3 me-0" href="#">Centered nav</a>
-            <ul class="navbar-nav col-lg-6 justify-content-lg-center">
-                @php
-                    $menu = [
-                        'public.dashboard' => 'Beranda',
-                        'public.profil' => 'Profil Sekolah',
-                        'public.ekstrakurikuler' => 'Ekstrakurikuler',
-                        'public.guru' => 'Guru',
-                        'public.siswa' => 'Siswa',
-                        'public.berita' => 'Berita',
-                        'public.galeri' => 'Galeri',
-                    ]
-                @endphp
 
-                @foreach ($menu as $route => $label)
-                <li class="nav-item {{ request()->routeIs($route) ? 'active' : '' }}">
-                    <a class="nav-link" aria-current="page" href="{{ route($route) }}">{{$label}}</a>
-                </li>
-                @endforeach
-            </ul>
-            <div class="d-lg-flex col-lg-3 justify-content-lg-end">
-            <button class="btn btn-primary">Button</button>
+    <title>@yield('school_name') | @yield('title')</title>
+
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/public.css') }}">
+</head>
+
+<body>
+
+    {{-- HEADER --}}
+    <header>
+
+        <nav class="navbar navbar-expand-lg fixed-top bg-white public-navbar">
+
+            <div class="container">
+
+                {{-- BRAND --}}
+                <a
+                    href="{{ route('public.beranda') }}"
+                    class="navbar-brand d-flex align-items-center gap-3"
+                >
+
+                    @if (!empty($profilSekolah->logo) && Storage::disk('public')->exists($profilSekolah->logo))
+
+                        <img
+                            src="{{ asset('storage/' . $profilSekolah->logo) }}"
+                            alt="Logo SMPN 1 Padakembang"
+                            class="public-logo"
+                        >
+
+                    @else
+
+                        <img
+                            src="{{ asset('assets/images/logo.png') }}"
+                            alt="Logo SMPN 1 Padakembang"
+                            class="public-logo"
+                        >
+
+                    @endif
+
+                    <div class="brand-text">
+                        <div class="brand-title">
+                            {{ $profilSekolah->nama_sekolah }}
+                        </div>
+
+                        <div class="brand-subtitle">
+                            Sekolah Menengah Pertama Negeri
+                        </div>
+                    </div>
+
+                </a>
+
+
+                {{-- MOBILE TOGGLER --}}
+                <button
+                    class="navbar-toggler border-0 shadow-none"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#publicNavbar"
+                    aria-controls="publicNavbar"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+
+                {{-- NAVIGATION --}}
+                <div
+                    class="collapse navbar-collapse"
+                    id="publicNavbar"
+                >
+
+                    @php
+                        $menu = [
+                            'public.beranda' => 'Beranda',
+                            'public.profil' => 'Profil Sekolah',
+                            'public.ekstrakurikuler' => 'Ekstrakurikuler',
+                            'public.guru' => 'Guru',
+                            'public.siswa' => 'Siswa',
+                            'public.berita' => 'Berita',
+                            'public.galeri' => 'Galeri',
+                        ];
+                    @endphp
+
+
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+
+                        @foreach ($menu as $route => $label)
+
+                            <li class="nav-item">
+
+                                <a
+                                    href="{{ route($route) }}"
+                                    class="nav-link {{ request()->routeIs($route) ? 'active' : '' }}"
+                                >
+                                    {{ $label }}
+                                </a>
+
+                            </li>
+
+                        @endforeach
+
+                    </ul>
+
+                </div>
+
             </div>
-        </div>
-        </div>
-    </nav>
-    @yield('content')
+
+        </nav>
+
+    </header>
+
+
+    {{-- CONTENT --}}
+    <main class="public-main">
+
+        @yield('content')
+
+    </main>
+
+    <script src="{{ asset('assets/js/public.js') }}"></script>
     <script src="{{ asset('assets/dist/js/bootstrap.bundle.min.js') }}"></script>
+
+    @yield('scripts')
+
 </body>
+
 </html>

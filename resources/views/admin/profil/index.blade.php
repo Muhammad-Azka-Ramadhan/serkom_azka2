@@ -3,35 +3,6 @@
 @section('title', 'Profil Sekolah')
 
 @section('content')
-<<<<<<< HEAD
-<div class="container-fluid mt-4">
-    <!-- Header Halaman -->
-    <div class="row">
-        <div class="col-12">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h3 class="fw-bold mb-1">Profil Sekolah</h3>
-                    <p class="text-muted mb-0">Profil SMPN 1 Padakembang</p>
-                </div>
-                <a href="{{route('admin.profil.edit', $profilSekolah->id)}}" class="btn btn-primary"><i class="fas fa-edit me-1"></i>Edit Profil</a>
-            </div>
-        </div>
-    </div>
-    <!-- Identitas Sekolah -->
-    <div class="row">
-        <!-- Logo -->
-        <div class="col-lg-4">
-            <div class="card h-100">
-                <div class="card-body text-center">
-                    @if (!empty($profilSekolah->logo) && file_exists(public_path($profilSekolah->logo)))
-                    <img src="{{asset($profilSekolah->logo)}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
-                    @else
-                    <img src="{{asset('assets/images/logo.png')}}" alt="Logo SMPN 1 Padakembang"  class="img-fluid mb-3" style="width: 140px;">
-                    @endif
-                    <h4 class="fw-bold mb-1">SMPN 1 Padakembang</h4>
-=======
->>>>>>> 5fe03ab (dashboard)
-
 <div class="container-fluid py-4">
 
     {{-- HEADER --}}
@@ -52,17 +23,22 @@
             </p>
         </div>
 
-        <a href="{{ route('admin.profil.edit', Crypt::encrypt($profilSekolah->id)) }}"
-           class="btn btn-add px-3">
+        @if (Auth::user()->role === 'admin')
+        <a
+            href="{{ route('admin.profil.edit', Crypt::encrypt($profilSekolah->id)) }}"
+            class="btn btn-add px-3">
+
             <i class="fa-solid fa-pen-to-square me-1"></i>
             Edit Profil
+
         </a>
+        @endif
 
     </div>
 
 
     {{-- IDENTITAS SEKOLAH --}}
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
+    <div class="card border-0 shadow-sm mb-4">
 
         <div class="card-body p-0">
 
@@ -75,22 +51,24 @@
 
                         @if (!empty($profilSekolah->logo) && Storage::disk('public')->exists($profilSekolah->logo))
 
-                            <img src="{{ asset('storage/' . $profilSekolah->logo) }}"
-                                 alt="Logo {{ $profilSekolah->nama_sekolah }}"
-                                 class="img-fluid mb-3"
-                                 style="width: 130px; height: 130px; object-fit: contain;">
+                            <img
+                                src="{{ asset('storage/' . $profilSekolah->logo) }}"
+                                alt="Logo {{ $profilSekolah->nama_sekolah }}"
+                                class="img-fluid mb-3"
+                                style="width: 130px; height: 130px; object-fit: contain;">
 
                         @else
 
-                            <img src="{{ asset('assets/images/logo_smp.png') }}"
-                                 alt="Logo SMPN 1 Padakembang"
-                                 class="img-fluid mb-3"
-                                 style="width: 130px; height: 130px; object-fit: contain;">
+                            <img
+                                src="{{ asset('assets/images/logo_smp.png') }}"
+                                alt="Logo SMPN 1 Padakembang"
+                                class="img-fluid mb-3"
+                                style="width: 130px; height: 130px; object-fit: contain;">
 
                         @endif
 
                         <h4 class="fw-bold mb-1">
-                            {{ $profilSekolah->nama_sekolah }}
+                            {{ $profilSekolah->nama_sekolah ?? 'SMPN 1 Padakembang' }}
                         </h4>
 
                         <p class="text-muted mb-0">
@@ -102,7 +80,7 @@
                 </div>
 
 
-                {{-- INFORMASI --}}
+                {{-- INFORMASI SEKOLAH --}}
                 <div class="col-lg-8">
 
                     <div class="p-4">
@@ -122,8 +100,11 @@
 
                         <div class="row g-3">
 
+                            {{-- Nama Sekolah --}}
                             <div class="col-md-6">
+
                                 <div class="border rounded-3 p-3 h-100">
+
                                     <small class="text-muted d-block mb-1">
                                         Nama Sekolah
                                     </small>
@@ -131,12 +112,17 @@
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->nama_sekolah ?? '-' }}
                                     </span>
+
                                 </div>
+
                             </div>
 
 
+                            {{-- Kepala Sekolah --}}
                             <div class="col-md-6">
+
                                 <div class="border rounded-3 p-3 h-100">
+
                                     <small class="text-muted d-block mb-1">
                                         Kepala Sekolah
                                     </small>
@@ -144,12 +130,17 @@
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->kepala_sekolah ?? '-' }}
                                     </span>
+
                                 </div>
+
                             </div>
 
 
+                            {{-- NPSN --}}
                             <div class="col-md-6">
+
                                 <div class="border rounded-3 p-3 h-100">
+
                                     <small class="text-muted d-block mb-1">
                                         NPSN
                                     </small>
@@ -157,12 +148,17 @@
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->npsn ?? '-' }}
                                     </span>
+
                                 </div>
+
                             </div>
 
 
+                            {{-- Tahun Berdiri --}}
                             <div class="col-md-6">
+
                                 <div class="border rounded-3 p-3 h-100">
+
                                     <small class="text-muted d-block mb-1">
                                         Tahun Berdiri
                                     </small>
@@ -170,12 +166,17 @@
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->tahun_berdiri ?? '-' }}
                                     </span>
+
                                 </div>
+
                             </div>
 
 
+                            {{-- Kontak --}}
                             <div class="col-md-6">
+
                                 <div class="border rounded-3 p-3 h-100">
+
                                     <small class="text-muted d-block mb-1">
                                         Kontak
                                     </small>
@@ -183,7 +184,9 @@
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->kontak ?? '-' }}
                                     </span>
+
                                 </div>
+
                             </div>
 
                         </div>
@@ -200,7 +203,7 @@
 
 
     {{-- ALAMAT --}}
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
+    <div class="card border-0 shadow-sm mb-4">
 
         <div class="card-header bg-white border-bottom p-4">
 
@@ -211,6 +214,7 @@
                 </div>
 
                 <div>
+
                     <h5 class="fw-bold mb-1">
                         Alamat Sekolah
                     </h5>
@@ -218,11 +222,13 @@
                     <small class="text-muted">
                         Lokasi dan alamat sekolah
                     </small>
+
                 </div>
 
             </div>
 
         </div>
+
 
         <div class="card-body p-4">
 
@@ -242,7 +248,7 @@
 
 
     {{-- FOTO SEKOLAH --}}
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
+    <div class="card border-0 shadow-sm mb-4">
 
         <div class="card-header bg-white border-bottom p-4">
 
@@ -253,6 +259,7 @@
                 </div>
 
                 <div>
+
                     <h5 class="fw-bold mb-1">
                         Foto Sekolah
                     </h5>
@@ -260,6 +267,7 @@
                     <small class="text-muted">
                         Dokumentasi SMPN 1 Padakembang
                     </small>
+
                 </div>
 
             </div>
@@ -271,15 +279,17 @@
 
             @if (!empty($profilSekolah->foto) && Storage::disk('public')->exists($profilSekolah->foto))
 
-                <img src="{{ asset('storage/' . $profilSekolah->foto) }}"
-                     alt="Foto {{ $profilSekolah->nama_sekolah }}"
-                     class="img-fluid rounded-3 w-100 profile-school-image">
+                <img
+                    src="{{ asset('storage/' . $profilSekolah->foto) }}"
+                    alt="Foto {{ $profilSekolah->nama_sekolah }}"
+                    class="img-fluid rounded-3 w-100 profile-school-image">
 
             @else
 
-                <img src="{{ asset('assets/images/foto_smp.jpg') }}"
-                     alt="Foto SMPN 1 Padakembang"
-                     class="img-fluid rounded-3 w-100 profile-school-image">
+                <img
+                    src="{{ asset('assets/images/foto_smp.jpg') }}"
+                    alt="Foto SMPN 1 Padakembang"
+                    class="img-fluid rounded-3 w-100 profile-school-image">
 
             @endif
 
@@ -289,7 +299,7 @@
 
 
     {{-- VISI & MISI --}}
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
+    <div class="card border-0 shadow-sm mb-4">
 
         <div class="card-header bg-white border-bottom p-4">
 
@@ -300,6 +310,7 @@
                 </div>
 
                 <div>
+
                     <h5 class="fw-bold mb-1">
                         Visi & Misi
                     </h5>
@@ -307,6 +318,7 @@
                     <small class="text-muted">
                         Visi dan misi sekolah
                     </small>
+
                 </div>
 
             </div>
@@ -324,8 +336,10 @@
                     <div class="bg-light border rounded-3 p-4 h-100">
 
                         <h6 class="fw-bold mb-3">
+
                             <i class="fa-solid fa-eye text-primary me-2"></i>
                             Visi
+
                         </h6>
 
                         <p class="text-secondary mb-0">
@@ -343,8 +357,10 @@
                     <div class="bg-light border rounded-3 p-4 h-100">
 
                         <h6 class="fw-bold mb-3">
+
                             <i class="fa-solid fa-list-check text-primary me-2"></i>
                             Misi
+
                         </h6>
 
                         <p class="text-secondary mb-0">
@@ -363,7 +379,7 @@
 
 
     {{-- DESKRIPSI --}}
-    <div class="card border-0 shadow-sm rounded-3 mb-4">
+    <div class="card border-0 shadow-sm mb-4">
 
         <div class="card-header bg-white border-bottom p-4">
 
@@ -374,6 +390,7 @@
                 </div>
 
                 <div>
+
                     <h5 class="fw-bold mb-1">
                         Deskripsi Sekolah
                     </h5>
@@ -381,11 +398,13 @@
                     <small class="text-muted">
                         Informasi singkat mengenai sekolah
                     </small>
+
                 </div>
 
             </div>
 
         </div>
+
 
         <div class="card-body p-4">
 
@@ -398,5 +417,4 @@
     </div>
 
 </div>
-
 @endsection

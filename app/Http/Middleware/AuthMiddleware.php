@@ -13,12 +13,14 @@ class AuthMiddleware
      * Handle an incoming request.
      *
      * @param  Closure(Request): (Response)  $next
-     * @param string $role
      */
+
+    //   @param string $role
+
     public function handle(Request $request, Closure $next, string $role): Response
     {
         if (!Auth::check()) {
-            return redirect()->route('admin.login');
+            return redirect()->route('login');
         }
 
         if (strcasecmp(Auth::user()->role, $role) !== 0) {

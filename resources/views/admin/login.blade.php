@@ -1,133 +1,150 @@
-
 <!doctype html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="utf-8">
-    <title>Login - SRTdash Admin</title>
+
+    <title>Login - Admin SMPN 1 Padakembang</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Admin panel login page with email and password authentication.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/icon/logo.png') }}">
+
+    <meta name="description" content="Halaman login admin SMPN 1 Padakembang">
+
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+
+    {{-- CSS TEMPLATE --}}
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/metismenujs.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}">
-    <!-- amchart css -->
-    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-    <!-- others css -->
+
     <link rel="stylesheet" href="{{ asset('assets/css/typography.css') }}">
+
     <link rel="stylesheet" href="{{ asset('assets/css/default-css.css') }}">
+
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+
+    {{-- CSS PROJECT --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+
+    {{-- CSS LOGIN --}}
+    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
 </head>
 
 <body>
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-    <!-- preloader area start -->
-    <div id="preloader">
-        <div class="loader"></div>
-    </div>
-    <!-- preloader area end -->
-    <!-- login area start -->
-    <div class="login-area">
-        <div class="container">
-            <div class="login-box ptb--100">
+
+    <div class="login-wrapper">
+
+        <div class="login-card">
+
+            {{-- HEADER --}}
+            <div class="login-header">
+
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo SMPN 1 Padakembang" class="login-logo">
+
+                <h4>Admin SMPN 1 Padakembang</h4>
+
+                <p>Sistem Informasi Administrasi Sekolah</p>
+
+            </div>
+
+            {{-- BODY --}}
+            <div class="login-body">
+
+                <h5 class="login-title">
+                    Masuk ke Dashboard
+                </h5>
+
+                <p class="login-subtitle">
+                    Silakan masuk menggunakan akun administrator.
+                </p>
+
+                @if($errors->any())
+
+                    <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+
+                        <i class="fa-solid fa-circle-exclamation me-2"></i>
+
+                        {{ $errors->first() }}
+
+                        <button type="button" class="btn-close" data-bs-dismiss="alert">
+                        </button>
+
+                    </div>
+
+                @endif
+
                 <form action="{{ route('login_proses') }}" method="POST">
+
                     @csrf
-                    <div class="login-form-head">
-                        <h4>Sign In</h4>
-                        <p>Hello there, Sign in and start managing your Admin Template</p>
-                    </div>
-                    <div class="login-form-body">
-                        <div class="form-gp">
-                            <label for="email">Email address</label>
-                            <input type="email" id="email" name="email">
-                            <i class="ti-email"></i>
-                            <div class="text-danger"></div>
+
+                    {{-- EMAIL --}}
+                    <div class="mb-3">
+
+                        <label for="email" class="form-label">
+
+                            Email
+
+                        </label>
+
+                        <div class="input-group">
+
+                            <span class="input-group-text">
+                                <i class="fa-regular fa-envelope"></i>
+                            </span>
+
+                            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}"
+                                placeholder="Masukkan email" autocomplete="email" required>
+
                         </div>
-                        <div class="form-gp">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" name="password">
-                            <i class="ti-lock"></i>
-                            <div class="text-danger"></div>
-                        </div>
-                        <div class="submit-btn-area">
-                            <button id="form_submit" type="submit">Login<i class="ti-arrow-right"></i></button>
-                            <div class="login-other row mt-4">
-                                <div class="col-6">
-                                    <a class="fb-login" href="#">Log in with <i class="fa-brands fa-facebook"></i></a>
-                                </div>
-                                <div class="col-6">
-                                    <a class="google-login" href="#">Log in with <i class="fa-brands fa-google"></i></a>
-                                </div>
+
+                        @error('email')
+
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
                             </div>
-                        </div>
-                        <div class="form-footer text-center mt-5">
-                            <p class="text-muted">Don't have an account? <a href="register.html">Sign up</a></p>
-                        </div>
+
+                        @enderror
+
                     </div>
+
+                    {{-- PASSWORD --}}
+                    <div class="mb-4">
+
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fa-solid fa-lock"></i>
+                            </span>
+                            <input type="password" id="password" name="password" class="form-control"
+                                placeholder="Masukkan password" autocomplete="current-password" required>
+                        </div>
+                        @error('password')
+                            <div class="text-danger small mt-1">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-login">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i>
+                        Masuk
+                    </button>
                 </form>
+                <div class="login-footer">
+                    <p>
+                        &copy; {{ date('Y') }}
+                        <span>SMPN 1 Padakembang</span>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
-    <!-- login area end -->
 
-    <!-- bootstrap 5 js -->
+    {{-- JS TEMPLATE --}}
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/metismenujs.min.js') }}"></script>
-    
     <script src="{{ asset('assets/js/scripts.js') }}"></script>
-    <!-- Google Analytics 4 -->
-    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag("js", new Date());
-        gtag("config", "G-XXXXXXXXXX");
-    </script> --}}
-<!-- Code injected by live-server -->
-{{-- <script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script> --}}
 </body>
-
 </html>

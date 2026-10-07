@@ -76,7 +76,7 @@
 
                     <tbody>
 
-                        @forelse ($ekstrakurikuler as $item)
+                        @foreach ($ekstrakurikuler as $item)
 
                             <tr>
 
@@ -113,7 +113,7 @@
 
                                         <a
                                             href="{{ route('admin.eskul.edit', Crypt::encrypt($item->id)) }}"
-                                            class="btn btn-sm btn-outline-primary btn-edit">
+                                            class="btn btn-sm btn-outline-primary">
 
                                             <i class="fa-regular fa-pen-to-square"></i>
 
@@ -130,7 +130,7 @@
 
                                             <button
                                                 type="submit"
-                                                class="btn btn-sm btn-outline-danger btn-delete"
+                                                class="btn btn-sm btn-outline-danger"
                                                 title="Hapus">
 
                                                 <i class="fa-solid fa-trash"></i>
@@ -145,15 +145,7 @@
 
                             </tr>
 
-                        @empty
-
-                            <tr>
-                                <td colspan="7">
-                                    Belum ada data ekstrakurikuler
-                                </td>
-                            </tr>
-
-                        @endforelse
+                        @endforeach
 
                     </tbody>
 

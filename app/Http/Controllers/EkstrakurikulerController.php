@@ -29,7 +29,17 @@ class EkstrakurikulerController extends Controller
             'id_guru' => 'required|exists:guru,id',
             'jadwal_latihan' => 'required|string',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
+            'gambar' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+        ], [
+            'nama_eskul.required' => 'Nama ekstrakurikuler wajib diisi.',
+            'id_guru.required' => 'Guru pembimbing wajib dipilih.',
+            'id_guru.exists' => 'Guru pembimbing sudah membimbing ekstrakurikuler lain.',
+            'jadwal_latihan.required' => 'Jadwal latihan wajib diisi.',
+            'deskripsi.required' => 'Deskripsi ekstrakurikuler wajib diisi.',
+            'gambar.required' => 'Gambar Wajib diisi',
+            'gambar.image' => 'Gambar harus berupa file gambar.',
+            'gambar.mimes' => 'Gambar harus berupa file dengan format jpg, jpeg, atau png.',
+            'gambar.max' => 'Ukuran gambar maksimal 2MB.'
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -41,7 +51,7 @@ class EkstrakurikulerController extends Controller
     }
 
     public function edit($id) {
-        $ekstrakurikuler = Ekstrakurikuler::findOrFail($id);
+        $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
         $guru = Guru::all();
         return view(
             'admin.ekstrakurikuler.edit',

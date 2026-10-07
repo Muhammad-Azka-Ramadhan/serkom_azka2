@@ -1,0 +1,1054 @@
+/* =========================================================
+   SMP NEGERI 1 PADAKEMBANG
+   PUBLIC WEBSITE
+   ========================================================= */
+
+:root {
+    --primary: #3F6F8F;
+    --primary-dark: #345E79;
+    --primary-light: #EDF4F8;
+
+    --sidebar: #172B3A;
+
+    --body-bg: #F4F8FA;
+    --white: #FFFFFF;
+
+    --text: #263238;
+    --muted: #718096;
+    --border: #E4EAF0;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    margin: 0;
+
+    background: var(--body-bg);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.public-navbar {
+    height: 78px;
+
+    border-bottom: 1px solid rgba(228, 234, 240, 0.9);
+
+    box-shadow:
+        0 3px 15px rgba(23, 43, 58, 0.06);
+
+    z-index: 1030;
+
+    transition: 0.25s ease;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.public-navbar .navbar-brand {
+    margin: 0;
+
+    padding: 0;
+
+    text-decoration: none;
+}
+
+
+/* LOGO */
+
+.public-logo {
+    width: 48px;
+    height: 48px;
+
+    object-fit: contain;
+
+    flex-shrink: 0;
+}
+
+
+/* BRAND TEXT */
+
+.brand-text {
+    line-height: 1.2;
+}
+
+.brand-title {
+    color: var(--sidebar);
+
+    font-size: 17px;
+    font-weight: 700;
+
+    letter-spacing: -0.2px;
+}
+
+.brand-subtitle {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+    font-weight: 500;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.public-navbar .navbar-nav {
+    height: 100%;
+}
+
+.public-navbar .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+
+/* MENU */
+
+.public-navbar .nav-link {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    height: 42px;
+
+    padding: 0 12px !important;
+
+    color: #4A5963;
+
+    font-size: 13px;
+    font-weight: 500;
+
+    border-radius: 7px;
+
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+
+/* HOVER */
+
+.public-navbar .nav-link:hover {
+    color: var(--primary);
+
+    background: var(--primary-light);
+}
+
+
+/* ACTIVE */
+
+.public-navbar .nav-link.active {
+    color: var(--primary);
+
+    background: var(--primary-light);
+
+    font-weight: 600;
+}
+
+
+/* GARIS BAWAH MENU AKTIF */
+
+.public-navbar .nav-link.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 3px;
+
+    width: 18px;
+    height: 2px;
+
+    background: var(--primary);
+
+    border-radius: 10px;
+
+    transform: translateX(-50%);
+}
+
+
+/* =========================================================
+   TOGGLER
+   ========================================================= */
+
+.public-navbar .navbar-toggler {
+    padding: 5px;
+
+    border-radius: 7px;
+}
+
+.public-navbar .navbar-toggler:focus {
+    box-shadow:
+        0 0 0 3px rgba(63, 111, 143, 0.12);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+.public-main {
+    padding-top: 78px;
+
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1199.98px) {
+
+    .public-navbar .nav-link {
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+
+        font-size: 12px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 991.98px) {
+
+    .public-navbar {
+        height: 70px;
+    }
+
+
+    .public-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+
+    .brand-title {
+        font-size: 15px;
+    }
+
+
+    .brand-subtitle {
+        font-size: 8px;
+    }
+
+
+    /* COLLAPSE */
+
+    .public-navbar .navbar-collapse {
+        margin-top: 10px;
+
+        padding: 12px;
+
+        background: var(--white);
+
+        border: 1px solid var(--border);
+
+        border-radius: 10px;
+
+        box-shadow:
+            0 8px 25px rgba(23, 43, 58, 0.10);
+    }
+
+
+    .public-navbar .navbar-nav {
+        height: auto;
+
+        gap: 2px !important;
+    }
+
+
+    .public-navbar .nav-item {
+        display: block;
+    }
+
+
+    .public-navbar .nav-link {
+        width: 100%;
+
+        height: 42px;
+
+        padding: 0 13px !important;
+
+        font-size: 14px;
+    }
+
+
+    .public-navbar .nav-link.active::after {
+        left: 13px;
+
+        width: 3px;
+        height: 20px;
+
+        bottom: 50%;
+
+        transform: translateY(50%);
+    }
+
+
+    .public-main {
+        padding-top: 70px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 575.98px) {
+
+    .public-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+
+    .brand-title {
+        font-size: 13px;
+    }
+
+
+    .brand-subtitle {
+        font-size: 7px;
+    }
+
+
+    .public-navbar .navbar-collapse {
+        margin-top: 8px;
+
+        padding: 10px;
+    }
+
+}
+
+/* =========================================================
+   SMP NEGERI 1 PADAKEMBANG
+   PUBLIC WEBSITE
+   ========================================================= */
+
+:root {
+    --primary: #3F6F8F;
+    --primary-dark: #345E79;
+    --primary-light: #EDF4F8;
+
+    --sidebar: #172B3A;
+
+    --body-bg: #F4F8FA;
+    --white: #FFFFFF;
+
+    --text: #263238;
+    --muted: #718096;
+    --border: #E4EAF0;
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+body {
+    margin: 0;
+    background: var(--body-bg);
+    color: var(--text);
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+.public-navbar {
+    height: 78px;
+    border-bottom: 1px solid rgba(228, 234, 240, 0.9);
+    box-shadow: 0 3px 15px rgba(23, 43, 58, 0.06);
+    z-index: 1030;
+}
+
+.public-navbar .navbar-brand {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+.public-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    line-height: 1.2;
+}
+
+.brand-title {
+    color: var(--sidebar);
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+}
+
+.brand-subtitle {
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.public-navbar .navbar-nav {
+    height: 100%;
+}
+
+.public-navbar .nav-item {
+    display: flex;
+    align-items: center;
+}
+
+.public-navbar .nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 42px;
+    padding: 0 12px !important;
+    color: #4A5963;
+    font-size: 13px;
+    font-weight: 500;
+    border-radius: 7px;
+    transition:
+        color 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.public-navbar .nav-link:hover {
+    color: var(--primary);
+    background: var(--primary-light);
+}
+
+.public-navbar .nav-link.active {
+    color: var(--primary);
+    background: var(--primary-light);
+    font-weight: 600;
+}
+
+.public-navbar .nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 3px;
+    width: 18px;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 10px;
+    transform: translateX(-50%);
+}
+
+.public-navbar .navbar-toggler {
+    padding: 5px;
+    border-radius: 7px;
+}
+
+.public-navbar .navbar-toggler:focus {
+    box-shadow: 0 0 0 3px rgba(63, 111, 143, 0.12);
+}
+
+.public-main {
+    padding-top: 78px;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.public-hero {
+    min-height: 620px;
+    display: flex;
+    align-items: center;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(23, 43, 58, 0.98),
+            rgba(63, 111, 143, 0.92)
+        );
+
+    overflow: hidden;
+}
+
+.public-hero-badge {
+    padding: 8px 14px;
+    color: var(--primary);
+    background: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.public-hero-highlight {
+    color: #8FD3FF;
+}
+
+.public-hero-image {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    border-radius: 18px;
+}
+
+.public-hero-image img {
+    width: 100%;
+    height: 390px;
+    object-fit: contain;
+    border-radius: 10px;
+    background: var(--white);
+}
+
+
+/* =========================================================
+   SECTION
+   ========================================================= */
+
+.public-section-light {
+    background: var(--body-bg);
+}
+
+.public-section-label {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   SEKILAS SEKOLAH
+   ========================================================= */
+
+.public-school-image {
+    padding: 8px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: 0 8px 30px rgba(23, 43, 58, 0.06);
+}
+
+.public-school-image img {
+    width: 100%;
+    height: 330px;
+    object-fit: contain;
+    border-radius: 9px;
+    background: var(--body-bg);
+}
+
+
+/* =========================================================
+   IDENTITAS SEKOLAH
+   ========================================================= */
+
+.public-info-card {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.public-info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(23, 43, 58, 0.10) !important;
+}
+
+.public-info-icon,
+.public-content-icon {
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--primary);
+    background: var(--primary-light);
+
+    border-radius: 10px;
+
+    font-size: 20px;
+}
+
+
+/* =========================================================
+   VISI & MISI
+   ========================================================= */
+
+.public-vision-card {
+    color: var(--white);
+    background: var(--primary);
+    border-radius: 14px;
+}
+
+.public-mission-card {
+    background: var(--primary-light);
+    border-radius: 14px;
+    border: 1px solid #D9E7EF !important;
+}
+
+.public-card-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   CONTENT CARD
+   ========================================================= */
+
+.public-content-card {
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.public-content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(23, 43, 58, 0.10) !important;
+}
+
+
+/* =========================================================
+   GURU
+   ========================================================= */
+
+.public-teacher-card {
+    overflow: hidden;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.public-teacher-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(23, 43, 58, 0.10) !important;
+}
+
+.public-teacher-photo {
+    width: 100%;
+    height: 270px;
+    background: var(--body-bg);
+}
+
+.public-teacher-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.public-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #9AA7B1;
+    font-size: 42px;
+}
+
+
+/* =========================================================
+   BERITA
+   ========================================================= */
+
+.public-news-card {
+    overflow: hidden;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.public-news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(23, 43, 58, 0.10) !important;
+}
+
+.public-news-image {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    background: var(--body-bg);
+}
+
+.public-news-placeholder {
+    width: 100%;
+    height: 220px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #9AA7B1;
+    background: var(--body-bg);
+
+    font-size: 40px;
+}
+
+
+/* =========================================================
+   GALERI
+   ========================================================= */
+
+.public-gallery-card {
+    width: 100%;
+    height: 240px;
+
+    overflow: hidden;
+
+    background: var(--body-bg);
+    border-radius: 10px;
+}
+
+.public-gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    transition: transform 0.3s ease;
+}
+
+.public-gallery-card:hover img {
+    transform: scale(1.03);
+}
+
+.public-gallery-placeholder {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #9AA7B1;
+    font-size: 40px;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.public-cta {
+    background: var(--primary);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.public-footer {
+    background: var(--sidebar);
+}
+
+.public-footer-links {
+    margin: 0;
+    padding: 0;
+}
+
+.public-footer-links li {
+    margin-bottom: 8px;
+}
+
+.public-footer-links a {
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.public-footer-links a:hover {
+    color: var(--white);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1199.98px) {
+
+    .public-navbar .nav-link {
+        padding-left: 9px !important;
+        padding-right: 9px !important;
+        font-size: 12px;
+    }
+
+}
+
+
+@media (max-width: 991.98px) {
+
+    .public-navbar {
+        height: 70px;
+    }
+
+    .public-logo {
+        width: 42px;
+        height: 42px;
+    }
+
+    .brand-title {
+        font-size: 15px;
+    }
+
+    .brand-subtitle {
+        font-size: 8px;
+    }
+
+    .public-navbar .navbar-collapse {
+        margin-top: 10px;
+        padding: 12px;
+
+        background: var(--white);
+
+        border: 1px solid var(--border);
+        border-radius: 10px;
+
+        box-shadow: 0 8px 25px rgba(23, 43, 58, 0.10);
+    }
+
+    .public-navbar .navbar-nav {
+        height: auto;
+        gap: 2px !important;
+    }
+
+    .public-navbar .nav-item {
+        display: block;
+    }
+
+    .public-navbar .nav-link {
+        width: 100%;
+        height: 42px;
+        padding: 0 13px !important;
+        font-size: 14px;
+    }
+
+    .public-navbar .nav-link.active::after {
+        left: 13px;
+        width: 3px;
+        height: 20px;
+        bottom: 50%;
+        transform: translateY(50%);
+    }
+
+    .public-main {
+        padding-top: 70px;
+    }
+
+    .public-hero {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .public-hero-image img {
+        height: 320px;
+    }
+
+}
+
+
+@media (max-width: 575.98px) {
+
+    .public-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .brand-title {
+        font-size: 13px;
+    }
+
+    .brand-subtitle {
+        font-size: 7px;
+    }
+
+    .public-navbar .navbar-collapse {
+        margin-top: 8px;
+        padding: 10px;
+    }
+
+    .public-hero {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .public-hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .public-hero-image img {
+        height: 250px;
+    }
+
+    .public-school-image img {
+        height: 250px;
+    }
+
+    .public-teacher-photo {
+        height: 230px;
+    }
+
+    .public-gallery-card {
+        height: 170px;
+    }
+
+}
+
+/* =========================================================
+   STATISTIK SEKOLAH
+   ========================================================= */
+
+.public-stat-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    animation: statFadeUp 0.7s ease both;
+}
+
+.public-stat-card:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.public-stat-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.public-stat-card:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.public-stat-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+}
+
+.public-stat-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 15px 30px rgba(23, 43, 58, 0.12) !important;
+}
+
+.public-stat-card-blue::before {
+    background: #1688D4;
+}
+
+.public-stat-card-green::before {
+    background: #009B55;
+}
+
+.public-stat-card-yellow::before {
+    background: #FFD900;
+}
+
+.public-stat-icon {
+    width: 62px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 25px;
+    transition:
+        transform 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.public-stat-card-blue .public-stat-icon {
+    color: #1688D4;
+    background: rgba(22, 136, 212, 0.10);
+}
+
+.public-stat-card-green .public-stat-icon {
+    color: #009B55;
+    background: rgba(0, 155, 85, 0.10);
+}
+
+.public-stat-card-yellow .public-stat-icon {
+    color: #C49B00;
+    background: rgba(255, 217, 0, 0.18);
+}
+
+.public-stat-card:hover .public-stat-icon {
+    transform: scale(1.08);
+}
+
+.public-stat-card h2 {
+    color: #263238;
+    line-height: 1;
+}
+
+.public-stat-line {
+    width: 35px;
+    height: 3px;
+    border-radius: 10px;
+}
+
+.public-stat-card-blue .public-stat-line {
+    background: #1688D4;
+}
+
+.public-stat-card-green .public-stat-line {
+    background: #009B55;
+}
+
+.public-stat-card-yellow .public-stat-line {
+    background: #FFD900;
+}
+
+@keyframes statFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    .public-stat-card {
+        border-radius: 14px;
+    }
+
+    .public-stat-card .card-body {
+        padding: 2rem !important;
+    }
+
+}

@@ -1,12 +1,8 @@
-@extends('admin_app')
-
 @extends('layouts.admin_app')
 
 @section('title', 'Galeri')
 
 @section('content')
-
-@endsection
 
 <div class="container-fluid py-4">
 
@@ -121,7 +117,7 @@
                                         {{-- Edit --}}
                                         <a
                                             href="{{ route('admin.galeri.edit', Crypt::encrypt($item->id)) }}"
-                                            class="btn btn-sm btn-outline-primary btn-edit">
+                                            class="btn btn-sm btn-outline-primary">
 
                                             <i class="fa-regular fa-pen-to-square"></i>
 
@@ -139,7 +135,7 @@
 
                                             <button
                                                 type="submit"
-                                                class="btn btn-sm btn-outline-danger btn-delete">
+                                                class="btn btn-sm btn-outline-danger">
 
                                                 <i class="fa-solid fa-trash"></i>
 
@@ -168,4 +164,3 @@
 </div>
 
 @endsection
->>>>>>> 5fe03ab (dashboard)

@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     //
     public function login() {
-        return view('admin.login');
+        return view('login');
     }
 
     public function prosesLogin(Request $request) {
@@ -35,5 +35,12 @@ class AuthController extends Controller
         return back()->withErrors([
             'email' => 'Kombinasi alamat email atau kata sandi tidak sesuai.'
         ])->onlyInput('email');
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login')->with('success', 'Anda berhasil keluar dari sistem');
     }
 }

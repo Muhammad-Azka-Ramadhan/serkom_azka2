@@ -64,13 +64,13 @@
                     <thead class="text-capitalize">
 
                         <tr>
-                            <th>No</th>
-                            <th>Judul</th>
-                            <th>Keterangan</th>
-                            <th>File</th>
-                            <th>Kategori</th>
-                            <th>Tanggal</th>
-                            <th>Aksi</th>
+                            <th style="width: 5%; text-align: center;">No</th>
+                            <th style="text-align: center">Judul</th>
+                            <th style="text-align: center">Keterangan</th>
+                            <th style="text-align: center">File</th>
+                            <th style="text-align: center">Kategori</th>
+                            <th style="text-align: center">Tanggal</th>
+                            <th style="text-align: center">Aksi</th>
                         </tr>
 
                     </thead>

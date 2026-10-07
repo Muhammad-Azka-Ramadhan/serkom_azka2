@@ -70,7 +70,6 @@
                             name="nisn"
                             id="nisn"
                             class="form-control"
-                            value="{{ old('nisn') }}"
                             placeholder="Masukkan NISN">
 
                     </div>
@@ -87,7 +86,6 @@
                             name="nama_siswa"
                             id="nama"
                             class="form-control"
-                            value="{{ old('nama_siswa') }}"
                             placeholder="Masukkan nama siswa">
 
                     </div>
@@ -157,7 +155,6 @@
                             class="form-control @error('tahun_masuk') is-invalid @enderror"
                             min="2010"
                             max="{{ date('Y') }}"
-                            value="{{ old('tahun_masuk') }}"
                             placeholder="Contoh: {{ date('Y') }}"
                             required>
 

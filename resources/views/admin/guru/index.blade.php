@@ -49,31 +49,31 @@
 
                     <thead class="text-capitalize">
                         <tr>
-                            <th>No</th>
-                            <th>Nama</th>
-                            <th>NIP</th>
-                            <th>Mapel</th>
-                            <th>Foto</th>
+                            <th style="width: 5%; text-align: center;">No</th>
+                            <th style="text-align: center">Nama</th>
+                            <th style="text-align: center">NIP</th>
+                            <th style="text-align: center">Mapel</th>
+                            <th style="text-align: center">Foto</th>
                             @if (Auth::user()->role === 'admin')
-                            <th>Aksi</th>
+                            <th style="text-align: center">Aksi</th>
                             @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($guru as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td class="fw-semibold">{{ $item->nama_guru }}</td>
-                                <td>{{ $item->nip }}</td>
-                                <td>{{ $item->mapel }}</td>
-                                <td>
+                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                <td style="text-align: center" class="fw-semibold">{{ $item->nama_guru }}</td>
+                                <td style="text-align: center">{{ $item->nip }}</td>
+                                <td style="text-align: center">{{ $item->mapel }}</td>
+                                <td style="text-align: center">
                                     <img
                                         src="{{ asset('storage/' . $item->foto) }}"
                                         alt="{{ $item->nama_guru }}"
                                         class="table-image">
                                 </td>
                                 @if (Auth::user()->role === 'admin')
-                                <td>
+                                <td style="text-align: center">
                                     <div class="d-flex justify-content-center align-items-center gap-2">
                                         {{-- Edit --}}
                                         <a

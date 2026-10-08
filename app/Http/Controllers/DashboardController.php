@@ -63,8 +63,8 @@ class DashboardController extends Controller
     public function publicBeranda() {
         $siswa = Siswa::latest()->get();
         $guru = Guru::latest()->get();
-        $berita = Berita::latest()->get();
-        $galeri = Galeri::latest()->get();
+        $berita = Berita::orderBy('tanggal', 'asc')->get();
+        $galeri = Galeri::orderBy('tanggal', 'asc')->get();
         $ekstrakurikuler = Ekstrakurikuler::with('guru')->latest()->get();
         $profilSekolah = ProfilSekolah::first();
 

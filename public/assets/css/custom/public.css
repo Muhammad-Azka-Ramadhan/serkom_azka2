@@ -6,6 +6,8 @@
 
 /* =========================================================
    VARIABLES
+   Disesuaikan dengan warna ADMIN PANEL
+   Nama variabel disesuaikan dengan konteks PUBLIC WEBSITE
    ========================================================= */
 
 :root {
@@ -13,7 +15,9 @@
     --primary-dark: #345E79;
     --primary-light: #EDF4F8;
 
-    --sidebar: #172B3A;
+    --dark: #172B3A;
+    --dark-hover: #203D50;
+    --dark-active: #126FAF;
 
     --body-bg: #F4F8FA;
     --white: #FFFFFF;
@@ -25,7 +29,6 @@
     --success: #009B55;
     --warning: #FFD900;
 
-    /* Warna tambahan */
     --warning-dark: #B18B00;
     --header-label: #8FD3FF;
     --placeholder: #9AA7B1;
@@ -51,7 +54,7 @@ body {
 .public-navbar {
     height: 78px;
 
-    border-bottom: 1px solid rgba(228, 234, 240, 0.9);
+    border-bottom: 1px solid var(--border);
 
     box-shadow:
         0 3px 15px rgba(23, 43, 58, 0.06);
@@ -61,14 +64,12 @@ body {
     transition: 0.25s ease;
 }
 
-
 .public-navbar .navbar-brand {
     margin: 0;
     padding: 0;
 
     text-decoration: none;
 }
-
 
 .public-logo {
     width: 48px;
@@ -79,21 +80,18 @@ body {
     flex-shrink: 0;
 }
 
-
 .brand-text {
     line-height: 1.2;
 }
 
-
 .brand-title {
-    color: var(--sidebar);
+    color: var(--dark);
 
     font-size: 17px;
     font-weight: 700;
 
     letter-spacing: -0.2px;
 }
-
 
 .brand-subtitle {
     margin-top: 4px;
@@ -115,13 +113,11 @@ body {
     height: 100%;
 }
 
-
 .public-navbar .nav-item {
     display: flex;
 
     align-items: center;
 }
-
 
 .public-navbar .nav-link {
     position: relative;
@@ -134,7 +130,7 @@ body {
 
     padding: 0 12px !important;
 
-    color: #4A5963;
+    color: var(--text);
 
     font-size: 13px;
     font-weight: 500;
@@ -146,13 +142,11 @@ body {
         background-color 0.2s ease;
 }
 
-
 .public-navbar .nav-link:hover {
     color: var(--primary);
 
     background: var(--primary-light);
 }
-
 
 .public-navbar .nav-link.active {
     color: var(--primary);
@@ -161,7 +155,6 @@ body {
 
     font-weight: 600;
 }
-
 
 .public-navbar .nav-link.active::after {
     content: "";
@@ -192,7 +185,6 @@ body {
     border-radius: 7px;
 }
 
-
 .public-navbar .navbar-toggler:focus {
     box-shadow:
         0 0 0 3px rgba(63, 111, 143, 0.12);
@@ -210,7 +202,10 @@ body {
 }
 
 
-/* BUTTON PRIMARY */
+/* =========================================================
+   BUTTON PRIMARY
+   ========================================================= */
+
 .btn-primary {
     color: var(--white);
 
@@ -242,1177 +237,168 @@ body {
     border-color: var(--primary);
 }
 
-
+/* BERANDA */
 /* =========================================================
-   HOME HERO
+   WARNA
    ========================================================= */
 
-.home-hero {
-    position: relative;
-    min-height: 600px;
-    display: flex;
-    align-items: center;
-    overflow: visible;
+.statistic-icon-blue,
+.info-icon-blue {
+    color: var(--primary);
+    background-color: var(--primary-light);
 }
 
-.home-hero-background {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
+.statistic-icon-green,
+.info-icon-green {
+    color: var(--success);
+    background-color: rgba(0, 155, 85, 0.10);
 }
 
-.home-hero-background img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* object-position: center; */
+.statistic-icon-yellow,
+.info-icon-yellow {
+    color: var(--warning-dark);
+    background-color: rgba(255, 217, 0, 0.18);
 }
 
-.home-hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: rgba(23, 43, 58, 0.58);
+.vision-blue {
+    border-left: 4px solid var(--primary);
 }
 
-.home-hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 100px 0 150px;
+.vision-green {
+    border-left: 4px solid var(--success);
 }
 
-.home-hero-logo {
-    width: 150px;
-    height: 150px;
-    object-fit: contain;
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+.public-cta {
+    background-color: var(--primary);
 }
 
-.home-hero-content h1 {
-    font-size: 2.8rem;
-    color: #FFFFFF;
-    text-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
-}
-
-.home-hero-content p {
-    color: rgba(255, 255, 255, 0.9);
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
-}
-
-.home-stat-card {
-    border-radius: 14px;
-}
-
-.home-stat-card .card-body {
-    min-height: 170px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.public-footer {
+    background-color: var(--dark);
 }
 
 
 /* =========================================================
-   RESPONSIVE
+   HOVER
    ========================================================= */
 
-@media (max-width: 767.98px) {
-
-    .home-hero {
-        min-height: 650px;
-    }
-
-    .home-hero-content {
-        padding: 80px 0 180px;
-    }
-
-    .home-hero-logo {
-        width: 120px;
-        height: 120px;
-    }
-
-    .home-hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .home-statistics {
-        bottom: -230px;
-    }
-
-    .home-stat-card .card-body {
-        min-height: 140px;
-    }
-
+.info-card,
+.content-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-
-/* =========================================================
-   STATISTIK
-   ========================================================= */
-
-.home-statistics {
-    position: relative;
-    padding: 40px;
-    background: var(--body-bg) !important;
+.info-card:hover,
+.content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(23, 43, 58, 0.10) !important;
 }
 
-
-/* =========================================================
-   SECTION
-   ========================================================= */
-
-.public-section-light {
-    background: var(--body-bg);
+.footer-link:hover {
+    color: var(--white) !important;
 }
 
+.gallery-image {
+    transition: transform 0.3s ease;
+}
+
+.gallery-image:hover {
+    transform: scale(1.03);
+}
+
+/* =========================
+   PROFIL SEKOLAH
+   ========================= */
+
+.public-page-header {
+    background: linear-gradient(
+        135deg,
+        var(--dark),
+        var(--primary)
+    );
+}
 
 .public-section-label {
-    display: inline-block;
-
-    color: var(--primary);
-
+    color: var(--header-label);
     font-size: 11px;
     font-weight: 700;
-
     letter-spacing: 1px;
-}
-
-
-/* =========================================================
-   SEKILAS SEKOLAH
-   ========================================================= */
-
-.after-statistic {
-    background: var(--body-bg)
-}
-
-.after-statistic h2 {
-    color: var(--sidebar)
-}
-
-.after-statistic a {
-    background-color: var(--primary)
-}
-
-.public-school-image {
-    padding: 8px;
-
-    background: var(--white);
-
-    border: 1px solid var(--border);
-
-    border-radius: 14px;
-
-    box-shadow:
-        0 8px 30px rgba(23, 43, 58, 0.06);
-}
-
-
-.public-school-image img {
-    display: block;
-
-    width: 100%;
-    height: 330px;
-
-    object-fit: cover;
-
-    border-radius: 9px;
-
-    background: var(--body-bg);
-}
-
-
-/* =========================================================
-   IDENTITAS
-   ========================================================= */
-
-.public-info-card {
-    border-radius: 12px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.public-info-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 12px 28px rgba(23, 43, 58, 0.10) !important;
-}
-
-
-.public-info-icon {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 44px;
-    height: 44px;
-
-    color: var(--primary);
-
-    background: var(--primary-light);
-
-    border-radius: 10px;
-
-    font-size: 20px;
 }
 
 .public-info-icon-blue {
     color: var(--primary);
-    background: var(--primary-light);
+    background-color: var(--primary-light);
 }
 
 .public-info-icon-green {
     color: var(--success);
-    background: rgba(0, 155, 85, 0.10);
+    background-color: rgba(0, 155, 85, 0.10);
 }
 
 .public-info-icon-yellow {
     color: var(--warning-dark);
-    background: rgba(255, 217, 0, 0.18);
-}
-
-
-/* =========================================================
-   VISI MISI
-   ========================================================= */
-
-.public-vision-card {
-    height: 100%;
-
-    color: var(--text);
-
-    background: #FFFFFF;
-
-    border-radius: 14px;
-
-    border-left: 4px solid var(--primary) !important;
-}
-
-
-.public-card-label {
-    color: var(--primary);
-
-    font-size: 12px;
-    font-weight: 700;
-
-    letter-spacing: 1px;
+    background-color: rgba(255, 217, 0, 0.18);
 }
 
 .public-vision-blue {
-    border-left-color: var(--primary) !important;
+    border-left: 4px solid var(--primary);
 }
 
 .public-vision-green {
-    border-left-color: var(--success) !important;
+    border-left: 4px solid var(--success);
 }
-
-
-/* =========================================================
-   EKSTRAKURIKULER
-   ========================================================= */
-
-.public-content-card {
-    border-radius: 12px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.public-content-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 12px 28px rgba(23, 43, 58, 0.10) !important;
-}
-
-
-.public-content-icon {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 44px;
-    height: 44px;
-
-    color: var(--primary);
-
-    background: var(--primary-light);
-
-    border-radius: 10px;
-
-    font-size: 20px;
-}
-
-.public-content-icon-yellow {
-    color: var(--warning-dark);
-    background: rgba(255, 217, 0, 0.18);
-}
-
-/* =========================================================
-   GURU
-   ========================================================= */
-
-.public-teacher-card {
-    overflow: hidden;
-
-    border-radius: 12px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.public-teacher-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 12px 28px rgba(23, 43, 58, 0.10) !important;
-}
-
-
-.public-teacher-photo {
-    width: 100%;
-    height: 270px;
-
-    background: var(--body-bg);
-
-    overflow: hidden;
-}
-
-
-.public-teacher-photo img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-}
-
-
-.public-placeholder {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    height: 100%;
-
-    color: #9AA7B1;
-
-    font-size: 42px;
-}
-
-
-/* =========================================================
-   BERITA
-   ========================================================= */
-
-.public-news-card {
-    overflow: hidden;
-
-    border-radius: 12px;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.public-news-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 12px 28px rgba(23, 43, 58, 0.10) !important;
-}
-
-
-.public-news-image {
-    display: block;
-
-    width: 100%;
-    height: 220px;
-
-    object-fit: cover;
-
-    background: var(--body-bg);
-}
-
-
-.public-news-placeholder {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    height: 220px;
-
-    color: #9AA7B1;
-
-    background: var(--body-bg);
-
-    font-size: 40px;
-}
-
-
-/* =========================================================
-   GALERI
-   ========================================================= */
-
-.public-gallery-card {
-    width: 100%;
-    height: 240px;
-
-    overflow: hidden;
-
-    background: var(--body-bg);
-
-    border-radius: 10px;
-}
-
-
-.public-gallery-card img {
-    display: block;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transition:
-        transform 0.3s ease;
-}
-
-
-.public-gallery-card:hover img {
-    transform: scale(1.05);
-}
-
-
-.public-gallery-placeholder {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 100%;
-    height: 100%;
-
-    color: #9AA7B1;
-
-    font-size: 40px;
-}
-
-
-/* =========================================================
-   CTA
-   ========================================================= */
 
 .public-cta {
-    background: var(--primary);
+    background-color: var(--primary);
 }
 
+/* BERITA */
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
-.public-footer {
-    background: var(--sidebar);
-}
-
-
-.public-footer-links {
-    margin: 0;
-    padding: 0;
-}
-
-
-.public-footer-links li {
-    margin-bottom: 8px;
-}
-
-
-.public-footer-links a {
-    color: rgba(255, 255, 255, 0.65);
-
-    text-decoration: none;
-
-    font-size: 14px;
-
-    transition:
-        color 0.2s ease;
-}
-
-
-.public-footer-links a:hover {
-    color: var(--white);
-}
-
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 1199.98px) {
-
-    .public-navbar .nav-link {
-        padding-left: 9px !important;
-        padding-right: 9px !important;
-
-        font-size: 12px;
-    }
-
-}
-
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 991.98px) {
-
-    .public-navbar {
-        height: 70px;
-    }
-
-
-    .public-logo {
-        width: 42px;
-        height: 42px;
-    }
-
-
-    .brand-title {
-        font-size: 15px;
-    }
-
-
-    .brand-subtitle {
-        font-size: 8px;
-    }
-
-
-    .public-navbar .navbar-collapse {
-        margin-top: 10px;
-
-        padding: 12px;
-
-        background: var(--white);
-
-        border: 1px solid var(--border);
-
-        border-radius: 10px;
-
-        box-shadow:
-            0 8px 25px rgba(23, 43, 58, 0.10);
-    }
-
-
-    .public-navbar .navbar-nav {
-        height: auto;
-
-        gap: 2px !important;
-    }
-
-
-    .public-navbar .nav-item {
-        display: block;
-    }
-
-
-    .public-navbar .nav-link {
-        width: 100%;
-
-        height: 42px;
-
-        padding: 0 13px !important;
-
-        font-size: 14px;
-    }
-
-
-    .public-navbar .nav-link.active::after {
-        left: 13px;
-
-        width: 3px;
-        height: 20px;
-
-        bottom: 50%;
-
-        transform: translateY(50%);
-    }
-
-
-    .public-main {
-        padding-top: 70px;
-    }
-
-
-    /* HERO */
-
-    .public-hero-carousel .carousel-item {
-        height: 560px;
-    }
-
-
-    .public-carousel-content {
-        left: 24px;
-
-        width: calc(100% - 48px);
-    }
-
-
-    .public-carousel-content h1 {
-        font-size: 44px;
-    }
-
-
-    /* SCHOOL IMAGE */
-
-    .public-school-image img {
-        height: 320px;
-    }
-
-}
-
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 767.98px) {
-
-    .public-hero-carousel .carousel-item {
-        height: 540px;
-    }
-
-
-    .public-carousel-overlay {
-        background:
-            linear-gradient(
-                90deg,
-                rgba(23, 43, 58, 0.94),
-                rgba(23, 43, 58, 0.60)
-            );
-    }
-
-
-    .public-carousel-content {
-        left: 24px;
-
-        width: calc(100% - 48px);
-    }
-
-
-    .public-carousel-content h1 {
-        font-size: 36px;
-    }
-
-
-    .public-carousel-content p {
-        font-size: 14px;
-
-        line-height: 1.7;
-    }
-
-
-    .public-carousel-control {
-        width: 50px;
-    }
-
-
-    .public-stat-card {
-        border-radius: 14px;
-    }
-
-
-    .public-stat-card .card-body {
-        padding: 2rem !important;
-    }
-
-
-    .public-teacher-photo {
-        height: 300px;
-    }
-
-
-    .public-gallery-card {
-        height: 190px;
-    }
-
-}
-
-
-/* =========================================================
-   SMALL MOBILE
-   ========================================================= */
-
-@media (max-width: 575.98px) {
-
-    .public-logo {
-        width: 38px;
-        height: 38px;
-    }
-
-
-    .brand-title {
-        font-size: 13px;
-    }
-
-
-    .brand-subtitle {
-        font-size: 7px;
-    }
-
-
-    .public-navbar .navbar-collapse {
-        margin-top: 8px;
-
-        padding: 10px;
-    }
-
-
-    .public-hero-carousel .carousel-item {
-        height: 520px;
-    }
-
-
-    .public-carousel-content {
-        left: 20px;
-
-        width: calc(100% - 40px);
-    }
-
-
-    .public-carousel-content h1 {
-        font-size: 31px;
-    }
-
-
-    .public-carousel-content p {
-        font-size: 13px;
-    }
-
-
-    .public-carousel-content .btn {
-        padding: 9px 15px !important;
-
-        font-size: 13px;
-    }
-
-
-    .public-school-image img {
-        height: 250px;
-    }
-
-
-    .public-teacher-photo {
-        height: 230px;
-    }
-
-
-    .public-gallery-card {
-        height: 170px;
-    }
-
-}
-
-
-
-
-
-/* =========================================================
-   HALAMAN BERITA PUBLIC
-   ========================================================= */
-
-
-/* =========================================================
-   PAGE HEADER
-   ========================================================= */
-
+/* WARNA */
 .public-page-header {
-    position: relative;
-
-    padding: 85px 0 80px;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--sidebar) 0%,
-            var(--primary) 100%
-        );
-
-    overflow: hidden;
-}
-/* 
-.public-page-header::before {
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-    height: 300px;
-
-    top: -150px;
-    right: -80px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.06);
-}
-    
-.public-page-header::after {
-    content: "";
-
-    position: absolute;
-
-    width: 220px;
-    height: 220px;
-
-    bottom: -130px;
-    left: -60px;
-
-    border-radius: 50%;
-
-    background: rgba(255,217,0,.08);
-} */
-
-.public-page-header-content {
-    position: relative;
-
-    z-index: 2;
-
-    max-width: 750px;
-
-    text-align: center;
-
-    margin: 0 auto;
+    background: linear-gradient(135deg, var(--dark), var(--primary));
 }
 
-.public-page-header .public-section-label {
+.public-section-label {
     color: var(--header-label);
-}
-
-.public-page-header h1 {
-    margin-top: 10px;
-    margin-bottom: 15px;
-
-    color: #fff;
-
-    font-size: 42px;
-    font-weight: 700;
-}
-
-.public-page-header p {
-    margin: 0;
-
-    color: rgba(255,255,255,.75);
-
-    font-size: 16px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   NEWS CARD
-   ========================================================= */
-
-.public-news-page-card {
-    overflow: hidden;
-
-    border-radius: 15px;
-
-    background: #fff;
-
-    transition:
-        transform .3s ease,
-        box-shadow .3s ease;
-}
-
-.public-news-page-card:hover {
-    transform: translateY(-7px);
-
-    box-shadow:
-        0 18px 35px rgba(23,43,58,.12) !important;
-}
-
-
-/* =========================================================
-   NEWS IMAGE
-   ========================================================= */
-
-.public-news-page-image {
-    width: 100%;
-    height: 230px;
-
-    overflow: hidden;
-
-    background: var(--body-bg);
-}
-
-.public-news-page-image img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    transition: transform .4s ease;
-}
-
-.public-news-page-card:hover .public-news-page-image img {
-    transform: scale(1.05);
-}
-
-
-/* =========================================================
-   NEWS PLACEHOLDER
-   ========================================================= */
-
-.public-news-page-placeholder {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background: var(--primary-light);
-
-    color: var(--placeholder);
-
-    font-size: 50px;
-}
-
-
-/* =========================================================
-   NEWS DATE
-   ========================================================= */
-
-.public-news-page-date {
-    margin-bottom: 10px;
-
-    color: var(--primary);
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-
-/* =========================================================
-   NEWS TITLE
-   ========================================================= */
-
-.public-news-page-title {
-    margin: 0;
-
-    color: #172B3A;
-
-    font-size: 19px;
-    font-weight: 700;
-
-    line-height: 1.45;
-}
-
-
-/* =========================================================
-   NEWS EXCERPT
-   ========================================================= */
-
-.public-news-page-excerpt {
-    margin-top: 13px;
-    margin-bottom: 0;
-
-    color: #718096;
-
-    font-size: 14px;
-
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   EMPTY NEWS
-   ========================================================= */
-
-.public-news-empty {
-    padding: 70px 30px;
-
-    border: 1px dashed #CED8DF;
-
-    border-radius: 15px;
-
-    background: #fff;
-
-    text-align: center;
-}
-
-.public-news-empty-icon {
-    width: 70px;
-    height: 70px;
-
-    margin: 0 auto 20px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: var(--primary-light);
-
-    color: var(--primary);
-
-    font-size: 28px;
-}
-
-.public-news-empty h4 {
-    margin-bottom: 8px;
-
-    color: #172B3A;
-
-    font-weight: 700;
-}
-
-.public-news-empty p {
-    margin: 0;
-
-    color: #718096;
-}
-
-
-/* =========================================================
-   PAGINATION
-   ========================================================= */
-
-.public-news-pagination {
-    display: flex;
-
-    justify-content: center;
-
-    margin-top: 45px;
-}
-
-.public-news-pagination .pagination {
-    margin: 0;
-
-    gap: 5px;
-}
-
-.public-news-pagination .page-link {
-    min-width: 40px;
-    height: 40px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border: 1px solid #E4EAF0;
-
-    border-radius: 8px !important;
-
-    color: #3F6F8F;
-
-    background: #fff;
-
-    font-size: 14px;
-}
-
-.public-news-pagination .page-link:hover {
-    color: #fff;
-
-    background: #3F6F8F;
-
-    border-color: #3F6F8F;
-}
-
-.public-news-pagination .page-item.active .page-link {
-    color: #fff;
-
-    background: #3F6F8F;
-
-    border-color: #3F6F8F;
-}
-
-.public-news-pagination .page-item.disabled .page-link {
-    color: #AAB5BC;
-
-    background: #F4F8FA;
-}
-
-
-/* =========================================================
-   CTA LABEL
-   ========================================================= */
-
-.public-cta-label {
-    display: inline-block;
-
-    margin-bottom: 8px;
-
-    color: #FFD900;
-
     font-size: 11px;
     font-weight: 700;
-
-    letter-spacing: 1.3px;
+    letter-spacing: 1px;
 }
 
-
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
-
-@media (max-width: 767.98px) {
-
-    .public-page-header {
-        padding: 65px 0;
-    }
-
-    .public-page-header h1 {
-        font-size: 32px;
-    }
-
-    .public-page-header p {
-        font-size: 14px;
-    }
-
-    .public-news-page-image {
-        height: 220px;
-    }
-
+.public-cta {
+    background-color: var(--primary);
 }
 
+.news-title {
+    color: var(--dark);
+}
 
-@media (max-width: 575.98px) {
+/* HOVER */ 
+.news-title:hover {
+    color: var(--primary);
+}
 
-    .public-page-header {
-        padding: 55px 0;
-    }
+.news-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
 
-    .public-page-header h1 {
-        font-size: 28px;
-    }
+.news-card:hover {
+    transform: translateY(-4px);
+}
 
-    .public-news-page-image {
-        height: 200px;
-    }
+.news-card img {
+    transition: transform 0.2s ease;
+}
 
-    .public-news-page-title {
-        font-size: 17px;
-    }
+.news-card:hover img {
+    transform: scale(1.1);
+}
 
+/* DETAIL GURU */
+.guru-badge {
+    color: var(--white);
+    background-color: var(--primary);
+}
+
+.guru-badge:hover {
+    background-color: var(--primary-dark);
 }

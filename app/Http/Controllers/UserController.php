@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfilSekolah;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -12,11 +13,13 @@ class UserController extends Controller
     //
     public function index() {
         $user = User::all();
-        return view('admin.user.index', compact('user'));
+        $profilSekolah = ProfilSekolah::first();
+        return view('admin.user.index', compact('user', 'profilSekolah'));
     }
 
     public function create() {
-        return view('admin.user.create');
+        $profilSekolah = ProfilSekolah::first();
+        return view('admin.user.create', compact('profilSekolah'));
     }
 
     public function store (Request $request) {
@@ -45,7 +48,8 @@ class UserController extends Controller
     public function edit($id) {
         try {
             $user = User::findOrFail(Crypt::decrypt($id));
-            return view('admin.user.edit', compact('user'));       
+            $profilSekolah = ProfilSekolah::first();
+            return view('admin.user.edit', compact('user', 'profilSekolah'));       
         }
         catch (Exception $e) {
             return redirect()->route('admin.user.index')->with('error', 'Data user tidak ditemukan.');

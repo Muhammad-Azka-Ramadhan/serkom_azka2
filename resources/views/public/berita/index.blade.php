@@ -6,207 +6,113 @@
 
 @section('content')
 
-{{-- =========================================================
-    HEADER HALAMAN
-    ========================================================= --}}
-
-<section class="public-page-header">
-
-    <div class="container">
-
-        <div class="public-page-header-content">
-
-            <span class="public-section-label">
-                INFORMASI TERKINI
-            </span>
-
-            <h1>
-                Berita Sekolah
-            </h1>
-
-            <p>
+{{-- HEADER HALAMAN --}}
+<section class="py-5 public-page-header">
+    <div class="container py-4">
+        <div class="text-center mx-auto" style="max-width: 750px;">
+            <span class="public-section-label">INFORMASI TERKINI</span>
+            <h1 class="display-5 fw-bold text-white mt-2 mb-3">Berita Sekolah</h1>
+            <p class="text-white-50 mb-0">
                 Informasi, kegiatan, dan kabar terbaru
                 {{ $profilSekolah->nama_sekolah }}.
             </p>
-
         </div>
-
     </div>
-
 </section>
 
-
-{{-- =========================================================
-    DAFTAR BERITA
-    ========================================================= --}}
-
-<section class="py-5 public-section-light">
-
-    <div class="container py-4">
-
+{{-- DAFTAR BERITA --}}
+<section class="py-5 bg-light">
+    <div class="container py-3">
         <div class="row g-4">
-
             @forelse ($berita as $item)
-
                 <div class="col-md-6 col-lg-4">
-
-                    <article class="card border-0 shadow-sm h-100 public-news-page-card">
-
-                        {{-- FOTO BERITA --}}
-                        <div class="public-news-page-image">
-                            <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}">
-                                 @if (!empty($item->gambar))
-                                    <img
-                                        src="{{ asset('storage/' . $item->gambar) }}"
-                                        alt="{{ $item->judul ?? 'Berita sekolah' }}"
-                                    >
-                                @else
-                                    <div class="public-news-page-placeholder">
-                                        <i class="bi bi-newspaper"></i>
-                                    </div>
-                                @endif
-                            </a>
-                        </div>
-
-
-                        {{-- ISI CARD --}}
-                        <div class="card-body p-4">
-
-                            {{-- TANGGAL --}}
-                            @if (!empty($item->tanggal))
-
-                                <div class="public-news-page-date">
-
-                                    <i class="bi bi-calendar3 me-1"></i>
-
-                                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
-
+                    <article class="card border-0 shadow-sm rounded-4 h-100 news-card">
+                        {{-- FOTO --}}
+                        <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}" class="text-decoration-none overflow-hidden">
+                            @if (!empty($item->gambar))
+                                <img
+                                    src="{{ asset('storage/' . $item->gambar) }}"
+                                    alt="{{ $item->judul ?? 'Berita sekolah' }}"
+                                    class="card-img-top w-100 object-fit-cover"
+                                    style="height: 230px;"
+                                >
+                            @else
+                                <div class="bg-body-secondary d-flex align-items-center justify-content-center" style="height: 230px;">
+                                    <i class="fas fa-newspaper fa-3x text-secondary"></i>
                                 </div>
-
                             @endif
+                        </a>
 
-
-                            {{-- JUDUL --}}
+                        {{-- ISI --}}
+                        <div class="card-body p-4">
+                            @if (!empty($item->tanggal))
+                                <div class="small text-secondary mb-2">
+                                    <i class="fas fa-calendar-alt me-1"></i>
+                                    {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
+                                </div>
+                            @endif
                             <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}" class="text-decoration-none">
-                                <h4 class="public-news-page-title">
+                                <h5 class="fw-bold mb-3 news-title">
                                     {{ $item->judul ?? 'Tanpa judul' }}
-                                </h4>
+                                </h5>
                             </a>
 
-                            {{-- DESKRIPSI --}}
                             @if (!empty($item->isi))
-
-                                <p class="public-news-page-excerpt">
-
-                                    {{ Str::limit(strip_tags($item->isi), 100, '....') }}
-
+                                <p class="text-secondary mb-0">
+                                    {{ Str::limit(strip_tags($item->isi), 100, '...') }}
                                 </p>
-
                             @endif
-
                         </div>
-
                     </article>
-
                 </div>
-
             @empty
-
                 <div class="col-12">
-
-                    <div class="public-news-empty">
-
-                        <div class="public-news-empty-icon">
-
-                            <i class="bi bi-newspaper"></i>
-
-                        </div>
-
-                        <h4>
+                    <div class="card border-0 shadow-sm rounded-4 text-center p-5">
+                        <i class="fas fa-newspaper fa-3x text-secondary mb-4"></i>
+                        <h4 class="fw-bold mb-2">
                             Belum Ada Berita
                         </h4>
-
-                        <p>
+                        <p class="text-secondary mb-0">
                             Belum ada berita atau informasi yang
                             dipublikasikan oleh sekolah.
                         </p>
-
                     </div>
-
                 </div>
-
             @endforelse
-
         </div>
 
-
-        {{-- =====================================================
-            PAGINATION
-            ===================================================== --}}
-
+        {{-- PAGINATION --}}
         @if ($berita->hasPages())
-
-            <div class="public-news-pagination">
-
+            <div class="d-flex justify-content-center mt-5">
                 {{ $berita->links() }}
-
             </div>
-
         @endif
-
     </div>
-
 </section>
 
-
-{{-- =========================================================
-    CTA
-    ========================================================= --}}
-
+{{-- CTA --}}
 <section class="public-cta py-5">
-
-    <div class="container py-4">
-
+    <div class="container py-3">
         <div class="row align-items-center g-4">
-
             <div class="col-lg-8">
-
-                <span class="public-cta-label">
+                <span class="small fw-bold text-warning">
                     INFORMASI SEKOLAH
                 </span>
-
-                <h2 class="fw-bold text-white mb-2">
-
+                <h2 class="fw-bold text-white mt-2 mb-2">
                     {{ $profilSekolah->nama_sekolah }}
-
                 </h2>
-
                 <p class="text-white-50 mb-0">
-
                     Temukan berbagai informasi mengenai
                     sekolah, guru, siswa, kegiatan, dan
                     dokumentasi sekolah.
-
                 </p>
-
             </div>
-
-
             <div class="col-lg-4 text-lg-end">
-
-                <a
-                    href="{{ route('public.profil') }}"
-                    class="btn btn-light px-4"
-                >
+                <a href="{{ route('public.profil') }}" class="btn btn-light px-4">
                     Lihat Profil Sekolah
                 </a>
-
             </div>
-
         </div>
-
     </div>
-
 </section>
-
 @endsection

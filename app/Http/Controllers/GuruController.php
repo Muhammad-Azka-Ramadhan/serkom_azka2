@@ -110,4 +110,15 @@ class GuruController extends Controller
         $guru = Guru::all();
         return view('public.guru.index', compact('profilSekolah', 'guru'));
     }
+
+    public function publicDetailGuru($id) {
+        try  {
+            $profilSekolah = ProfilSekolah::first();
+            $guru = Guru::find(Crypt::decrypt($id));
+            return view ('public.guru.detail', compact('profilSekolah', 'guru'));
+        }
+        catch (Exception $e) {
+            return redirect()->route('public.guru')->with('error', 'Guru tidak ditemukan');
+        }
+    }
 }

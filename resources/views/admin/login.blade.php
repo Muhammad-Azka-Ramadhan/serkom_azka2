@@ -1,117 +1,68 @@
 <!doctype html>
 <html lang="id">
-
 <head>
     <meta charset="utf-8">
-
     <title>Login - Admin SMPN 1 Padakembang</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="description" content="Halaman login admin SMPN 1 Padakembang">
-
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
-
     {{-- CSS TEMPLATE --}}
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/css/typography.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/css/default-css.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
-
-    {{-- CSS PROJECT --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-
     {{-- CSS LOGIN --}}
-    <link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom/login.css') }}">
 </head>
 
 <body>
-
     <div class="login-wrapper">
-
         <div class="login-card">
-
             {{-- HEADER --}}
             <div class="login-header">
-
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Logo SMPN 1 Padakembang" class="login-logo">
-
                 <h4>Admin SMPN 1 Padakembang</h4>
-
                 <p>Sistem Informasi Administrasi Sekolah</p>
-
             </div>
-
             {{-- BODY --}}
             <div class="login-body">
-
                 <h5 class="login-title">
                     Masuk ke Dashboard
                 </h5>
-
                 <p class="login-subtitle">
                     Silakan masuk menggunakan akun administrator.
                 </p>
-
                 @if($errors->any())
-
                     <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-
                         <i class="fa-solid fa-circle-exclamation me-2"></i>
-
                         {{ $errors->first() }}
-
-                        <button type="button" class="btn-close" data-bs-dismiss="alert">
-                        </button>
-
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
-
                 @endif
-
                 <form action="{{ route('login_proses') }}" method="POST">
-
                     @csrf
-
                     {{-- EMAIL --}}
                     <div class="mb-3">
-
                         <label for="email" class="form-label">
-
                             Email
-
                         </label>
-
                         <div class="input-group">
-
                             <span class="input-group-text">
                                 <i class="fa-regular fa-envelope"></i>
                             </span>
-
                             <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}"
                                 placeholder="Masukkan email" autocomplete="email" required>
-
                         </div>
-
                         @error('email')
-
                             <div class="text-danger small mt-1">
                                 {{ $message }}
                             </div>
-
                         @enderror
-
                     </div>
-
                     {{-- PASSWORD --}}
                     <div class="mb-4">
-
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text">

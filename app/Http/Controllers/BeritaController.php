@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Berita;
+use App\Models\ProfilSekolah;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -13,26 +15,32 @@ class BeritaController extends Controller
 {
     //
     public function index() {
+        $profilSekolah = ProfilSekolah::first();
         $berita = Berita::latest()->get();
         $user = User::all();
 
-        return view('admin.berita.index', compact('berita','user'));
+        return view('admin.berita.index', compact(
+            'berita',
+            'user',
+            'profilSekolah'
+        ));
     }
 
     public function create() {
+        $profilSekolah = ProfilSekolah::first();
         $user = User::all();
-        return view('admin.berita.create', compact('user'));
+        return view('admin.berita.create', compact('user', 'profilSekolah'));
     }
 
     public function store(Request $request) {
         $validated = $request->validate([
-            'judul' => 'required|string|max:50',
+            'judul' => 'required|string|max:100',
             'isi' => 'required|string',
             'tanggal' => 'required|date',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ], [
             'judul.required' => 'judul wajib diisi',
-            'judul.max' => 'Judul maksimal 50 karakter',
+            'judul.max' => 'Judul maksimal 100 karakter',
             'isi.required' => 'Isi berita wajib diisi',
             'tanggal.required' => 'Tanggal publikasi wajib diisi',
             'gambar.image' => 'Gambar harus berupa file gambar.',
@@ -51,10 +59,16 @@ class BeritaController extends Controller
     }
 
     public function edit($id) {
-        $berita = Berita::findOrFail(Crypt::decrypt($id));
-        $user = User::all();
-
-        return view('admin.berita.edit', compact('user', 'berita'));
+        try {
+            $profilSekolah = ProfilSekolah::first();
+            $berita = Berita::findOrFail(Crypt::decrypt($id));
+            $user = User::all();
+    
+            return view('admin.berita.edit', compact('user', 'berita', 'profilSekolah'));
+        }
+        catch (Exception $e){
+            return redirect()->route('admin.berita.index')->with('error', 'Berita tidak ditemukan.');
+        }
     }
 
     public function update(Request $request, $id) {
@@ -98,6 +112,23 @@ class BeritaController extends Controller
     }
 
     public function publicBerita() {
-        return view('public.berita');
+        $profilSekolah = ProfilSekolah::first();
+        $berita = Berita::latest('tanggal')->paginate(6);
+
+        return view('public.berita.index', compact(
+            'profilSekolah',
+            'berita'
+        ));
+    }
+
+    public function publicDetailBerita($id) {
+        try {
+            $profilSekolah = ProfilSekolah::first();
+            $berita = Berita::findOrFail(Crypt::decrypt($id));
+            return view('public.berita.detail', compact('berita', 'profilSekolah'));
+        }
+        catch (Exception $e) {
+            return redirect()->route('public.berita')->with('error', 'Berita tidak ditemukan.');
+        }
     }
 }

@@ -16,6 +16,7 @@ class DashboardController extends Controller
 {
     //
     public function index() {
+        $profilSekolah = ProfilSekolah::first();
         // Statistik
         $totalSiswa = Siswa::count();
         $totalGuru = Guru::count();
@@ -46,6 +47,7 @@ class DashboardController extends Controller
             ->get();
 
         return view('admin.dashboard', compact(
+            'profilSekolah',
             'totalSiswa',
             'totalGuru',
             'totalEskul',

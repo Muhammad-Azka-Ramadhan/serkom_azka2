@@ -2,20 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfilSekolah;
 use App\Models\Siswa;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
 class SiswaController extends Controller
 {
     public function index() {
+        $profilSekolah = ProfilSekolah::first();
         $siswa = Siswa::latest()->get();
 
-        return view('admin.siswa.index', compact('siswa'));
+        return view('admin.siswa.index', compact(
+            'siswa',
+            'profilSekolah'
+        ));
     }
 
     public function create() {
-        return view('admin.siswa.create');
+        $profilSekolah = ProfilSekolah::first();
+        return view('admin.siswa.create', compact('profilSekolah'));
     }
 
     public function store(Request $request) {
@@ -40,9 +47,18 @@ class SiswaController extends Controller
     }
 
     public function edit($id) {
-        $siswa = Siswa::findOrFail(Crypt::decrypt($id));
-
-        return view('admin.siswa.edit', compact('siswa'));
+        try {
+            $profilSekolah = ProfilSekolah::first();
+            $siswa = Siswa::findOrFail(Crypt::decrypt($id));
+    
+            return view('admin.siswa.edit', compact(
+                'siswa',
+                'profilSekolah'
+            ));
+        }
+        catch (Exception $e) {
+            return redirect()->route('admin.siswa.index')->with('error', 'Data siswa tidak ditemukan.');
+        }
     }
 
     public function update(Request $request, $id) {
@@ -72,9 +88,5 @@ class SiswaController extends Controller
         $siswa->delete();
 
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil dihapus');
-    }
-
-    public function publicSiswa() {
-        return view('public.siswa');
     }
 }

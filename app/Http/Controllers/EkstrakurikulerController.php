@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Ekstrakurikuler;
 use App\Models\Guru;
+use App\Models\ProfilSekolah;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
@@ -15,12 +17,20 @@ class EkstrakurikulerController extends Controller
     //
     public function index() {
         $ekstrakurikuler = Ekstrakurikuler::all();
-        return view('admin.ekstrakurikuler.index', compact('ekstrakurikuler'));
+        $profilSekolah = ProfilSekolah::first();
+        return view('admin.ekstrakurikuler.index', compact(
+            'ekstrakurikuler',
+            'profilSekolah'
+        ));
     }
 
     public function create() {
+        $profilSekolah = ProfilSekolah::first();
         $guru = Guru::all();
-        return view('admin.ekstrakurikuler.create', compact('guru'));
+        return view('admin.ekstrakurikuler.create', compact(
+            'guru',
+            'profilSekolah'
+        ));
     }
 
     public function store(Request $request) {
@@ -51,12 +61,18 @@ class EkstrakurikulerController extends Controller
     }
 
     public function edit($id) {
-        $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
-        $guru = Guru::all();
-        return view(
-            'admin.ekstrakurikuler.edit',
-            compact(['ekstrakurikuler', 'guru'])
-        );
+        try {
+            $profilSekolah = ProfilSekolah::first();
+            $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
+            $guru = Guru::all();
+            return view(
+                'admin.ekstrakurikuler.edit',
+                compact(['ekstrakurikuler', 'guru', 'profilSekolah'])
+            );
+        }
+        catch (Exception $e) {
+            return redirect()->route('admin.eskul.index')->with('error', 'Data Ekstrakurikuler tidak ditemukan');
+        }
     }
 
     public function update(Request $request, $id) {
@@ -98,6 +114,7 @@ class EkstrakurikulerController extends Controller
     }
 
     public function publicEkstrakurikuler() {
-        return view('public.ekstrakurikuler');
+        $profilSekolah = ProfilSekolah::first();
+        return view('public.ekstrakurikuler.index', compact('profilSekolah'));
     }
 }

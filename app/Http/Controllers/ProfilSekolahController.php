@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ProfilSekolah;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -18,8 +19,13 @@ class ProfilSekolahController extends Controller
     }
 
     public function edit($id) {
-        $profilSekolah = ProfilSekolah::findOrFail(Crypt::decrypt($id));
-        return view('admin.profil.edit', compact('profilSekolah'));
+        try {
+            $profilSekolah = ProfilSekolah::findOrFail(Crypt::decrypt($id));
+            return view('admin.profil.edit', compact('profilSekolah'));
+        }
+        catch (Exception $e) {
+            return redirect()->route('admin.profil.index')->with('error', 'Profil sekolah tidak ditemukan.');
+        }
     }
 
     public function update(Request $request, $id) {
@@ -77,6 +83,7 @@ class ProfilSekolahController extends Controller
     }
 
     public function publicProfil_sekolah() {
-        return view('public.profil');
+        $profilSekolah = ProfilSekolah::first();
+        return view('public.profil', compact('profilSekolah'));
     }
 }

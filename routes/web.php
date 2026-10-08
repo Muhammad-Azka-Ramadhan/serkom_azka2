@@ -27,8 +27,12 @@ Route::get('/profil', [ProfilSekolahController::class, 'publicProfil_sekolah'])-
 Route::get('/ekstrakurikuler', [EkstrakurikulerController::class, 'publicEkstrakurikuler'])->name('public.ekstrakurikuler');
 Route::get('/guru', [GuruController::class, 'publicGuru'])->name('public.guru');
 Route::get('/siswa', [SiswaController::class, 'publicSiswa'])->name('public.siswa');
-Route::get('berita', [BeritaController::class, 'publicBerita'])->name('public.berita');
 Route::get('/galeri', [GaleriController::class, 'publicGaleri'])->name('public.galeri');
+
+Route::prefix('/berita')->group(function () {
+    Route::get('/', [BeritaController::class, 'publicBerita'])->name('public.berita');
+    Route::get('/detail/{id}', [BeritaController::class, 'publicDetailBerita'])->name('public.berita.detail');
+});
 
 Route::middleware('auth')->prefix('admin')->group(function () {
 

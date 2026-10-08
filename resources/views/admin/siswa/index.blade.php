@@ -18,6 +18,20 @@
             </button>
         </div>
     @endsession
+    
+    @session('error')
+        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+            <i class="fa-solid fa-circle-check me-2"></i>
+            {{ session('error') }}
+
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close">
+            </button>
+        </div>
+    @endsession
     {{-- Card --}}
     <div class="card border-0 shadow-sm">
         {{-- Card Header --}}
@@ -25,7 +39,7 @@
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <div>
                     <h4 class="fw-semibold mb-1">Data Siswa</h4>
-                    <p class="text-muted mb-0 small">Daftar siswa SMPN 1 Padakembang</p>
+                    <p class="text-muted mb-0 small">Daftar siswa {{ $profilSekolah->nama_sekolah }}</p>
                 </div>
                 @if (Auth::user()->role === 'admin')
                 <a
@@ -47,26 +61,26 @@
 
                     <thead class="table-primary">
                         <tr>
-                            <th>No</th>
-                            <th>NISN</th>
-                            <th>Nama</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Tahun Masuk</th>
+                            <th style=" width: 5%; text-align: center">No</th>
+                            <th style="text-align: center">NISN</th>
+                            <th style="text-align: center">Nama</th>
+                            <th style="text-align: center">Jenis Kelamin</th>
+                            <th style="text-align: center">Tahun Masuk</th>
                             @if (Auth::user()->role === 'admin')
-                            <th>Aksi</th>
+                            <th style="text-align: center">Aksi</th>
                             @endif
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($siswa as $item)
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->nisn }}</td>
-                                <td class="fw-semibold">{{ $item->nama_siswa }}</td>
-                                <td>{{ $item->jenis_kelamin }}</td>
-                                <td>{{ $item->tahun_masuk }}</td>
+                                <td style="text-align: center">{{ $loop->iteration }}</td>
+                                <td style="text-align: center">{{ $item->nisn }}</td>
+                                <td style="text-align: center" class="fw-semibold">{{ $item->nama_siswa }}</td>
+                                <td style="text-align: center">{{ $item->jenis_kelamin }}</td>
+                                <td style="text-align: center">{{ $item->tahun_masuk }}</td>
                                 @if (Auth::user()->role === 'admin')
-                                <td>
+                                <td style="text-align: center">
                                     <div class="d-flex justify-content-center gap-2">
                                         {{-- Edit --}}
                                         <a

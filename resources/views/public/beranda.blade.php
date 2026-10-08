@@ -6,209 +6,172 @@
 
 @section('content')
 
-    {{-- =========================================================
-    HERO
-    ========================================================= --}}
+    <section class="home-hero">
+        {{-- BACKGROUND FOTO SEKOLAH --}}
+        <div class="home-hero-background">
+            @if (!empty($profilSekolah->foto) && Storage::disk('public')->exists($profilSekolah->foto))
+                <img
+                    src="{{ asset('storage/' . $profilSekolah->foto) }}"
+                    alt="Foto {{ $profilSekolah->nama_sekolah }}"
+                >
+            @else
+                <img
+                    src="{{ asset('assets/images/foto_smp.jpg') }}"
+                    alt="Foto {{ $profilSekolah->nama_sekolah }}"
+                >
+            @endif
+        </div>
+        <div class="home-hero-overlay"></div>
 
-    <section class="public-hero">
-        <div class="container">
-            <div class="row align-items-center g-5">
+        <div class="container position-relative">
+            
+            <div class="home-hero-content text-center text-white">
+                {{-- LOGO --}}
+                @if (!empty($profilSekolah->logo) && Storage::disk('public')->exists($profilSekolah->logo))
+                    <img src="{{ asset('storage/' . $profilSekolah->logo) }}" alt="Logo {{ $profilSekolah->nama_sekolah }}"
+                        class="home-hero-logo">
+                @else
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="Logo {{ $profilSekolah->nama_sekolah }}"
+                        class="home-hero-logo">
+                @endif
 
-                <div class="col-lg-7">
-                    <div class="public-hero-content">
+                {{-- NAMA SEKOLAH --}}
+                <h1 class="fw-bold mt-4 mb-2">
+                    {{ $profilSekolah->nama_sekolah }}
+                </h1>
 
-                        <span class="badge rounded-pill public-hero-badge mb-3">
-                            {{ $profilSekolah->nama_sekolah }}
-                        </span>
-
-                        <h1 class="display-4 fw-bold text-white mb-3">
-                            Membangun Generasi
-                            <span class="public-hero-highlight">
-                                Unggul
-                            </span>
-                            dan Berkarakter
-                        </h1>
-
-                        <p class="lead text-white-50 mb-4">
-                            Selamat datang di website resmi
-                            {{ $profilSekolah->nama_sekolah }}.
-                            Temukan informasi mengenai sekolah,
-                            guru, siswa, kegiatan, berita, dan galeri sekolah.
-                        </p>
-
-                        <div class="d-flex flex-wrap gap-2">
-
-                            <a href="{{ route('public.profil') }}" class="btn btn-light px-4 py-2">
-                                Lihat Profil Sekolah
-                            </a>
-
-                            <a href="{{ route('public.berita') }}" class="btn btn-outline-light px-4 py-2">
-                                Berita Terbaru
-                            </a>
-
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                    <div class="public-hero-image">
-
-                        @if (
-                                !empty($profilSekolah->foto) &&
-                                Storage::disk('public')->exists($profilSekolah->foto)
-                            )
-
-                            <img src="{{ asset('storage/' . $profilSekolah->foto) }}" alt="SMP Negeri 1 Padakembang"
-                                class="img-fluid">
-
-                        @else
-
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="SMP Negeri 1 Padakembang" class="img-fluid">
-
-                        @endif
-
-                    </div>
-                </div>
+                <p class="fs-5 mb-0">
+                    Sekolah Menengah Pertama Negeri
+                </p>
 
             </div>
         </div>
+
     </section>
 
+    {{-- STATISTIK SEKOLAH --}}
+    <div class="home-statistics">
 
-    {{-- =========================================================
-    STATISTIK SEKOLAH
-    ========================================================= --}}
+        <div class="container">
 
-    <section class="py-5 bg-white">
-        <div class="container py-3">
-
-            <div class="row g-4 justify-content-center">
-
-                {{-- GURU --}}
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 public-stat-card public-stat-card-blue">
-
-                        <div class="card-body p-4 p-lg-5 text-center">
-
-                            <div class="public-stat-icon mx-auto mb-4">
-                                <i class="bi bi-person-workspace"></i>
-                            </div>
-
-                            <h2 class="display-5 fw-bold mb-1">
-                                {{ $jumlahGuru }}
-                            </h2>
-
-                            <p class="text-muted mb-0">
-                                Guru
-                            </p>
-
-                            <div class="public-stat-line mx-auto mt-3"></div>
-
-                            <small class="text-muted d-block mt-3">
-                                Tenaga pendidik
-                            </small>
-
-                        </div>
-
-                    </div>
-                </div>
-
+            <div class="row g-4">
 
                 {{-- SISWA --}}
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 public-stat-card public-stat-card-green">
 
-                        <div class="card-body p-4 p-lg-5 text-center">
+                    <div class="card border-0 shadow-lg rounded-4 h-100">
 
-                            <div class="public-stat-icon mx-auto mb-4">
-                                <i class="bi bi-people-fill"></i>
+                        <div class="card-body text-center p-4">
+
+                            <div class="d-inline-flex align-items-center justify-content-center
+                                        bg-primary bg-opacity-10 text-primary rounded-circle p-3 mb-3">
+                                <i class="fas fa-users fs-3"></i>
                             </div>
 
-                            <h2 class="display-5 fw-bold mb-1">
+                            <h2 class="fw-bold mb-1">
                                 {{ $jumlahSiswa }}
                             </h2>
 
-                            <p class="text-muted mb-0">
+                            <p class="text-secondary fw-medium mb-0">
                                 Siswa
                             </p>
-
-                            <div class="public-stat-line mx-auto mt-3"></div>
-
-                            <small class="text-muted d-block mt-3">
-                                Peserta didik
-                            </small>
 
                         </div>
 
                     </div>
+
+                </div>
+
+
+                {{-- GURU --}}
+                <div class="col-md-4">
+
+                    <div class="card border-0 shadow-lg rounded-4 h-100">
+
+                        <div class="card-body text-center p-4">
+
+                            <div class="d-inline-flex align-items-center justify-content-center
+                                        bg-success bg-opacity-10 text-success rounded-circle p-3 mb-3">
+                                <i class="fas fa-chalkboard-teacher fs-3"></i>
+                            </div>
+
+                            <h2 class="fw-bold mb-1">
+                                {{ $jumlahGuru }}
+                            </h2>
+
+                            <p class="text-secondary fw-medium mb-0">
+                                Guru
+                            </p>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
 
                 {{-- EKSTRAKURIKULER --}}
                 <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 public-stat-card public-stat-card-yellow">
 
-                        <div class="card-body p-4 p-lg-5 text-center">
+                    <div class="card border-0 shadow-lg rounded-4 h-100">
 
-                            <div class="public-stat-icon mx-auto mb-4">
-                                <i class="bi bi-stars"></i>
+                        <div class="card-body text-center p-4">
+
+                            <div class="d-inline-flex align-items-center justify-content-center
+                                        bg-warning bg-opacity-10 text-warning rounded-circle p-3 mb-3">
+                                <i class="fas fa-trophy fs-3"></i>
                             </div>
 
-                            <h2 class="display-5 fw-bold mb-1">
+                            <h2 class="fw-bold mb-1">
                                 {{ $jumlahEskul }}
                             </h2>
 
-                            <p class="text-muted mb-0">
+                            <p class="text-secondary fw-medium mb-0">
                                 Ekstrakurikuler
                             </p>
-
-                            <div class="public-stat-line mx-auto mt-3"></div>
-
-                            <small class="text-muted d-block mt-3">
-                                Kegiatan siswa
-                            </small>
 
                         </div>
 
                     </div>
+
                 </div>
 
             </div>
 
         </div>
-    </section>
 
+    </div>
 
     {{-- =========================================================
     SEKILAS SEKOLAH
     ========================================================= --}}
 
-    <section class="py-5 bg-white">
+    <section class="py-5 bg-white after-statistic">
+
         <div class="container py-4">
 
             <div class="row align-items-center g-5">
 
                 <div class="col-lg-5">
+
                     <div class="public-school-image">
 
-                        @if (
-                                !empty($profilSekolah->foto) &&
-                                Storage::disk('public')->exists($profilSekolah->foto)
-                            )
+                        @if (!empty($profilSekolah->foto) && Storage::disk('public')->exists($profilSekolah->foto))
 
-                            <img src="{{ asset('storage/' . $profilSekolah->foto) }}" alt="Foto SMP Negeri 1 Padakembang"
-                                class="img-fluid">
+                            <img src="{{ asset('storage/' . $profilSekolah->foto) }}"
+                                alt="Foto {{ $profilSekolah->nama_sekolah }}" class="img-fluid">
 
                         @else
 
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="Logo SMP Negeri 1 Padakembang"
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="Logo {{ $profilSekolah->nama_sekolah }}"
                                 class="img-fluid">
 
                         @endif
 
                     </div>
+
                 </div>
+
 
                 <div class="col-lg-7">
 
@@ -221,12 +184,16 @@
                     </h2>
 
                     <p class="text-muted lh-lg mb-4">
+
                         {{ $profilSekolah->deskripsi ??
         'SMP Negeri 1 Padakembang merupakan satuan pendidikan yang berkomitmen dalam memberikan pendidikan berkualitas serta membentuk peserta didik yang berkarakter.' }}
+
                     </p>
 
-                    <a href="{{ route('public.profil') }}" class="btn btn-primary px-4">
+                    <a href="{{ route('public.profil') }}" class="btn text-white px-4">
+
                         Selengkapnya
+
                     </a>
 
                 </div>
@@ -234,6 +201,7 @@
             </div>
 
         </div>
+
     </section>
 
 
@@ -242,6 +210,7 @@
     ========================================================= --}}
 
     <section class="py-5 public-section-light">
+
         <div class="container py-4">
 
             <div class="text-center mb-5">
@@ -263,15 +232,14 @@
 
             <div class="row g-4">
 
-                {{-- NAMA --}}
                 <div class="col-md-6 col-lg-3">
 
                     <div class="card border-0 shadow-sm h-100 public-info-card">
 
                         <div class="card-body p-4">
 
-                            <div class="public-info-icon mb-3">
-                                <i class="bi bi-building"></i>
+                            <div class="public-info-icon public-info-icon-blue mb-3">
+                                <i class="fas fa-school"></i>
                             </div>
 
                             <small class="text-muted">
@@ -289,15 +257,14 @@
                 </div>
 
 
-                {{-- NPSN --}}
                 <div class="col-md-6 col-lg-3">
 
                     <div class="card border-0 shadow-sm h-100 public-info-card">
 
                         <div class="card-body p-4">
 
-                            <div class="public-info-icon mb-3">
-                                <i class="bi bi-card-text"></i>
+                            <div class="public-info-icon public-info-icon-green mb-3">
+                                <i class="fas fa-id-card"></i>
                             </div>
 
                             <small class="text-muted">
@@ -315,15 +282,14 @@
                 </div>
 
 
-                {{-- KEPALA SEKOLAH --}}
                 <div class="col-md-6 col-lg-3">
 
                     <div class="card border-0 shadow-sm h-100 public-info-card">
 
                         <div class="card-body p-4">
 
-                            <div class="public-info-icon mb-3">
-                                <i class="bi bi-person-badge"></i>
+                            <div class="public-info-icon public-info-icon-yellow  mb-3">
+                                <i class="fas fa-user-tie"></i>
                             </div>
 
                             <small class="text-muted">
@@ -341,15 +307,14 @@
                 </div>
 
 
-                {{-- TAHUN --}}
                 <div class="col-md-6 col-lg-3">
 
                     <div class="card border-0 shadow-sm h-100 public-info-card">
 
                         <div class="card-body p-4">
 
-                            <div class="public-info-icon mb-3">
-                                <i class="bi bi-calendar-event"></i>
+                            <div class="public-info-icon public-info-icon-blue mb-3">
+                                <i class="fas fa-calendar-alt"></i>
                             </div>
 
                             <small class="text-muted">
@@ -369,6 +334,7 @@
             </div>
 
         </div>
+
     </section>
 
 
@@ -377,6 +343,7 @@
     ========================================================= --}}
 
     <section class="py-5 bg-white">
+
         <div class="container py-4">
 
             <div class="text-center mb-5">
@@ -396,31 +363,29 @@
             </div>
 
 
-            <div class="row d-flex">
+            <div class="row g-4">
 
+                {{-- VISI --}}
                 <div class="col-lg-6">
 
-                    <div class="card border-0 shadow-sm public-vision-card">
+                    <div class="card border-0 shadow-sm public-vision-card public-vision-blue">
 
                         <div class="card-body p-4 p-lg-5">
 
                             <div class="d-flex align-items-center mb-4">
 
-                                <div class="public-info-icon me-3 mb-0">
-                                    <i class="bi bi-bullseye"></i>
+                                <div class="public-info-icon public-info-icon-blue me-3 mb-0">
+                                    <i class="fas fa-bullseye"></i>
                                 </div>
 
-                                <div>
-                                    <span class="public-card-label">
-                                        VISI
-                                    </span>
-
-                                </div>
+                                <span class="public-card-label">
+                                    VISI
+                                </span>
 
                             </div>
 
                             <p class="mb-0 lh-lg text-muted">
-                                {{ $profilSekolah->visi ?? 'Visi dan misi sekolah belum tersedia.' }}
+                                {{ $profilSekolah->visi ?? 'Visi sekolah belum tersedia.' }}
                             </p>
 
                         </div>
@@ -429,38 +394,40 @@
 
                 </div>
 
+
+                {{-- MISI --}}
                 <div class="col-lg-6">
-                    <div class="card border-0 shadow-sm public-vision-card">
+
+                    <div class="card border-0 shadow-sm public-vision-card public-vision-green">
 
                         <div class="card-body p-4 p-lg-5">
 
                             <div class="d-flex align-items-center mb-4">
 
-                                <div class="public-info-icon me-3 mb-0">
-                                    <i class="bi bi-bullseye"></i>
+                                <div class="public-info-icon public-info-icon-green me-3 mb-0">
+                                    <i class="fas fa-check-circle"></i>
                                 </div>
 
-                                <div>
-                                    <span class="public-card-label">
-                                        MISI
-                                    </span>
-
-                                </div>
+                                <span class="public-card-label">
+                                    MISI
+                                </span>
 
                             </div>
 
                             <p class="mb-0 lh-lg text-muted">
-                                {{ $profilSekolah->misi ?? 'Visi dan misi sekolah belum tersedia.' }}
+                                {{ $profilSekolah->misi ?? 'Misi sekolah belum tersedia.' }}
                             </p>
 
                         </div>
 
                     </div>
+
                 </div>
 
             </div>
 
         </div>
+
     </section>
 
 
@@ -469,6 +436,7 @@
     ========================================================= --}}
 
     <section class="py-5 public-section-light">
+
         <div class="container py-4">
 
             <div class="d-flex justify-content-between align-items-end mb-4">
@@ -490,7 +458,9 @@
                 </div>
 
                 <a href="{{ route('public.ekstrakurikuler') }}" class="btn btn-outline-primary d-none d-md-inline-block">
+
                     Lihat Semua
+
                 </a>
 
             </div>
@@ -506,8 +476,8 @@
 
                             <div class="card-body p-4">
 
-                                <div class="public-content-icon mb-3">
-                                    <i class="bi bi-stars"></i>
+                                <div class="public-content-icon public-content-icon-yellow mb-3">
+                                    <i class="fas fa-star"></i>
                                 </div>
 
                                 <h5 class="fw-bold mb-2">
@@ -517,8 +487,12 @@
                                 @if (!empty($item->guru))
 
                                     <p class="text-muted small mb-0">
+
+                                        <i class="fas fa-user me-1"></i>
+
                                         Pembina:
                                         {{ $item->guru->nama_guru ?? '-' }}
+
                                     </p>
 
                                 @endif
@@ -547,12 +521,15 @@
             <div class="text-center mt-4 d-md-none">
 
                 <a href="{{ route('public.ekstrakurikuler') }}" class="btn btn-outline-primary">
+
                     Lihat Semua
+
                 </a>
 
             </div>
 
         </div>
+
     </section>
 
 
@@ -561,6 +538,7 @@
     ========================================================= --}}
 
     <section class="py-5 bg-white">
+
         <div class="container py-4">
 
             <div class="d-flex justify-content-between align-items-end mb-4">
@@ -582,7 +560,9 @@
                 </div>
 
                 <a href="{{ route('public.guru') }}" class="btn btn-outline-primary d-none d-md-inline-block">
+
                     Lihat Semua
+
                 </a>
 
             </div>
@@ -606,7 +586,9 @@
                                 @else
 
                                     <div class="public-placeholder">
-                                        <i class="bi bi-person"></i>
+
+                                        <i class="fas fa-user"></i>
+
                                     </div>
 
                                 @endif
@@ -620,7 +602,7 @@
                                 </h6>
 
                                 <small class="text-muted">
-                                    Guru
+                                    {{ $item->mapel }}
                                 </small>
 
                             </div>
@@ -647,12 +629,15 @@
             <div class="text-center mt-4 d-md-none">
 
                 <a href="{{ route('public.guru') }}" class="btn btn-outline-primary">
+
                     Lihat Semua
+
                 </a>
 
             </div>
 
         </div>
+
     </section>
 
 
@@ -661,6 +646,7 @@
     ========================================================= --}}
 
     <section class="py-5 public-section-light">
+
         <div class="container py-4">
 
             <div class="d-flex justify-content-between align-items-end mb-4">
@@ -682,7 +668,9 @@
                 </div>
 
                 <a href="{{ route('public.berita') }}" class="btn btn-outline-primary d-none d-md-inline-block">
+
                     Semua Berita
+
                 </a>
 
             </div>
@@ -696,15 +684,17 @@
 
                         <article class="card border-0 shadow-sm h-100 public-news-card">
 
-                            @if (!empty($item->foto))
+                            @if (!empty($item->gambar))
 
-                                <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul ?? 'Berita sekolah' }}"
+                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->judul ?? 'Berita sekolah' }}"
                                     class="public-news-image">
 
                             @else
 
                                 <div class="public-news-placeholder">
-                                    <i class="bi bi-newspaper"></i>
+
+                                    <i class="fas fa-newspaper"></i>
+
                                 </div>
 
                             @endif
@@ -714,7 +704,11 @@
                                 @if (!empty($item->created_at))
 
                                     <small class="text-muted">
+
+                                        <i class="far fa-calendar-alt me-1"></i>
+
                                         {{ $item->created_at->format('d M Y') }}
+
                                     </small>
 
                                 @endif
@@ -744,6 +738,7 @@
             </div>
 
         </div>
+
     </section>
 
 
@@ -752,6 +747,7 @@
     ========================================================= --}}
 
     <section class="py-5 bg-white">
+
         <div class="container py-4">
 
             <div class="d-flex justify-content-between align-items-end mb-4">
@@ -767,13 +763,15 @@
                     </h2>
 
                     <p class="text-muted mb-0">
-                        Dokumentasi kegiatan SMP Negeri 1 Padakembang.
+                        Dokumentasi kegiatan {{ $profilSekolah->nama_sekolah }}.
                     </p>
 
                 </div>
 
                 <a href="{{ route('public.galeri') }}" class="btn btn-outline-primary d-none d-md-inline-block">
+
                     Lihat Galeri
+
                 </a>
 
             </div>
@@ -787,15 +785,17 @@
 
                         <div class="public-gallery-card">
 
-                            @if (!empty($item->foto))
+                            @if (!empty($item->file))
 
-                                <img src="{{ asset('storage/' . $item->foto) }}" alt="Galeri SMP Negeri 1 Padakembang"
+                                <img src="{{ asset('storage/' . $item->file) }}" alt="Galeri {{ $profilSekolah->nama_sekolah }}"
                                     class="img-fluid">
 
                             @else
 
                                 <div class="public-gallery-placeholder">
-                                    <i class="bi bi-image"></i>
+
+                                    <i class="fas fa-image"></i>
+
                                 </div>
 
                             @endif
@@ -822,12 +822,15 @@
             <div class="text-center mt-4 d-md-none">
 
                 <a href="{{ route('public.galeri') }}" class="btn btn-outline-primary">
+
                     Lihat Galeri
+
                 </a>
 
             </div>
 
         </div>
+
     </section>
 
 
@@ -857,7 +860,9 @@
                 <div class="col-lg-4 text-lg-end">
 
                     <a href="{{ route('public.profil') }}" class="btn btn-light px-4">
+
                         Lihat Profil Sekolah
+
                     </a>
 
                 </div>
@@ -886,7 +891,7 @@
                     </h5>
 
                     <p class="text-white-50 small mb-0">
-                        Website resmi SMP Negeri 1 Padakembang
+                        Website resmi {{ $profilSekolah->nama_sekolah }}
                         sebagai media informasi sekolah.
                     </p>
 
@@ -955,10 +960,12 @@
                     </h6>
 
                     <p class="text-white-50 small mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
                         {{ $profilSekolah->alamat ?? '-' }}
                     </p>
 
                     <p class="text-white-50 small mb-0">
+                        <i class="fas fa-phone me-2"></i>
                         {{ $profilSekolah->kontak ?? '-' }}
                     </p>
 
@@ -973,9 +980,11 @@
             <div class="text-center">
 
                 <small class="text-white-50">
+
                     &copy; {{ date('Y') }}
                     {{ $profilSekolah->nama_sekolah }}
                     All rights reserved.
+
                 </small>
 
             </div>

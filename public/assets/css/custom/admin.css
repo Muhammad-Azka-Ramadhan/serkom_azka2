@@ -763,14 +763,14 @@ body.sidebar-collapsed .menu-icon {
     border: 0 !important;
 
     font-weight: 600;
+    
+    text-align: center;
 }
 
 .table tbody td {
     padding: 12px 10px !important;
 
     border-bottom: 1px solid #E8EDF1 !important;
-
-    vertical-align: middle;
 }
 
 .table tbody tr:hover {

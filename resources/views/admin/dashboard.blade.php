@@ -12,7 +12,7 @@
         </h3>
 
         <p class="text-muted mb-0">
-            Ringkasan data administrasi SMPN 1 Padakembang
+            Ringkasan data administrasi {{ $profilSekolah->nama_sekolah }}
         </p>
     </div>
 

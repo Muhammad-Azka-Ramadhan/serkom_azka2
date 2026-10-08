@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Galeri;
+use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
@@ -12,13 +13,18 @@ class GaleriController extends Controller
 {
     //
     public function index() {
+        $profilSekolah =  ProfilSekolah::first();
         $galeri = Galeri::latest()->get();
 
-        return view('admin.galeri.index', compact('galeri'));
+        return view('admin.galeri.index', compact(
+            'galeri',
+            'profilSekolah'
+        ));
     }
 
     public function create() {
-        return view('admin.galeri.create');
+        $profilSekolah = ProfilSekolah::first();
+        return view('admin.galeri.create', compact('profilSekolah'));
     }
 
     public function store(Request $request) {
@@ -48,8 +54,12 @@ class GaleriController extends Controller
 
     public function edit($id) {
         try {
+            $profilSekolah = ProfilSekolah::first();
             $galeri = Galeri::findOrFail(Crypt::decrypt($id));
-            return view('admin.galeri.edit', compact('galeri'));
+            return view('admin.galeri.edit', compact(
+                'galeri',
+                'profilSekolah'
+            ));
         }
         catch (Exception $e) {
             return redirect()->route('admin.galeri.index')->with('error', 'Data galeri tidak ditemukan');
@@ -101,6 +111,7 @@ class GaleriController extends Controller
     }
 
     public function publicGaleri() {
-        return view('public.galeri');
+        $profilSekolah = ProfilSekolah::first();
+        return view('public.galeri.index', compact('profilSekolah'));
     }
 }

@@ -31,7 +31,7 @@
 
     {{-- CUSTOM CSS --}}
     <link rel="stylesheet"
-        href="{{ asset('assets/css/admin.css') }}">
+        href="{{ asset('assets/css/custom/admin.css') }}">
 
     @stack('styles')
 </head>
@@ -79,7 +79,7 @@
                     @endif
 
                     <span class="brand-text">
-                        SMPN 1 Padakembang
+                        {{ $profilSekolah->nama_sekolah }}
                     </span>
 
                 </a>
@@ -359,7 +359,7 @@
             <footer class="admin-footer">
 
                 <p>
-                    © 2026 SMP Negeri 1 Padakembang.
+                    © 2026 {{ $profilSekolah->nama_sekolah . '.' }}
                     All rights reserved.
                 </p>
 
@@ -388,7 +388,7 @@
     {{-- ==========================================
          CUSTOM JS
     =========================================== --}}
-    <script src="{{ asset('assets/js/custom.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/admin.js') }}"></script>
 
     <script>
         $(document).ready(function() {

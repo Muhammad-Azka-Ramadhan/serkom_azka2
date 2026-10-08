@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
@@ -42,8 +43,13 @@ class UserController extends Controller
     }
 
     public function edit($id) {
-        $user = User::findOrFail(Crypt::decrypt($id));
-        return view('admin.user.edit', compact('user'));
+        try {
+            $user = User::findOrFail(Crypt::decrypt($id));
+            return view('admin.user.edit', compact('user'));       
+        }
+        catch (Exception $e) {
+            return redirect()->route('admin.user.index')->with('error', 'Data user tidak ditemukan.');
+        }
     }
 
     public function update(Request $request, $id) {

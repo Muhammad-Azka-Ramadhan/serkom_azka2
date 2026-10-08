@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\ProfilSekolah;
 use App\Models\Siswa;
+use Exception;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
@@ -13,13 +15,18 @@ class GuruController extends Controller
 {
     //
     public function index() {
+        $profilSekolah = ProfilSekolah::first();
         $guru = Guru::latest()->get();
 
-        return view('admin.guru.index', compact('guru'));
+        return view('admin.guru.index', compact(
+            'guru',
+            'profilSekolah'
+        ));
     }
 
     public function create() {
-        return view('admin.guru.create');
+        $profilSekolah = ProfilSekolah::first();
+        return view('admin.guru.create', compact('profilSekolah'));
     }
 
     public function store(Request $request) {
@@ -48,8 +55,17 @@ class GuruController extends Controller
     }
 
     public function edit($id) {
-        $guru = Guru::findOrFail(Crypt::decrypt($id));
-        return view('admin.guru.edit', compact('guru'));
+        try {
+            $profilSekolah = ProfilSekolah::first();
+            $guru = Guru::findOrFail(Crypt::decrypt($id));
+            return view('admin.guru.edit', compact(
+                'guru',
+                'profilSekolah'
+            ));
+        }
+        catch (Exception $e) {
+            return redirect()->route('admin.guru.index')->with('error', 'Data guru tidak ditemukan.');
+        }
     }
 
     public function update(Request $request, $id) {
@@ -90,6 +106,8 @@ class GuruController extends Controller
     }
 
     public function publicGuru() {
-        return view('public.guru');
+        $profilSekolah = ProfilSekolah::first();
+        $guru = Guru::all();
+        return view('public.guru.index', compact('profilSekolah', 'guru'));
     }
 }

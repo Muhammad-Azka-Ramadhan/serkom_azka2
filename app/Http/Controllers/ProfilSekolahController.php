@@ -34,6 +34,8 @@ class ProfilSekolahController extends Controller
         $validated = $request->validate([
             'nama_sekolah' => 'required|max:40',
             'kepala_sekolah' => 'required|max:40',
+            'foto_kepala_sekolah' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'sambutan_kepala_sekolah' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'npsn' => 'required|string|max:10',
@@ -75,6 +77,13 @@ class ProfilSekolahController extends Controller
                 Storage::disk('public')->delete($profilSekolah->foto);
             }
             $validated['foto'] = $request->file('foto')->store('profil_sekolah', 'public');
+        }
+    
+        if ($request->hasFile('foto_kepala_sekolah')) {
+            if ($profilSekolah->foto_kepala_sekolah && Storage::disk('public')->exists($profilSekolah->foto_kepala_sekolah)) {
+                Storage::disk('public')->delete($profilSekolah->foto_kepala_sekolah);
+            }
+            $validated['foto_kepala_Sekolah'] = $request->file('foto_kepala_sekolah')->store('profil_sekolah', 'public');
         }
 
         $profilSekolah->update($validated);

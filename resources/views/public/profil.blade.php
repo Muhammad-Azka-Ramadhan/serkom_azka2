@@ -240,27 +240,59 @@
 </section>
 
 {{-- CTA --}}
-<section class="public-cta py-5">
-    <div class="container py-3">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-8">
-                <span class="small fw-bold text-warning">
-                    INFORMASI SEKOLAH
-                </span>
-                <h2 class="fw-bold text-white mt-2 mb-2">
-                    {{ $profilSekolah->nama_sekolah }}
-                </h2>
-                <p class="text-white-50 mb-0">
-                    Jelajahi informasi guru, siswa, ekstrakurikuler,
-                    berita, dan galeri sekolah.
+<footer class="py-5 public-footer">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <h5 class="text-white fw-bold mb-3">{{ $profilSekolah->nama_sekolah }}</h5>
+                <p class="text-white-50 small mb-0">
+                    Website resmi {{ $profilSekolah->nama_sekolah }}
+                    sebagai media informasi sekolah.
                 </p>
             </div>
-            <div class="col-lg-4 text-lg-end">
-                <a href="{{ route('public.guru') }}" class="btn btn-light px-4">
-                    Lihat Guru
-                </a>
+            <div class="col-md-4 col-lg-3">
+                <h6 class="text-white fw-bold mb-3">Navigasi</h6>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <a href="{{ route('public.beranda') }}" class="text-white-50 text-decoration-none footer-link">Beranda</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('public.profil') }}" class="text-white-50 text-decoration-none footer-link">Profil Sekolah</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('public.ekstrakurikuler') }}" class="text-white-50 text-decoration-none footer-link">Ekstrakurikuler</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('public.guru') }}" class="text-white-50 text-decoration-none footer-link">Guru</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="{{ route('public.berita') }}" class="text-white-50 text-decoration-none footer-link">Berita</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('public.galeri') }}" class="text-white-50 text-decoration-none footer-link">Galeri</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-8 col-lg-4">
+                <h6 class="text-white fw-bold mb-3">Kontak</h6>
+                <p class="text-white-50 small mb-2">
+                    <i class="fas fa-map-marker-alt me-2"></i>
+                    {{ $profilSekolah->alamat ?? '-' }}
+                </p>
+                <p class="text-white-50 small mb-0">
+                    <i class="fas fa-phone me-2"></i>
+                    {{ $profilSekolah->kontak ?? '-' }}
+                </p>
             </div>
         </div>
+        <hr class="border-secondary my-4">
+        <div class="text-center">
+            <small class="text-white-50">
+                &copy; {{ date('Y') }}
+                {{ $profilSekolah->nama_sekolah }}
+                All rights reserved.
+            </small>
+        </div>
     </div>
-</section>
+</footer>
 @endsection

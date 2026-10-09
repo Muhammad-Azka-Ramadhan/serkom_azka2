@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nama_sekolah', 40);
             $table->string('kepala_sekolah', 40);
+            $table->string('foto_kepala_Sekolah', 100);
+            $table->text('sambutan_kepala_sekolah');
             $table->string('foto', 100);
             $table->string('logo', 100);
             $table->string('npsn', 10);

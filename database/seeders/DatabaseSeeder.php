@@ -17,19 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            SiswaSeeder::class,
-            GuruSeeder::class,
-            ProfilSekolahSeeder::class,
-            EkstrakurikulerSeeder::class
-        ]);
+        
         // User::factory(10)->create();
 
         User::factory()->create([
             'name' => 'Admin Admin',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('password',)
+            'password' => Hash::make('password')
+        ]);
+
+        $this->call([
+            SiswaSeeder::class,
+            GuruSeeder::class,
+            ProfilSekolahSeeder::class,
+            EkstrakurikulerSeeder::class,
+            BeritaSeeder::class,
+            GaleriSeeder::class
         ]);
     }
 }

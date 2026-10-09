@@ -17,8 +17,23 @@ class EkstrakurikulerSeeder extends Seeder
         Ekstrakurikuler::create([
             'id_guru' => 1,
             'nama_eskul' => 'pramuka',
-            // 'pembina' => 'Cecep Cepi',
-            'jadwal_latihan' => 'Sabtu',
+            'jadwal_latihan' => 'Sabtu, 14.00 - selesai',
+            'deskripsi' => 'Disiplin, berani, dan setia',
+            'gambar' => ''
+        ]);
+
+        Ekstrakurikuler::create([
+            'id_guru' => 2,
+            'nama_eskul' => 'Paskibra',
+            'jadwal_latihan' => 'Jumat, 14.00 - selesai',
+            'deskripsi' => 'Disiplin, berani, dan setia',
+            'gambar' => ''
+        ]);
+
+        Ekstrakurikuler::create([
+            'id_guru' => 1,
+            'nama_eskul' => 'PMR',
+            'jadwal_latihan' => 'Kamis, 14.00 - selesai',
             'deskripsi' => 'Disiplin, berani, dan setia',
             'gambar' => ''
         ]);

@@ -17,6 +17,14 @@ class ProfilSekolahSeeder extends Seeder
         ProfilSekolah::create([
             'nama_sekolah' => 'SMPN 1 Padakembang',
             'kepala_sekolah' => 'Dr. H Ade Dasmana M.Si',
+            'foto_kepala_sekolah' => '',
+            'sambutan_kepala_sekolah' => 'Assalamu’alaikum warahmatullahi wabarakatuh.
+            Puji syukur kita panjatkan ke hadirat Allah SWT atas segala rahmat dan karunia-Nya sehingga website resmi SMP Negeri 1 Padakembang dapat hadir sebagai sarana informasi, komunikasi, dan publikasi bagi seluruh warga sekolah serta masyarakat.
+            Selamat datang di website resmi SMP Negeri 1 Padakembang. Kami berharap website ini dapat menjadi jendela informasi yang memberikan gambaran mengenai profil sekolah, kegiatan pembelajaran, prestasi peserta didik, program sekolah, serta berbagai informasi pendidikan lainnya.
+            Sebagai lembaga pendidikan, SMP Negeri 1 Padakembang senantiasa berkomitmen untuk menciptakan lingkungan belajar yang aman, nyaman, dan inspiratif. Kami terus berupaya meningkatkan kualitas pendidikan melalui pengembangan karakter, peningkatan kompetensi, pemanfaatan teknologi, serta pembinaan potensi dan kreativitas peserta didik agar mampu menghadapi tantangan zaman.
+            Kami menyadari bahwa keberhasilan pendidikan tidak terlepas dari kerja sama antara sekolah, orang tua, masyarakat, dan seluruh pihak terkait. Oleh karena itu, kami mengajak semua pihak untuk terus bersinergi dalam mewujudkan generasi yang beriman, berkarakter, berprestasi, dan berwawasan luas.
+            Akhir kata, semoga website ini dapat memberikan manfaat bagi seluruh pengunjung dan menjadi salah satu langkah nyata dalam mewujudkan pelayanan informasi pendidikan yang transparan, informatif, dan mudah diakses.
+            Wassalamu’alaikum warahmatullahi wabarakatuh.',
             'foto' => '',
             'logo' => '',
             'npsn'=> '1010101010',

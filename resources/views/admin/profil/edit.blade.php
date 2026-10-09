@@ -30,7 +30,7 @@
         <div class="card-header bg-white border-0 px-4 pt-4">
             <h4 class="fw-semibold mb-1">Edit Profil Sekolah</h4>
             <p class="text-muted mb-0">
-                Perbarui informasi profil SMPN 1 Padakembang
+                Perbarui informasi profil {{ $profilSekolah->nama_sekolah }}
             </p>
         </div>
 
@@ -212,7 +212,8 @@
                                 <img
                                     src="{{ asset('storage/' . $profilSekolah->foto) }}"
                                     alt="Foto Sekolah"
-                                    class="profile-edit-photo">
+                                    class="profile-edit-photo"
+                                >
                             </div>
                         @endif
 
@@ -233,6 +234,39 @@
                         </small>
                     </div>
 
+                    <div class="col-md-6">
+                        <label for="foto_kepsek" class="form-label">
+                            Foto Kepala Sekolah
+                        </label>
+                        @if ($profilSekolah->foto_kepala_sekolah && Storage::disk('public')->exists($profilSekolah->foto_kepala_sekolah))
+                            <img
+                                src="{{ asset('storage/' . $profilSekolah->foto_kepala_sekolah) }}" 
+                                alt="Foto Kepala Sekolah" 
+                                class="profile-edit-photo"
+                            >
+                        @endif
+                        <div class="text-muted small mb-2">
+                            File saat ini: <strong>{{ $profilSekolah->foto_kepala_sekolah }}</strong>
+                        </div>
+
+                        <input 
+                            type="file" 
+                            name="foto_kepala_sekolah" 
+                            id="foto_kepsek"
+                            class="form-control"
+                            accept="image/*"
+                            value="{{ asset('storage/' . $profilSekolah->foto_kepala_sekolah) }}"
+                        >
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="sambutan" class="form-label">
+                            Sambutan Kepala Sekolah
+                        </label>
+                        <textarea name="sambutan_kepala_sekolah" id="sambutan" rows="5" class="form-control">
+                            {{ old('sambutan_kepala_sekolah', $profilSekolah->sambutan_kepala_sekolah) }}
+                        </textarea>
+                    </div>
                 </div>
 
                 {{-- Action --}}

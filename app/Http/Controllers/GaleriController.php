@@ -112,6 +112,7 @@ class GaleriController extends Controller
 
     public function publicGaleri() {
         $profilSekolah = ProfilSekolah::first();
-        return view('public.galeri.index', compact('profilSekolah'));
+        $galeri = Galeri::latest('tanggal')->get();
+        return view('public.galeri.index', compact('profilSekolah', 'galeri'));
     }
 }

@@ -7,12 +7,16 @@
 @section('content')
 
 {{-- HEADER HALAMAN --}}
-<section class="py-5 bg-light">
+<section class="py-5 public-page-header">
     <div class="container py-4">
-        <div class="text-center">
-            <span class="badge bg-primary-subtle text-primary px-3 py-2 mb-3">Tenaga Pendidik</span>
-            <h1 class="fw-bold mb-3">Guru {{ $profilSekolah->nama_sekolah }}</h1>
-            <p class="text-muted mx-auto mb-0" style="max-width: 700px;">
+        <div class="text-center mx-auto">
+            <span class="public-section-label ">
+                TENAGA PENDIDIK
+            </span>
+            <h1 class="display-5 fw-bold text-white mt-2 mb-3">
+                Guru {{ $profilSekolah->nama_sekolah }}
+            </h1>
+            <p class="text-white-50 mb-0">
                 Mengenal tenaga pendidik yang berperan dalam mendukung
                 proses pembelajaran dan perkembangan siswa.
             </p>

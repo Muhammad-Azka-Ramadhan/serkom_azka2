@@ -20,5 +20,19 @@ class SiswaSeeder extends Seeder
             'jenis_kelamin' => 'Laki-laki',
             'tahun_masuk' => '2024'
         ]);
+
+        Siswa::create([
+            'nisn' => '0089897765',
+            'nama_siswa' => 'Siti',
+            'jenis_kelamin' => 'Perempuan',
+            'tahun_masuk' => '2025'
+        ]);
+
+        Siswa::create([
+            'nisn' => '0089897764',
+            'nama_siswa' => 'Muhammad Ihsan',
+            'jenis_kelamin' => 'Laki-laki',
+            'tahun_masuk' => '2026'
+        ]);
     }
 }

@@ -26,14 +26,14 @@
         <div class="row g-4">
             @forelse ($berita as $item)
                 <div class="col-md-6 col-lg-4">
-                    <article class="card border-0 shadow-sm rounded-4 h-100 news-card">
+                    <article class="card border-0 shadow-sm rounded-4 h-100 public-card">
                         {{-- FOTO --}}
                         <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}" class="text-decoration-none overflow-hidden">
                             @if (!empty($item->gambar))
                                 <img
                                     src="{{ asset('storage/' . $item->gambar) }}"
                                     alt="{{ $item->judul ?? 'Berita sekolah' }}"
-                                    class="card-img-top w-100 object-fit-cover"
+                                    class="card-img-top w-100 object-fit-cover public-card-image"
                                     style="height: 230px;"
                                 >
                             @else
@@ -52,7 +52,7 @@
                                 </div>
                             @endif
                             <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}" class="text-decoration-none">
-                                <h5 class="fw-bold mb-3 news-title">
+                                <h5 class="fw-bold mb-3 public-card-title">
                                     {{ $item->judul ?? 'Tanpa judul' }}
                                 </h5>
                             </a>

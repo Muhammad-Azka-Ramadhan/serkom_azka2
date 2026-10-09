@@ -41,11 +41,11 @@
 
                     {{ \Carbon\Carbon::parse($berita->tanggal)->format('d M Y') }}
                 </div>
-            @elseif (!empty($berita->tanggal))
+            @elseif (!empty($berita->created_at))
                 <div class="text-muted mb-3">
                     <i class="bi bi-calendar3 me-1"></i>
 
-                    {{ \Carbon\Carbon::parse($berita->tanggal)->format('d M Y') }}
+                    {{ ($berita->created_at)->format('d M Y') }}
                 </div>
             @endif
 

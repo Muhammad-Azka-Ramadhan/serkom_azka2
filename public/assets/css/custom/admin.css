@@ -156,10 +156,13 @@ button {
 .brand-text {
     color: #FFFFFF;
 
+    min-width: 0;
     font-size: 14px;
     font-weight: 600;
 
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    line-height: 1.3;
 }
 
 

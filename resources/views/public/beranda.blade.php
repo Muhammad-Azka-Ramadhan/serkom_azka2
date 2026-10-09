@@ -272,7 +272,7 @@ EKSTRAKURIKULER
                     Kegiatan untuk mengembangkan minat dan bakat siswa.
                 </p>
             </div>
-            <a href="{{ route('public.ekstrakurikuler') }}" class="btn btn-outline-primary d-none d-md-inline-block">
+            <a href="{{ route('public.eskul') }}" class="btn btn-outline-primary d-none d-md-inline-block">
                 Lihat Semua
             </a>
         </div>
@@ -311,7 +311,7 @@ EKSTRAKURIKULER
             @endforelse
         </div>
         <div class="text-center mt-4 d-md-none">
-            <a href="{{ route('public.ekstrakurikuler') }}" class="btn btn-outline-primary">Lihat Semua</a>
+            <a href="{{ route('public.eskul') }}" class="btn btn-outline-primary">Lihat Semua</a>
         </div>
     </div>
 </section>
@@ -332,14 +332,14 @@ GURU
         <div class="row g-4">
             @forelse ($guru->take(4) as $item)
                 <div class="col-md-6 col-lg-3">
-                    <div class="card border-0 shadow-sm rounded-3 h-100 content-card overflow-hidden">
+                    <div class="card border-0 shadow-sm rounded-3 h-100 public-card">
                         {{-- FOTO --}}
-                        <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}">
+                        <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}?from=beranda" class="overflow-hidden" >
                             @if (!empty($item->foto))
                                 <img
                                     src="{{ asset('storage/' . $item->foto) }}"
                                     alt="{{ $item->nama_guru ?? 'Guru' }}"
-                                    class="card-img-top w-100 object-fit-cover"
+                                    class="card-img-top w-100 object-fit-cover public-card-image"
                                     style="height: 270px;"
                                 >
                             @else
@@ -349,8 +349,10 @@ GURU
                             @endif
                         </a>
                         <div class="card-body p-3">
-                            <h6 class="fw-bold mb-1">{{ $item->nama_guru ?? '-' }}</h6>
-                            <small class="text-muted">{{ $item->mapel }}</small>
+                            <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}?from=beranda" class="text-decoration-none">
+                                <h6 class="fw-bold mb-2 d-flex justify-content-center public-card-title">{{ $item->nama_guru ?? '-' }}</h6>
+                            </a>
+                            <small class="text-muted d-flex justify-content-center">Mapel : {{ $item->mapel }}</small>
                         </div>
                     </div>
                 </div>
@@ -382,27 +384,38 @@ BERITA
         <div class="row g-4">
             @forelse ($berita->take(3) as $item)
                 <div class="col-md-6 col-lg-4">
-                    <article class="card border-0 shadow-sm rounded-3 h-100 content-card overflow-hidden">
-                        @if (!empty($item->gambar))
-                            <img
-                                src="{{ asset('storage/' . $item->gambar) }}"
-                                alt="{{ $item->judul ?? 'Berita sekolah' }}"
-                                class="card-img-top w-100 object-fit-cover"
-                                style="height: 220px;"
-                            >
-                        @else
-                            <div class="bg-light d-flex align-items-center justify-content-center" style="height: 220px;">
-                                <i class="fas fa-newspaper fa-3x text-secondary"></i>
-                            </div>
-                        @endif
+                    <article class="card border-0 shadow-sm rounded-3 h-100 public-card">
+                        <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}?from=beranda" class="overflow-hidden">
+                            @if (!empty($item->gambar))
+                                <img
+                                    src="{{ asset('storage/' . $item->gambar) }}"
+                                    alt="{{ $item->judul ?? 'Berita sekolah' }}"
+                                    class="card-img-top w-100 object-fit-cover public-card-image"
+                                    style="height: 220px;"
+                                >
+                            @else
+                                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 220px;">
+                                    <i class="fas fa-newspaper fa-3x text-secondary"></i>
+                                </div>
+                            @endif
+                        </a>
                         <div class="card-body p-4">
+                            <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}?from=beranda" class="text-decoration-none text-dark">
+                                <h5 class="fw-500 mb-2 public-card-title">{{ $item->judul ?? '-' }}</h5>
+                            </a>
                             @if (!empty($item->created_at))
                                 <small class="text-muted">
                                     <i class="far fa-calendar-alt me-1"></i>
                                     {{ $item->created_at->format('d M Y') }}
                                 </small>
+                                <p class="pt-2 text-card">{{Str::limit($item->isi, 200, '...') }}</p>
                             @endif
-                            <h5 class="fw-bold mt-2 mb-0">{{ $item->judul ?? '-' }}</h5>
+                            <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}?from=beranda"  class="text-decoration-none text-dark fw-medium">
+                                <small class="public-card-title">
+                                    Selengkapnya
+                                    <i class="fas fa-arrow-right"></i>
+                                </small>
+                            </a>
                         </div>
                     </article>
                 </div>
@@ -457,26 +470,6 @@ GALERI
 </section>
 
 {{-- =========================================================
-CTA
-========================================================= --}}
-<section class="py-5 public-cta">
-    <div class="container py-3">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-8">
-                <h2 class="fw-bold text-white mb-2">Mengenal {{ $profilSekolah->nama_sekolah }} Lebih Dekat</h2>
-                <p class="text-white-50 mb-0">
-                    Temukan informasi lengkap mengenai sekolah,
-                    guru, siswa, kegiatan, berita, dan dokumentasi sekolah.
-                </p>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <a href="{{ route('public.profil') }}" class="btn btn-light px-4">Lihat Profil Sekolah</a>
-            </div>
-        </div>
-    </div>
-</section>
-
-{{-- =========================================================
 FOOTER
 ========================================================= --}}
 <footer class="py-5 public-footer">
@@ -499,7 +492,7 @@ FOOTER
                         <a href="{{ route('public.profil') }}" class="text-white-50 text-decoration-none footer-link">Profil Sekolah</a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ route('public.ekstrakurikuler') }}" class="text-white-50 text-decoration-none footer-link">Ekstrakurikuler</a>
+                        <a href="{{ route('public.eskul') }}" class="text-white-50 text-decoration-none footer-link">Ekstrakurikuler</a>
                     </li>
                     <li class="mb-2">
                         <a href="{{ route('public.guru') }}" class="text-white-50 text-decoration-none footer-link">Guru</a>

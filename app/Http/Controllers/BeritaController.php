@@ -76,13 +76,13 @@ class BeritaController extends Controller
         $user = User::all();
 
         $validated = $request->validate([
-            'judul' => 'required|string|max:50',
+            'judul' => 'required|string|max:100',
             'isi' => 'required|string',
             'tanggal' => 'required|date',
             'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048'
         ], [
             'judul.required' => 'judul wajib diisi',
-            'judul.max' => 'Judul maksimal 50 karakter',
+            'judul.max' => 'Judul maksimal 100 karakter',
             'isi.required' => 'Isi berita wajib diisi',
             'tanggal.required' => 'Tanggal publikasi wajib diisi',
             'gambar.image' => 'Gambar harus berupa file gambar.',

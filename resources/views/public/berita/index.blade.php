@@ -28,7 +28,7 @@
                 <div class="col-md-6 col-lg-4">
                     <article class="card border-0 shadow-sm rounded-4 h-100 public-card">
                         {{-- FOTO --}}
-                        <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}" class="text-decoration-none overflow-hidden">
+                        <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}?from=berita" class="text-decoration-none overflow-hidden">
                             @if (!empty($item->gambar))
                                 <img
                                     src="{{ asset('storage/' . $item->gambar) }}"
@@ -51,7 +51,7 @@
                                     {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
                                 </div>
                             @endif
-                            <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}" class="text-decoration-none">
+                            <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}?from=berita" class="text-decoration-none">
                                 <h5 class="fw-bold mb-3 public-card-title">
                                     {{ $item->judul ?? 'Tanpa judul' }}
                                 </h5>

@@ -1,3 +1,4 @@
+
 /* =========================================================
    SMP NEGERI 1 PADAKEMBANG
    PUBLIC WEBSITE
@@ -5,27 +6,82 @@
 
 /* 1. VARIABLES */
 :root {
-    --primary: #3F6F8F;
-    --primary-dark: #345E79;
-    --primary-light: #EDF4F8;
+    /* Warna utama */
+    --primary: #0788E8;
+    --primary-dark: #0875C9;
+    --primary-light: #EAF6FF;
 
-    --dark: #172B3A;
-    --dark-hover: #203D50;
-    --dark-active: #126FAF;
+    /* Elemen gelap */
+    --dark: #10375E;
+    --dark-hover: #164B78;
+    --dark-active: #0875C9;
 
-    --body-bg: #F4F8FA;
+    /* Biru interaksi */
+    --blue: #0788E8;
+    --blue-hover: #0875C9;
+    --blue-light: #EAF6FF;
+
+    /* Background */
+    --body-bg: #FFFFFF;
     --white: #FFFFFF;
+    --section-bg: #F2F9FE;
+    --card-bg: #FFFFFF;
 
-    --text: #263238;
-    --muted: #718096;
-    --border: #E4EAF0;
+    /* Teks */
+    --text: #244665;
+    --muted: #6684A5;
+    --header-label: #0788E8;
+    --placeholder: #9BB4CA;
 
-    --success: #009B55;
+    /* Border dan bayangan */
+    --border: #DCEFFC;
+    --border-dark: #315777;
+    --shadow: 0 4px 20px rgba(16, 55, 94, 0.06);
+
+    /* Navbar */
+    --navbar-bg: #FFFFFF;
+    --navbar-text: #10375E;
+    --navbar-hover: #0788E8;
+    --navbar-active-bg: #EAF6FF;
+    --navbar-active-text: #0788E8;
+    --navbar-border: #E3F0FA;
+
+    /* Tombol */
+    --button-primary-bg: #0788E8;
+    --button-primary-hover: #0875C9;
+    --button-primary-text: #FFFFFF;
+
+    /* Footer */
+    --footer-bg: #10375E;
+    --footer-heading: #FFFFFF;
+    --footer-text: #C5D9EB;
+    --footer-link: #C5D9EB;
+    --footer-link-hover: #FFFFFF;
+    --footer-border: #315777;
+
+    /* Status */
+    --success: #10A99A;
+    --success-light: #E5F8F4;
+
     --warning: #FFD900;
-    --warning-dark: #B18B00;
+    --warning-dark: #9A7900;
+    --warning-light: #FFF8D9;
 
-    --header-label: #8FD3FF;
-    --placeholder: #9AA7B1;
+    --danger: #ED454D;
+    --danger-light: #FDEBEC;
+
+    /* Ikon statistik */
+    --stat-blue-bg: #EAF6FF;
+    --stat-blue: #0788E8;
+
+    --stat-green-bg: #E5F8F4;
+    --stat-green: #10A99A;
+
+    --stat-yellow-bg: #FFF8D9;
+    --stat-yellow: #B18B00;
+
+    --stat-red-bg: #FDEBEC;
+    --stat-red: #ED454D;
 }
 
 /* 2. BODY */
@@ -38,8 +94,9 @@ body {
 /* 3. NAVBAR */
 .public-navbar {
     height: 78px;
-    border-bottom: 1px solid var(--border);
-    box-shadow: 0 3px 15px rgba(23, 43, 58, 0.06);
+    background-color: var(--navbar-bg);
+    border-bottom: 1px solid var(--navbar-border);
+    box-shadow: 0 3px 15px rgba(16, 55, 94, 0.06);
     z-index: 1030;
     transition: 0.25s ease;
 }
@@ -62,7 +119,7 @@ body {
 }
 
 .brand-title {
-    color: var(--dark);
+    color: var(--navbar-text);
     font-size: 17px;
     font-weight: 700;
     letter-spacing: -0.2px;
@@ -92,7 +149,7 @@ body {
     align-items: center;
     height: 42px;
     padding: 0 12px !important;
-    color: var(--text);
+    color: var(--navbar-text);
     font-size: 13px;
     font-weight: 500;
     border-radius: 7px;
@@ -101,8 +158,8 @@ body {
 
 .public-navbar .nav-link:hover,
 .public-navbar .nav-link.active {
-    color: var(--primary);
-    background: var(--primary-light);
+    color: var(--navbar-active-text);
+    background: var(--navbar-active-bg);
 }
 
 .public-navbar .nav-link.active {
@@ -116,7 +173,7 @@ body {
     bottom: 3px;
     width: 18px;
     height: 2px;
-    background: var(--primary);
+    background: var(--navbar-active-text);
     border-radius: 10px;
     transform: translateX(-50%);
 }
@@ -125,10 +182,11 @@ body {
 .public-navbar .navbar-toggler {
     padding: 5px;
     border-radius: 7px;
+    border-color: var(--border);
 }
 
 .public-navbar .navbar-toggler:focus {
-    box-shadow: 0 0 0 3px rgba(63, 111, 143, 0.12);
+    box-shadow: 0 0 0 3px rgba(7, 136, 232, 0.12);
 }
 
 /* 6. MAIN */
@@ -139,17 +197,17 @@ body {
 
 /* 7. BUTTONS */
 .btn-primary {
-    color: var(--white);
-    background-color: var(--primary);
-    border-color: var(--primary);
+    color: var(--button-primary-text);
+    background-color: var(--button-primary-bg);
+    border-color: var(--button-primary-bg);
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    color: var(--white);
-    background-color: var(--primary-dark);
-    border-color: var(--primary-dark);
+    color: var(--button-primary-text);
+    background-color: var(--button-primary-hover);
+    border-color: var(--button-primary-hover);
 }
 
 .btn-outline-primary {
@@ -163,6 +221,10 @@ body {
     color: var(--white);
     background-color: var(--primary);
     border-color: var(--primary);
+}
+
+.text-card {
+    color: var(--dark);
 }
 
 /* 8. SHARED PAGE HEADER */
@@ -181,28 +243,28 @@ body {
 .statistic-icon-blue,
 .info-icon-blue,
 .public-info-icon-blue {
-    color: var(--primary);
-    background-color: var(--primary-light);
+    color: var(--stat-blue);
+    background-color: var(--stat-blue-bg);
 }
 
 .statistic-icon-green,
 .info-icon-green,
 .public-info-icon-green {
-    color: var(--success);
-    background-color: rgba(0, 155, 85, 0.10);
+    color: var(--stat-green);
+    background-color: var(--stat-green-bg);
 }
 
 .statistic-icon-yellow,
 .info-icon-yellow,
 .public-info-icon-yellow {
-    color: var(--warning-dark);
-    background-color: rgba(255, 217, 0, 0.18);
+    color: var(--stat-yellow);
+    background-color: var(--stat-yellow-bg);
 }
 
 /* 10. SHARED VISION & MISSION ACCENTS */
 .vision-blue,
 .public-vision-blue {
-    border-left: 4px solid var(--primary);
+    border-left: 4px solid var(--blue);
 }
 
 .vision-green,
@@ -210,27 +272,41 @@ body {
     border-left: 4px solid var(--success);
 }
 
-/* 11. SHARED CTA & FOOTER */
-.public-cta {
-    background-color: var(--primary);
-}
-
+/* 11. FOOTER */
 .public-footer {
-    background-color: var(--dark);
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
 }
 
-.footer-link:hover {
-    color: var(--white) !important;
+.public-footer h1,
+.public-footer h2,
+.public-footer h3,
+.public-footer h4,
+.public-footer h5,
+.public-footer h6 {
+    color: var(--footer-heading);
+}
+
+.public-footer a {
+    color: var(--footer-link);
+    transition: color 0.2s ease;
+}
+
+.public-footer .footer-link:hover,
+.public-footer a:hover {
+    color: var(--footer-link-hover) !important;
 }
 
 /* 12. SHARED CARD HOVER */
 .public-card {
+    background-color: var(--card-bg);
+    border-color: var(--border);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .public-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 28px rgba(23, 43, 58, 0.10) !important;
+    box-shadow: 0 12px 18px rgba(16, 55, 94, 0.10) !important;
 }
 
 /* HOVER GAMBAR CARD */
@@ -248,8 +324,8 @@ body {
     transition: color 0.2s ease;
 }
 
-.public-card:hover .public-card-title {
-    color: var(--primary);
+.public-card .public-card-title:hover {
+    color: var(--blue);
 }
 
 /* 13. BERANDA */
@@ -266,3 +342,4 @@ body {
 .guru-badge:hover {
     background-color: var(--primary-dark);
 }
+

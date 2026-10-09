@@ -69,7 +69,7 @@
                             <tr>
                                 <td class="text-center">{{ $loop->iteration }}</td>
                                 <td  class="fw-semibold text-center">{{ $item->judul }}</td>
-                                <td class="text-center">{{ $item->isi }}</td>
+                                <td class="text-center">{{  Str::limit($item->isi, 200, '....') }}</td>
                                 <td class="text-center">{{ $item->tanggal }}</td>
                                 <td>
                                     <img

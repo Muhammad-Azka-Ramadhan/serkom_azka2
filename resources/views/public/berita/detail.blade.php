@@ -8,10 +8,12 @@
 <div class="container py-5">
     {{-- TOMBOL KEMBALI --}}
     <div class="mb-4">
-        <a href="{{ route('public.berita') }}"
+        <a href="{{ request('from') === 'beranda' 
+            ? route('public.beranda')
+            : route('public.berita') }}"
            class="btn btn-outline-primary">
             <i class="bi bi-arrow-left me-2"></i>
-            Kembali ke Berita
+            Kembali
         </a>
     </div>
 

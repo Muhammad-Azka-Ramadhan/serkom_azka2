@@ -74,7 +74,7 @@
                         $menu = [
                             'public.beranda' => 'Beranda',
                             'public.profil' => 'Profil Sekolah',
-                            'public.ekstrakurikuler' => 'Ekstrakurikuler',
+                            'public.eskul' => 'Ekstrakurikuler',
                             'public.guru' => 'Guru',
                             'public.berita' => 'Berita',
                             'public.galeri' => 'Galeri',

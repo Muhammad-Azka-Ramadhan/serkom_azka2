@@ -260,7 +260,7 @@
                         <a href="{{ route('public.profil') }}" class="text-white-50 text-decoration-none footer-link">Profil Sekolah</a>
                     </li>
                     <li class="mb-2">
-                        <a href="{{ route('public.ekstrakurikuler') }}" class="text-white-50 text-decoration-none footer-link">Ekstrakurikuler</a>
+                        <a href="{{ route('public.eskul') }}" class="text-white-50 text-decoration-none footer-link">Ekstrakurikuler</a>
                     </li>
                     <li class="mb-2">
                         <a href="{{ route('public.guru') }}" class="text-white-50 text-decoration-none footer-link">Guru</a>

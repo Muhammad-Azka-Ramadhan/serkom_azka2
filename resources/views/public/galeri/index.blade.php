@@ -51,7 +51,7 @@
 
                         {{-- INFORMASI --}}
                         <div class="card-body p-4">
-                            <h5 class="fw-bold mb-2 public-card-title">
+                            <h5 class="fw-bold mb-2">
                                 {{ $item->judul ?? 'Dokumentasi Sekolah' }}
                             </h5>
                             @if (!empty($item->keterangan))

@@ -24,7 +24,11 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [DashboardController::class, 'publicBeranda'])->name('public.beranda');
 Route::get('/profil', [ProfilSekolahController::class, 'publicProfil_sekolah'])->name('public.profil');
-Route::get('/ekstrakurikuler', [EkstrakurikulerController::class, 'publicEkstrakurikuler'])->name('public.ekstrakurikuler');
+
+Route::prefix('ekstrakurikuler')->group(function () {
+    Route::get('/', [EkstrakurikulerController::class, 'publicEkstrakurikuler'])->name('public.eskul');
+    Route::get('/detail/{id}', [EkstrakurikulerController::class, 'showPublic'])->name('public.eskul.detail');
+});
 
 Route::get('/galeri', [GaleriController::class, 'publicGaleri'])->name('public.galeri');
 

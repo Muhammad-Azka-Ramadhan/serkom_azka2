@@ -84,7 +84,7 @@
         {{-- PAGINATION --}}
         @if ($berita->hasPages())
             <div class="d-flex justify-content-center mt-5">
-                {{ $berita->links() }}
+                {{ $berita->links('pagination::bootstrap-5') }}
             </div>
         @endif
     </div>

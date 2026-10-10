@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="utf-8">
-    <title>Login - Admin SMPN 1 Padakembang</title>
+    <title>Login - Admin {{ $profilSekolah->nama_sekolah }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Halaman login admin SMPN 1 Padakembang">
     <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
@@ -23,7 +23,7 @@
             {{-- HEADER --}}
             <div class="login-header">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Logo SMPN 1 Padakembang" class="login-logo">
-                <h4>Admin SMPN 1 Padakembang</h4>
+                <h4>Admin {{ $profilSekolah->nama_sekolah }}</h4>
                 <p>Sistem Informasi Administrasi Sekolah</p>
             </div>
             {{-- BODY --}}

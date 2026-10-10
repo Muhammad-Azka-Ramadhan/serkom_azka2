@@ -82,7 +82,7 @@
 
                     @endphp
 
-                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 bg-white">
                         @foreach ($menu as $route => $label)
                             <li class="nav-item">
                                 <a

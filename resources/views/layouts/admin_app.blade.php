@@ -225,9 +225,6 @@
 
                     <div class="profile-dropdown">
                         <div class="profile-dropdown-header">
-                            <img src="{{ asset('assets/images/author/avatar.png') }}"
-                                alt="{{ Auth::user()->name }}">
-
                             <div>
                                 <strong>{{ Auth::user()->name }}</strong>
                                 <small>{{ ucfirst(Auth::user()->role) }}</small>

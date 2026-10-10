@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProfilSekolah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -9,7 +10,8 @@ class AuthController extends Controller
 {
     //
     public function login() {
-        return view('admin.login');
+        $profilSekolah = ProfilSekolah::first();
+        return view('admin.login', compact('profilSekolah'));
     }
 
     public function prosesLogin(Request $request) {

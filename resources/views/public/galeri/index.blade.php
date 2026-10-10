@@ -83,7 +83,7 @@
         {{-- PAGINATION --}}
         @if (method_exists($galeri, 'hasPages') && $galeri->hasPages())
             <div class="d-flex justify-content-center mt-5">
-                {{ $galeri->links() }}
+                {{ $galeri->links('pagination::bootstrap-5') }}
             </div>
         @endif
     </div>

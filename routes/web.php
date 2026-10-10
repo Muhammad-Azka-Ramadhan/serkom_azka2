@@ -102,10 +102,9 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::put('/{id}', [ProfilSekolahController::class, 'update'])->name('admin.profil.update'); 
         });
     });
-
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
-        Route::middleware('role:admin')->group(function () {
+    Route::middleware('role:admin')->group(function () {
+        Route::prefix('user')->group(function () {
+            Route::get('/', [UserController::class, 'index'])->name('admin.user.index');
             Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
             Route::post('/store', [UserController::class, 'store'])->name('admin.user.store');
             Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');

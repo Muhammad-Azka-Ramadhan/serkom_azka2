@@ -198,7 +198,7 @@
                         </h1>
 
                         {{-- Breadcrumb --}}
-                        <div class="breadcrumb">
+                        {{-- <div class="breadcrumb">
                            <a href="{{ route('admin.dashboard') }}">
                                 Home
                             </a>
@@ -208,7 +208,7 @@
                             <span>
                                 @yield('title')
                             </span>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
@@ -219,11 +219,7 @@
                     <input type="checkbox" id="profileToggle" class="profile-checkbox">
 
                     <label for="profileToggle" class="admin-profile">
-                        <img src="{{ asset('assets/images/author/avatar.png') }}"
-                            alt="{{ Auth::user()->name }}">
-
                         <span>{{ Auth::user()->name }}</span>
-
                         <i class="fa-solid fa-chevron-down"></i>
                     </label>
 
@@ -260,7 +256,7 @@
             =========================================== --}}
             <footer class="admin-footer">
                 <p>
-                    © 2026 {{ $profilSekolah->nama_sekolah . '.' }}
+                    &copy; 2026 {{ $profilSekolah->nama_sekolah . '.' }}
                     All rights reserved.
                 </p>
             </footer>

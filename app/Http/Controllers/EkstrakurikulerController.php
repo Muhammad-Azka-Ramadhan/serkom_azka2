@@ -115,7 +115,7 @@ class EkstrakurikulerController extends Controller
 
     public function publicEkstrakurikuler() {
         $profilSekolah = ProfilSekolah::first();
-        $ekstrakurikuler = Ekstrakurikuler::all();
+        $ekstrakurikuler = Ekstrakurikuler::paginate(6);
         $guru = Guru::all();
         return view('public.ekstrakurikuler.index', compact('profilSekolah', 'ekstrakurikuler', 'guru'));
     }

@@ -343,3 +343,53 @@ body {
     background-color: var(--primary-dark);
 }
 
+/* HEADER HALAMAN EKSTRAKURIKULER */
+.public-ekskul-header {
+    background: linear-gradient(135deg, var(--dark), var(--primary));
+}
+
+.public-ekskul-label {
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.public-ekskul-header-description {
+    max-width: 620px;
+    margin-inline: auto;
+}
+
+/* DETAIL EKSTRAKURIKULER */
+.eskul-gambar-utama {
+    display: block;
+    min-height: 320px;
+    max-height: 440px;
+    object-fit: cover;
+}
+
+.eskul-info-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 20px;
+}
+
+.eskul-deskripsi {
+    color: var(--text);
+    line-height: 1.8;
+}
+
+@media (max-width: 767.98px) {
+    .eskul-gambar-utama {
+        min-height: 220px;
+        max-height: 300px;
+    }
+}
+

@@ -1,6 +1,6 @@
 @extends('layouts.public_app')
 
-@section('school_name', $profilSekolah->nama_sekolah)
+@section('nama_sekolah', $profilSekolah->nama_sekolah)
 
 @section('title', 'Guru')
 
@@ -30,22 +30,20 @@
         <div class="row g-4">
             @forelse ($guru as $item)
                 <div class="col-sm-6 col-lg-4 col-xl-3">
-                    <div class="card border-0 shadow-sm h-100 overflow-hidden">
+                    <div class="card border-0 shadow-sm h-100 overflow-hidden public-card">
                         {{-- FOTO --}}
-                        <div class="bg-light text-center">
-                        <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}">
+                        <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}" class="overflow-hidden">
                             @if (!empty($item->foto))
-                                <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama_guru ?? 'Foto Guru' }}" class="w-100" style="height: 280px; object-fit: cover;">
+                                <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama_guru ?? 'Foto Guru' }}" class="object-fit-cover w-100 public-card-image" style="height: 280px;">
                             @else
                                 <div class="d-flex align-items-center justify-content-center" style="height: 280px;">
                                     <i class="fas fa-user-circle text-secondary" style="font-size: 80px;"></i>
                                 </div>
                             @endif
                         </a>
-                        </div>
                         {{-- INFORMASI --}}
                         <div class="card-body text-center p-4">
-                            <h5 class="fw-bold mb-2">{{ $item->nama_guru ?? 'Nama Guru' }}</h5>
+                            <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}?from=guru" class="fw-bold mb-2 text-decoration-none public-card-title">{{ $item->nama_guru ?? 'Nama Guru' }}</a>
                             @if (!empty($item->nip))
                                 <p class="text-muted small mb-2">NIP. {{ $item->nip }}</p>
                             @endif

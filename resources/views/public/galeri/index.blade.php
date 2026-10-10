@@ -1,4 +1,5 @@
 @extends('layouts.public_app')
+@section('nama_sekolah', $profilSekolah->nama_sekolah)
 @section('title', 'Galeri')
 @section('content')
 {{-- HEADER --}}

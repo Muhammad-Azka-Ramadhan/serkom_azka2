@@ -1,6 +1,6 @@
 @extends('layouts.public_app')
 
-@section('school_name', $profilSekolah->nama_sekolah)
+@section('nama_sekolah', $profilSekolah->nama_sekolah)
 
 @section('title', 'Berita')
 
@@ -90,29 +90,5 @@
     </div>
 </section>
 
-{{-- CTA --}}
-<section class="public-cta py-5">
-    <div class="container py-3">
-        <div class="row align-items-center g-4">
-            <div class="col-lg-8">
-                <span class="small fw-bold text-warning">
-                    INFORMASI SEKOLAH
-                </span>
-                <h2 class="fw-bold text-white mt-2 mb-2">
-                    {{ $profilSekolah->nama_sekolah }}
-                </h2>
-                <p class="text-white-50 mb-0">
-                    Temukan berbagai informasi mengenai
-                    sekolah, guru, siswa, kegiatan, dan
-                    dokumentasi sekolah.
-                </p>
-            </div>
-            <div class="col-lg-4 text-lg-end">
-                <a href="{{ route('public.profil') }}" class="btn btn-light px-4">
-                    Lihat Profil Sekolah
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+
 @endsection

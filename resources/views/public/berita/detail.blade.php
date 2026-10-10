@@ -1,8 +1,8 @@
 @extends('layouts.public_app')
 
-@section('school_name', $profilSekolah->nama_Sekolah)
+@section('nama_sekolah', $profilSekolah->nama_sekolah)
 
-@section('title', 'Detail Berita')
+@section('title', $berita->judul)
 
 @section('content')
 <div class="container py-5">

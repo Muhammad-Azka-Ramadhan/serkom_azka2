@@ -1,12 +1,16 @@
 @extends('layouts.public_app')
 
-@section('school_name', $profilSekolah->nama_sekolah)
-@section('title', 'Detail Guru')
+@section('nama_sekolah', $profilSekolah->nama_sekolah)
+
+@section('title', $guru->nama_guru)
 
 @section('content')
 
 <div class="container py-5">
-    <a href="{{ route('public.guru') }}" class="btn btn-outline-primary mb-4">
+    <a href="{{ request('from') === 'beranda' 
+        ? route('public.beranda')
+        : route('public.guru')}}"
+            class="btn btn-outline-primary mb-4">
         <i class="fas fa-arrow-left me-2"></i>
         Kembali
     </a>

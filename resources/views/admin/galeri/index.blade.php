@@ -76,10 +76,14 @@
                                 <td style="text-align: center" class="fw-semibold">{{ $item->judul }}</td>
                                 <td style="text-align: center">{{ $item->keterangan }}</td>
                                 <td style="text-align: center">
+                                    @if ($item->kategori == 'Video')
+                                        <video src="{{ asset('storage/' . $item->file) }}" class="table-image"></video>
+                                    @else
                                     <img
                                         src="{{ asset('storage/' . $item->file) }}"
                                         alt="{{ $item->judul }}"
                                         class="table-image">
+                                    @endif
                                 </td>
                                 <td style="text-align: center">{{ $item->kategori }}</td>
                                 <td style="text-align: center">{{ $item->tanggal }}</td>

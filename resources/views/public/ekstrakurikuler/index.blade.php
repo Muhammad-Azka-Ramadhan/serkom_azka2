@@ -50,7 +50,7 @@
                                 </div>
                             @endif
 
-                            <a href="{{ route('public.eskul.detail', Crypt::encrypt($item->id)) }}?from=berita" class="text-decoration-none">
+                            <a href="{{ route('public.eskul.detail', Crypt::encrypt($item->id)) }}?from=eskul" class="text-decoration-none">
                                 <h5 class="fw-bold mb-3 public-card-title">
                                     {{ $item->nama_eskul ?? 'Tanpa judul' }}
                                 </h5>

@@ -5,6 +5,12 @@
 @section('content')
 
 <div class="container-fluid py-4">
+    @session('success')
+        <h5 class="fw-bold mb-2">
+            {{ session('success') }}
+        </h5>
+    @endsession
+
     <div class="mb-4">
         <h3 class="fw-bold mb-1">Dashboard</h3>
         <p class="text-muted mb-0">Ringkasan data administrasi {{ $profilSekolah->nama_sekolah }}</p>

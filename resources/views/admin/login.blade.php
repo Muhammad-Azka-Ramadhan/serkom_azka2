@@ -33,11 +33,25 @@
                     Silakan masuk menggunakan akun administrator.
                 </p>
 
-                @if($errors->any())
+                @if ($errors->any())
                     <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-                        <i class="fa-solid fa-circle-exclamation me-2"></i>
-                        {{ $errors->first() }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        <strong>
+                            <i class="fa-solid fa-circle-exclamation me-1"></i>
+                            Terdapat kesalahan:
+                        </strong>
+
+                        <ul class="mb-0 mt-2">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert"
+                            aria-label="Close">
+                        </button>
                     </div>
                 @endif
 
@@ -54,15 +68,15 @@
                                 <i class="fa-regular fa-envelope"></i>
                             </span>
 
-                            <input type="email" id="email" name="email" class="form-control" value="{{ old('email') }}"
-                                placeholder="Masukkan email" autocomplete="email" required>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="Masukkan email" required>
                         </div>
 
-                        @error('email')
+                        {{-- @error('email')
                             <div class="text-danger small mt-1">
                                 {{ $message }}
                             </div>
-                        @enderror
+                        @enderror --}}
 
                     </div>
 
@@ -75,14 +89,14 @@
                             </span>
 
                             <input type="password" id="password" name="password" class="form-control"
-                                placeholder="Masukkan password" autocomplete="current-password" required>
+                                placeholder="Masukkan password" required>
                         </div>
 
-                        @error('password')
+                        {{-- @error('password')
                             <div class="text-danger small mt-1">
                                 {{ $message }}
                             </div>
-                        @enderror
+                        @enderror --}}
                     </div>
 
                     <button type="submit" class="btn btn-login">

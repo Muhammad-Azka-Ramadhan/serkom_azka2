@@ -307,7 +307,7 @@
             @forelse ($ekstrakurikuler->take(3) as $item)
                 <div class="col-md-6 col-lg-4">
                     <div class="card border-0 shadow-sm rounded-3 h-100 content-card overflow-hidden public-card">
-                        <a href="{{ route('public.eskul.detail', Crypt::encrypt($item->id)) }}">
+                        <a href="{{ route('public.eskul.detail', Crypt::encrypt($item->id)) }}?from=beranda">
                             @if (!empty($item->gambar) && Storage::disk('public')->exists($item->gambar))
                                 <img
                                     src="{{ asset('storage/' . $item->gambar) }}"
@@ -470,47 +470,50 @@
         <div class="row g-3">
             @forelse ($galeri->take(3) as $item)
                 <div class="col-6 col-md-4">
-                    <a href="{{ route('public.galeri', Crypt::encrypt($item->id)) }}?from=beranda"
-                        class="text-decoration-none">
-                        @if (!empty($item->file) && Storage::disk('public')->exists($item->file))
-                            @if ($item->kategori === 'Video')
-                            <video src="{{ asset('storage/' . $item->file) }}"
-                                class="card-img-top w-100"
-                                controls></video>
-                            @else
-                            <img
-                                src="{{ asset('storage/' . $item->file) }}"
-                                alt="Galeri {{ $profilSekolah->nama_sekolah }}"
-                                class="img-fluid w-100 rounded-3 object-fit-cover gallery-image"
-                                style="height: 240px;"
-                            >
-                            @endif
-                        @else
-                            <div class="bg-light d-flex align-items-center justify-content-center rounded-3" style="height: 240px;">
-                                <i class="fas fa-image fa-3x text-secondary"></i>
-                            </div>
-                        @endif
-                    </a>
-
-                    <div class="card-body p-4">
+                    <article class="card border-0 shadow-sm rounded-3 h-100 public-card">
                         <a href="{{ route('public.galeri.detail', Crypt::encrypt($item->id)) }}?from=beranda"
-                            class="text-decoration-none">
-                            <h5 class="fw-bold mb-2">
-                                {{ $item->judul }}
-                            </h5>
+                            class="text-decoration-none overflow-hidden">
+                            @if (!empty($item->file) && Storage::disk('public')->exists($item->file))
+                                @if ($item->kategori === 'Video')
+                                <video src="{{ asset('storage/' . $item->file) }}"
+                                    class="card-img-top w-100 public-card-image"
+                                    controls></video>
+                                @else
+                                <img
+                                    src="{{ asset('storage/' . $item->file) }}"
+                                    alt="Galeri {{ $profilSekolah->nama_sekolah }}"
+                                    class="img-fluid w-100 rounded-3 object-fit-cover public-card-image"
+                                    style="height: 240px;"
+                                >
+                                @endif
+                            @else
+                                <div class="bg-light d-flex align-items-center justify-content-center rounded-3" style="height: 240px;">
+                                    <i class="fas fa-image fa-3x text-secondary"></i>
+                                </div>
+                            @endif
                         </a>
-                        <p class="text-secondary mb-0">
-                            {{ Str::limit(strip_tags($item->keterangan), 50, '...') }}
-                        </p>
+
+                        <div class="card-body p-4">
+                            <a href="{{ route('public.galeri.detail', Crypt::encrypt($item->id)) }}?from=beranda"
+                                class="text-decoration-none">
+                                <h5 class="fw-bold mb-2 public-card-title">
+                                    {{ $item->judul }}
+                                </h5>
+                            </a>
+                            <p class="text-secondary mb-0">
+                                {{ Str::limit(strip_tags($item->keterangan), 50, '...') }}
+                            </p>
+                        </div>
                     </div>
-                </div>
+                    </article>
+
             @empty
                 <div class="col-12">
                     <div class="alert alert-light border text-center">Belum ada dokumentasi galeri.</div>
                 </div>
             @endforelse
         </div>
-        
+
         <div class="text-center mt-4 d-md-none">
             <a href="{{ route('public.galeri') }}" class="btn btn-outline-primary">Lihat Galeri</a>
         </div>

@@ -20,7 +20,7 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'password' => 'required'
             ],
-            
+
             [
                 'email.required' => 'Email wajib diisi',
                 'email.email' => 'Email tidak valid',
@@ -31,7 +31,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('admin.dashboard'))->with('success', 'Selamat datang kembali');
+            return redirect()->intended(route('admin.dashboard'))->with('success', 'Selamat datang kembali ' . Auth::user()->name . '!');
         }
 
         return back()->withErrors([

@@ -60,6 +60,52 @@ HERO
 </section>
 
 {{-- =========================================================
+SAMBUTAN KEPALA SEKOLAH
+========================================================= --}}
+<section class="py-5 bg-white">
+    <div class="container py-3">
+        <div class="row align-items-center g-5">
+
+            {{-- FOTO KEPALA SEKOLAH --}}
+            <div class="col-lg-4 text-center">
+                <div class="p-2 border rounded-4 shadow-sm d-inline-block">
+                    <img
+                        src="{{ asset('storage/' . $profilSekolah->foto_kepala_sekolah) }}"
+                        alt="Kepala Sekolah {{ $profilSekolah->nama_sekolah }}"
+                        class="img-fluid rounded-3"
+                        style="width: 320px; height: 380px; object-fit: cover;"
+                    >
+                </div>
+            </div>
+
+            {{-- ISI SAMBUTAN --}}
+            <div class="col-lg-8">
+                <span class="public-section-label">
+                    SAMBUTAN KEPALA SEKOLAH
+                </span>
+
+                <h2 class="fw-bold mt-2 mb-3">
+                    Selamat Datang di
+                    {{ $profilSekolah->nama_sekolah }}
+                </h2>
+
+                <p class="text-muted lh-lg">{{ $profilSekolah->sambutan_kepala_sekolah }}</p>
+
+                <div class="border-start border-4 border-primary ps-3">
+                    <div class="fw-bold text-card">
+                        {{ $profilSekolah->kepala_sekolah ?? 'Kepala Sekolah' }}
+                    </div>
+                    <small class="text-muted">
+                        Kepala Sekolah
+                    </small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{{-- =========================================================
 STATISTIK SEKOLAH
 ========================================================= --}}
 <section class="py-5 bg-light">
@@ -67,7 +113,7 @@ STATISTIK SEKOLAH
         <div class="row g-4">
             {{-- SISWA --}}
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card border-0 shadow-sm rounded-4 h-100 public-card">
                     <div class="card-body text-center p-4">
                         <div class="d-inline-flex align-items-center justify-content-center rounded-circle p-3 mb-3 statistic-icon-blue">
                             <i class="fas fa-users fs-3"></i>
@@ -80,7 +126,7 @@ STATISTIK SEKOLAH
 
             {{-- GURU --}}
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card border-0 shadow-sm rounded-4 h-100 public-card">
                     <div class="card-body text-center p-4">
                         <div class="d-inline-flex align-items-center justify-content-center rounded-circle p-3 mb-3 statistic-icon-green">
                             <i class="fas fa-chalkboard-teacher fs-3"></i>
@@ -93,7 +139,7 @@ STATISTIK SEKOLAH
 
             {{-- EKSTRAKURIKULER --}}
             <div class="col-md-4">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card border-0 shadow-sm rounded-4 h-100 public-card">
                     <div class="card-body text-center p-4">
                         <div class="d-inline-flex align-items-center justify-content-center rounded-circle p-3 mb-3 statistic-icon-yellow">
                             <i class="fas fa-star fs-3"></i>

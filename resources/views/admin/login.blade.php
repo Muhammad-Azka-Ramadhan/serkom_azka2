@@ -22,7 +22,7 @@
         <div class="login-card">
             {{-- HEADER --}}
             <div class="login-header">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo SMPN 1 Padakembang" class="login-logo">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo {{ $profilSekolah->nama_sekolah }}" class="login-logo">
                 <h4>Admin {{ $profilSekolah->nama_sekolah }}</h4>
                 <p>Sistem Informasi Administrasi Sekolah</p>
             </div>
@@ -85,7 +85,7 @@
                 <div class="login-footer">
                     <p>
                         &copy; {{ date('Y') }}
-                        <span>SMPN 1 Padakembang</span>
+                        <span>{{ $profilSekolah->nama_sekolah }}</span>
                     </p>
                 </div>
             </div>

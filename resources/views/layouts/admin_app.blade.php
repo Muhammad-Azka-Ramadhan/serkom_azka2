@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="utf-8">
-    <title>SMPN 1 Padakembang | @yield('title')</title>
+    <title>{{ $profilSekolah->nama_sekolah }} | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Sistem Administrasi SMP Negeri 1 Padakembang">
@@ -48,11 +48,11 @@
                         Storage::disk('public')->exists($profilSekolah->logo)
                     )
                         <img src="{{ asset('storage/' . $profilSekolah->logo) }}"
-                            alt="Logo SMPN 1 Padakembang"
+                            alt="Logo {{ $profilSekolah->nama_sekolah }}"
                             class="brand-logo">
                     @else
                         <img src="{{ asset('assets/images/logo.png') }}"
-                            alt="Logo SMPN 1 Padakembang"
+                            alt="Logo {{ $profilSekolah->nama_sekolah }}"
                             class="brand-logo">
                     @endif
 

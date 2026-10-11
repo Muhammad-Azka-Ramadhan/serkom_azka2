@@ -4,10 +4,10 @@
 
 @section('content')
 <div class="container-fluid py-4">
-    @session('error')
-        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+    @session('success')
+        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
             <i class="fa-solid fa-circle-check me-2"></i>
-            {{ session('error') }}
+            {{ session('success') }}
 
             <button
                 type="button"
@@ -17,7 +17,7 @@
             </button>
         </div>
     @endsession
-    
+
     {{-- HEADER --}}
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
@@ -59,12 +59,12 @@
                         @else
                             <img
                                 src="{{ asset('assets/images/logo_smp.png') }}"
-                                alt="Logo SMPN 1 Padakembang"
+                                alt="Logo {{ $profilSekolah->nama_sekolah }}"
                                 class="img-fluid mb-3"
                                 style="width: 130px; height: 130px; object-fit: contain;">
                         @endif
                         <h4 class="fw-bold mb-1">
-                            {{ $profilSekolah->nama_sekolah ?? 'SMPN 1 Padakembang' }}
+                            {{ $profilSekolah->nama_sekolah }}
                         </h4>
                         <p class="text-muted mb-0">
                             Sekolah Menengah Pertama Negeri
@@ -195,7 +195,7 @@
                     </h5>
 
                     <small class="text-muted">
-                        Dokumentasi SMPN 1 Padakembang
+                        Dokumentasi {{ $profilSekolah->nama_sekolah }}
                     </small>
                 </div>
             </div>
@@ -210,7 +210,7 @@
             @else
                 <img
                     src="{{ asset('assets/images/foto_smp.jpg') }}"
-                    alt="Foto SMPN 1 Padakembang"
+                    alt="Foto {{ $profilSekolah->nama_sekolah }}"
                     class="img-fluid rounded-3 w-100 profile-school-image">
             @endif
         </div>

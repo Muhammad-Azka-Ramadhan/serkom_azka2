@@ -43,14 +43,14 @@ class SiswaController extends Controller
         ]);
 
         $created = Siswa::create($validated);
-        return redirect()->route('admin.siswa.index');
+        return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil ditambahkan.');
     }
 
     public function edit($id) {
         try {
             $profilSekolah = ProfilSekolah::first();
             $siswa = Siswa::findOrFail(Crypt::decrypt($id));
-    
+
             return view('admin.siswa.edit', compact(
                 'siswa',
                 'profilSekolah'

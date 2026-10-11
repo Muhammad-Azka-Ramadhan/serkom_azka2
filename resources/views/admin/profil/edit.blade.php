@@ -240,8 +240,8 @@
                         </label>
                         @if ($profilSekolah->foto_kepala_sekolah && Storage::disk('public')->exists($profilSekolah->foto_kepala_sekolah))
                             <img
-                                src="{{ asset('storage/' . $profilSekolah->foto_kepala_sekolah) }}" 
-                                alt="Foto Kepala Sekolah" 
+                                src="{{ asset('storage/' . $profilSekolah->foto_kepala_sekolah) }}"
+                                alt="Foto Kepala Sekolah"
                                 class="profile-edit-photo"
                             >
                         @endif
@@ -249,9 +249,9 @@
                             File saat ini: <strong>{{ $profilSekolah->foto_kepala_sekolah }}</strong>
                         </div>
 
-                        <input 
-                            type="file" 
-                            name="foto_kepala_sekolah" 
+                        <input
+                            type="file"
+                            name="foto_kepala_sekolah"
                             id="foto_kepsek"
                             class="form-control"
                             accept="image/*"

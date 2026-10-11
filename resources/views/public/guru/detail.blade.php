@@ -7,7 +7,7 @@
 @section('content')
 
 <div class="container py-5">
-    <a href="{{ request('from') === 'beranda' 
+    <a href="{{ request('from') === 'beranda'
         ? route('public.beranda')
         : route('public.guru')}}"
             class="btn btn-outline-primary mb-4">
@@ -32,6 +32,7 @@
                 <div class="p-4 p-lg-5">
                     <span class="badge guru-badge mb-3">Guru</span>
                     <h2 class="fw-bold mb-4">{{ $guru->nama_guru }}</h2>
+                    <hr>
                     <div class="mb-4">
                         <small class="text-secondary d-block mb-1">NIP</small>
                         <div class="fw-semibold">{{ $guru->nip ?? '-' }}</div>

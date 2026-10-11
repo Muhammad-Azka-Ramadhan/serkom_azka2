@@ -16,7 +16,7 @@
 
             <p class="mb-0 public-ekskul-header-description">
                 Temukan berbagai kegiatan untuk mengembangkan bakat,
-                minat, dan kreativitas siswa SMPN 1 Padakembang.
+                minat, dan kreativitas siswa {{ $profilSekolah->nama_sekolah }}.
             </p>
         </div>
     </section>

@@ -6,7 +6,6 @@
 
 @section('content')
 
-{{-- HEADER HALAMAN --}}
 <section class="py-5 public-page-header">
     <div class="container py-4">
         <div class="text-center mx-auto" style="max-width: 750px;">
@@ -20,14 +19,12 @@
     </div>
 </section>
 
-{{-- DAFTAR BERITA --}}
 <section class="py-5 bg-light">
     <div class="container py-3">
         <div class="row g-4">
             @forelse ($berita as $item)
                 <div class="col-md-6 col-lg-4">
                     <article class="card border-0 shadow-sm rounded-4 h-100 public-card">
-                        {{-- FOTO --}}
                         <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}?from=berita" class="text-decoration-none overflow-hidden">
                             @if (!empty($item->gambar))
                                 <img
@@ -43,7 +40,6 @@
                             @endif
                         </a>
 
-                        {{-- ISI --}}
                         <div class="card-body p-4">
                             @if (!empty($item->tanggal))
                                 <div class="small text-secondary mb-2">
@@ -51,6 +47,7 @@
                                     {{ \Carbon\Carbon::parse($item->tanggal)->format('d M Y') }}
                                 </div>
                             @endif
+
                             <a href="{{ route('public.berita.detail', Crypt::encrypt($item->id)) }}?from=berita" class="text-decoration-none">
                                 <h5 class="fw-bold mb-3 public-card-title">
                                     {{ $item->judul ?? 'Tanpa judul' }}
@@ -72,6 +69,7 @@
                         <h4 class="fw-bold mb-2">
                             Belum Ada Berita
                         </h4>
+
                         <p class="text-secondary mb-0">
                             Belum ada berita atau informasi yang
                             dipublikasikan oleh sekolah.
@@ -81,7 +79,6 @@
             @endforelse
         </div>
 
-        {{-- PAGINATION --}}
         @if ($berita->hasPages())
             <div class="d-flex justify-content-center mt-5">
                 {{ $berita->links('pagination::bootstrap-5') }}
@@ -89,6 +86,4 @@
         @endif
     </div>
 </section>
-
-
 @endsection

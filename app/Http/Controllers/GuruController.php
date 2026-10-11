@@ -105,13 +105,13 @@ class GuruController extends Controller
         return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil dihapus');
     }
 
-    public function publicGuru() {
+    public function public() {
         $profilSekolah = ProfilSekolah::first();
         $guru = Guru::all();
         return view('public.guru.index', compact('profilSekolah', 'guru'));
     }
 
-    public function publicDetailGuru($id) {
+    public function showPublic($id) {
         try  {
             $profilSekolah = ProfilSekolah::first();
             $guru = Guru::find(Crypt::decrypt($id));

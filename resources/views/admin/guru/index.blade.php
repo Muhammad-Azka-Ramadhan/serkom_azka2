@@ -9,6 +9,7 @@
         <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
             <i class="fa-solid fa-circle-check me-2"></i>
             {{ session('success') }}
+
             <button
                 type="button"
                 class="btn-close"
@@ -31,36 +32,37 @@
             </button>
         </div>
     @endsession
+
     <div class="card border-0 shadow-sm">
-        {{-- Header --}}
         <div class="card-header bg-white border-0 px-4 pt-4 pb-3">
             <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <div>
                     <h4 class="fw-semibold mb-1">
                         Data Guru
                     </h4>
+
                     <p class="text-muted small mb-0">
                         Daftar guru {{ $profilSekolah->nama_sekolah }}
                     </p>
                 </div>
-                @if (Auth::user()->role === 'admin')
-                <a
-                    href="{{ route('admin.guru.create') }}"
-                    class="btn btn-add">
 
-                    <i class="fa-solid fa-plus me-1"></i>
-                    Tambah Guru
-                </a>      
+                @if (Auth::user()->role === 'admin')
+                    <a
+                        href="{{ route('admin.guru.create') }}"
+                        class="btn btn-add">
+
+                        <i class="fa-solid fa-plus me-1"></i>
+                        Tambah Guru
+                    </a>
                 @endif
             </div>
         </div>
-        {{-- Body --}}
+
         <div class="card-body px-4 pb-4">
             <div class="table-responsive">
                 <table
                     id="dataTable"
                     class="table table-hover table-bordered align-middle text-center w-100">
-
                     <thead class="text-capitalize">
                         <tr>
                             <th style="width: 5%; text-align: center;">No</th>
@@ -73,6 +75,7 @@
                             @endif
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach ($guru as $item)
                             <tr>
@@ -87,33 +90,33 @@
                                         class="table-image">
                                 </td>
                                 @if (Auth::user()->role === 'admin')
-                                <td style="text-align: center">
-                                    <div class="d-flex justify-content-center align-items-center gap-2">
-                                        {{-- Edit --}}
-                                        <a
-                                            href="{{ route('admin.guru.edit', Crypt::encrypt($item->id)) }}"
-                                            class="btn btn-sm btn-outline-primary">
+                                    <td style="text-align: center">
+                                        <div class="d-flex justify-content-center align-items-center gap-2">
+                                            {{-- Edit --}}
+                                            <a
+                                                href="{{ route('admin.guru.edit', Crypt::encrypt($item->id)) }}"
+                                                class="btn btn-sm btn-outline-primary">
 
-                                            <i class="fa-regular fa-pen-to-square"></i>
-                                        </a>
-                                        {{-- Delete --}}
-                                        <form
-                                            action="{{ route('admin.guru.destroy', Crypt::encrypt($item->id)) }}"
-                                            method="POST"
-                                            class="d-inline"
-                                            onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                <i class="fa-regular fa-pen-to-square"></i>
+                                            </a>
+                                            {{-- Delete --}}
+                                            <form
+                                                action="{{ route('admin.guru.destroy', Crypt::encrypt($item->id)) }}"
+                                                method="POST"
+                                                class="d-inline"
+                                                onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                                                @csrf
+                                                @method('DELETE')
 
-                                            @csrf
-                                            @method('DELETE')
-                                            <button
-                                                type="submit"
-                                                class="btn btn-sm btn-outline-danger">
+                                                <button
+                                                    type="submit"
+                                                    class="btn btn-sm btn-outline-danger">
 
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 @endif
                             </tr>
                         @endforeach

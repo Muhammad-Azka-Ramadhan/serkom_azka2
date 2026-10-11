@@ -6,16 +6,17 @@
 
 @section('content')
 
-{{-- HEADER HALAMAN --}}
 <section class="py-5 public-page-header">
     <div class="container py-4">
         <div class="text-center mx-auto">
             <span class="public-section-label ">
                 TENAGA PENDIDIK
             </span>
+
             <h1 class="display-5 fw-bold text-white mt-2 mb-3">
                 Guru {{ $profilSekolah->nama_sekolah }}
             </h1>
+
             <p class="text-white-50 mb-0">
                 Mengenal tenaga pendidik yang berperan dalam mendukung
                 proses pembelajaran dan perkembangan siswa.
@@ -24,14 +25,12 @@
     </div>
 </section>
 
-{{-- DAFTAR GURU --}}
 <section class="py-5">
     <div class="container">
         <div class="row g-4">
             @forelse ($guru as $item)
                 <div class="col-sm-6 col-lg-4 col-xl-3">
                     <div class="card border-0 shadow-sm h-100 overflow-hidden public-card">
-                        {{-- FOTO --}}
                         <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}" class="overflow-hidden">
                             @if (!empty($item->foto))
                                 <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama_guru ?? 'Foto Guru' }}" class="object-fit-cover w-100 public-card-image" style="height: 280px;">
@@ -41,15 +40,14 @@
                                 </div>
                             @endif
                         </a>
-                        {{-- INFORMASI --}}
                         <div class="card-body text-center p-4">
-                            <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}?from=guru" class="fw-bold mb-2 text-decoration-none public-card-title">{{ $item->nama_guru ?? 'Nama Guru' }}</a>
-                            @if (!empty($item->nip))
-                                <p class="text-muted small mb-2">NIP. {{ $item->nip }}</p>
-                            @endif
-                            @if (!empty($item->mapel))
-                                <span class="badge bg-primary-subtle text-primary">{{ $item->mapel }}</span>
-                            @endif
+                            <a href="{{ route('public.guru.detail', Crypt::encrypt($item->id)) }}?from=guru" class="fw-bold mb-2 text-decoration-none public-card-title">
+                                {{ $item->nama_guru ?? 'Nama Guru' }}
+                            </a>
+
+                            <p class="text-muted small mb-2">NIP. {{ $item->nip }}</p>
+
+                            <span class="badge bg-primary-subtle text-primary">{{ $item->mapel }}</span>
                         </div>
                     </div>
                 </div>

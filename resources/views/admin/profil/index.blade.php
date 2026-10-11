@@ -3,6 +3,7 @@
 @section('title', 'Profil Sekolah')
 
 @section('content')
+
 <div class="container-fluid py-4">
     @session('success')
         <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
@@ -18,36 +19,36 @@
         </div>
     @endsession
 
-    {{-- HEADER --}}
     <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
         <div>
             <div class="text-primary small fw-semibold mb-1">
                 <i class="fa-solid fa-school me-1"></i>
                 ADMINISTRASI SEKOLAH
             </div>
+
             <h3 class="fw-bold text-dark mb-1">
                 Profil Sekolah
             </h3>
+
             <p class="text-muted mb-0">
                 Informasi lengkap mengenai {{ $profilSekolah->nama_sekolah }}
             </p>
         </div>
-        @if (Auth::user()->role === 'admin')
-        <a
-            href="{{ route('admin.profil.edit', Crypt::encrypt($profilSekolah->id)) }}"
-            class="btn btn-add px-3">
 
-            <i class="fa-solid fa-pen-to-square me-1"></i>
-            Edit Profil
-        </a>
+        @if (Auth::user()->role === 'admin')
+            <a
+                href="{{ route('admin.profil.edit', Crypt::encrypt($profilSekolah->id)) }}"
+                class="btn btn-add px-3">
+
+                <i class="fa-solid fa-pen-to-square me-1"></i>
+                Edit Profil
+            </a>
         @endif
     </div>
 
-    {{-- IDENTITAS SEKOLAH --}}
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-body p-0">
             <div class="row g-0">
-                {{-- LOGO --}}
                 <div class="col-lg-4">
                     <div class="h-100 d-flex flex-column justify-content-center align-items-center text-center bg-light p-4">
                         @if (!empty($profilSekolah->logo) && Storage::disk('public')->exists($profilSekolah->logo))
@@ -63,81 +64,84 @@
                                 class="img-fluid mb-3"
                                 style="width: 130px; height: 130px; object-fit: contain;">
                         @endif
+
                         <h4 class="fw-bold mb-1">
                             {{ $profilSekolah->nama_sekolah }}
                         </h4>
+
                         <p class="text-muted mb-0">
                             Sekolah Menengah Pertama Negeri
                         </p>
                     </div>
                 </div>
 
-                {{-- INFORMASI SEKOLAH --}}
                 <div class="col-lg-8">
                     <div class="p-4">
                         <div class="d-flex align-items-center gap-2 mb-4">
                             <div class="text-primary">
                                 <i class="fa-solid fa-circle-info"></i>
                             </div>
+
                             <h5 class="fw-bold mb-0">
                                 Informasi Sekolah
                             </h5>
                         </div>
+
                         <div class="row g-3">
-                            {{-- Nama Sekolah --}}
                             <div class="col-md-6">
                                 <div class="border rounded-3 p-3 h-100">
                                     <small class="text-muted d-block mb-1">
                                         Nama Sekolah
                                     </small>
+
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->nama_sekolah ?? '-' }}
                                     </span>
                                 </div>
                             </div>
 
-                            {{-- Kepala Sekolah --}}
                             <div class="col-md-6">
                                 <div class="border rounded-3 p-3 h-100">
                                     <small class="text-muted d-block mb-1">
                                         Kepala Sekolah
                                     </small>
+
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->kepala_sekolah ?? '-' }}
                                     </span>
                                 </div>
                             </div>
 
-                            {{-- NPSN --}}
                             <div class="col-md-6">
                                 <div class="border rounded-3 p-3 h-100">
                                     <small class="text-muted d-block mb-1">
                                         NPSN
                                     </small>
+
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->npsn ?? '-' }}
                                     </span>
                                 </div>
                             </div>
 
-                            {{-- Tahun Berdiri --}}
                             <div class="col-md-6">
                                 <div class="border rounded-3 p-3 h-100">
                                     <small class="text-muted d-block mb-1">
                                         Tahun Berdiri
                                     </small>
+
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->tahun_berdiri ?? '-' }}
                                     </span>
                                 </div>
                             </div>
 
-                            {{-- Kontak --}}
                             <div class="col-md-6">
                                 <div class="border rounded-3 p-3 h-100">
                                     <small class="text-muted d-block mb-1">
                                         Kontak
                                     </small>
+
                                     <span class="fw-semibold">
                                         {{ $profilSekolah->kontak ?? '-' }}
                                     </span>
@@ -150,7 +154,6 @@
         </div>
     </div>
 
-    {{-- ALAMAT --}}
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-header bg-white border-bottom p-4">
             <div class="d-flex align-items-center gap-3">
@@ -181,7 +184,6 @@
         </div>
     </div>
 
-    {{-- FOTO SEKOLAH --}}
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-header bg-white border-bottom p-4">
             <div class="d-flex align-items-center gap-3">
@@ -216,7 +218,6 @@
         </div>
     </div>
 
-    {{-- VISI & MISI --}}
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-header bg-white border-bottom p-4">
             <div class="d-flex align-items-center gap-3">
@@ -238,7 +239,6 @@
 
         <div class="card-body p-4">
             <div class="row g-4">
-                {{-- VISI --}}
                 <div class="col-lg-6">
                     <div class="bg-light border rounded-3 p-4 h-100">
                         <h6 class="fw-bold mb-3">
@@ -252,7 +252,6 @@
                     </div>
                 </div>
 
-                {{-- MISI --}}
                 <div class="col-lg-6">
                     <div class="bg-light border rounded-3 p-4 h-100">
                         <h6 class="fw-bold mb-3">
@@ -269,7 +268,6 @@
         </div>
     </div>
 
-    {{-- DESKRIPSI --}}
     <div class="card border-0 shadow-sm mb-4">
         <div class="card-header bg-white border-bottom p-4">
             <div class="d-flex align-items-center gap-3">

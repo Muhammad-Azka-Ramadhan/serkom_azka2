@@ -301,7 +301,7 @@ body {
 .public-card {
     background-color: var(--card-bg);
     border-color: var(--border);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .public-card:hover {
@@ -311,7 +311,7 @@ body {
 
 /* HOVER GAMBAR CARD */
 .public-card .public-card-image {
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
 }
 
 .public-card:hover .public-card-image {

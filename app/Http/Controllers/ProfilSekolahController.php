@@ -91,7 +91,7 @@ class ProfilSekolahController extends Controller
         return redirect()->route('admin.profil.index')->with('success', 'Profil sekolah behasil diperbarui');
     }
 
-    public function publicProfil_sekolah() {
+    public function public() {
         $profilSekolah = ProfilSekolah::first();
         return view('public.profil', compact('profilSekolah'));
     }

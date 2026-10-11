@@ -30,7 +30,7 @@ class GaleriController extends Controller
     public function store(Request $request) {
         $validated = $request->validate([
             'judul' => 'required|string|max:50',
-            'kategori' => 'required|in:foto,video',
+            'kategori' => 'required|in:Foto,Video',
             'tanggal' => 'required|date',
             'keterangan' => 'required|string',
             'file' => 'required|file|mimes:jpeg,png,jpg,mp4|max:10240'
@@ -110,9 +110,20 @@ class GaleriController extends Controller
         return redirect()->route('admin.galeri.index')->with('success', 'Data berhasil dihapus.');
     }
 
-    public function publicGaleri() {
+    public function public() {
         $profilSekolah = ProfilSekolah::first();
-        $galeri = Galeri::latest('tanggal')->get();
+        $galeri = Galeri::latest('tanggal')->paginate(6);
         return view('public.galeri.index', compact('profilSekolah', 'galeri'));
+    }
+
+    public function showPublic($id) {
+        try {
+            $profilSekolah = ProfilSekolah::first();
+            $galeri = Galeri::findOrFail(Crypt::decrypt($id));
+            return view('public.galeri.detail', compact('profilSekolah', 'galeri'));
+        }
+        catch (Exception $e) {
+            return redirect()->route('public.galeri');
+        }
     }
 }

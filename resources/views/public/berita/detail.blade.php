@@ -5,10 +5,10 @@
 @section('title', $berita->judul)
 
 @section('content')
+
 <div class="container py-5">
-    {{-- TOMBOL KEMBALI --}}
     <div class="mb-4">
-        <a href="{{ request('from') === 'beranda' 
+        <a href="{{ request('from') === 'beranda'
             ? route('public.beranda')
             : route('public.berita') }}"
            class="btn btn-outline-primary">
@@ -17,9 +17,7 @@
         </a>
     </div>
 
-    {{-- ARTIKEL BERITA --}}
     <article class="card border-0 shadow-sm overflow-hidden">
-        {{-- FOTO BERITA --}}
         @if (!empty($berita->gambar))
             <img
                 src="{{ asset('storage/' . $berita->gambar) }}"
@@ -34,9 +32,7 @@
             </div>
         @endif
 
-        {{-- ISI ARTIKEL --}}
         <div class="card-body p-4 p-md-5">
-            {{-- TANGGAL --}}
             @if (!empty($berita->tanggal))
                 <div class="text-muted mb-3">
                     <i class="bi bi-calendar3 me-1"></i>
@@ -51,12 +47,10 @@
                 </div>
             @endif
 
-            {{-- JUDUL --}}
             <h1 class="fw-bold mb-4">
                 {{ $berita->judul ?? 'Tanpa judul' }}
             </h1>
 
-            {{-- ISI BERITA --}}
             <div class="fs-5 lh-lg text-dark">
                 {!! nl2br(e($berita->isi)) !!}
             </div>

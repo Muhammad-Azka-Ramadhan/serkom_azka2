@@ -4,49 +4,27 @@
     <meta charset="utf-8">
     <title>{{ $profilSekolah->nama_sekolah }} | @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description"
-        content="Sistem Administrasi SMP Negeri 1 Padakembang">
+    <meta name="description" content="Sistem Administrasi SMP Negeri 1 Padakembang">
     <link rel="stylesheet" href="{{ asset('assets/dist/css/bootstrap.min.css') }}">
-    {{-- Google Font --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    {{-- Font Awesome --}}
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet"
         href="{{ asset('assets/css/fontawesome.min.css') }}">
-    {{-- DataTables --}}
-    <link rel="stylesheet"
-        href="{{ asset('assets/datatables/css/datatables.css') }}">
-    {{-- CUSTOM CSS --}}
-    <link rel="stylesheet"
-        href="{{ asset('assets/css/custom/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/datatables/css/datatables.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom/admin.css') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('storage' . $profilSekolah->logo) }}">
     @stack('styles')
 </head>
 
 <body>
-
-    {{-- ==========================================
-         PAGE WRAPPER
-    =========================================== --}}
     <div class="admin-wrapper">
-        {{-- ==========================================
-             MOBILE OVERLAY
-        =========================================== --}}
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-        {{-- ==========================================
-             SIDEBAR
-        =========================================== --}}
         <aside class="admin-sidebar" id="adminSidebar">
-            {{-- LOGO --}}
             <div class="sidebar-brand">
                 <a href="{{ route('admin.dashboard') }}" class="brand-link">
-                    @if (
-                        !empty($profilSekolah->logo) &&
-                        Storage::disk('public')->exists($profilSekolah->logo)
-                    )
+                    @if (!empty($profilSekolah->logo) && Storage::disk('public')->exists($profilSekolah->logo))
                         <img src="{{ asset('storage/' . $profilSekolah->logo) }}"
                             alt="Logo {{ $profilSekolah->nama_sekolah }}"
                             class="brand-logo">
@@ -62,10 +40,8 @@
                 </a>
             </div>
 
-            {{-- SIDEBAR MENU --}}
             <nav class="sidebar-nav">
                 <ul class="sidebar-menu">
-                    {{-- Dashboard --}}
                     <li class="{{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                         <a href="{{ route('admin.dashboard') }}">
                             <span class="menu-icon">
@@ -78,7 +54,6 @@
                         </a>
                     </li>
 
-                    {{-- Siswa --}}
                     <li class="{{ request()->routeIs('admin.siswa.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.siswa.index') }}">
                             <span class="menu-icon">
@@ -91,7 +66,6 @@
                         </a>
                     </li>
 
-                    {{-- Guru --}}
                     <li class="{{ request()->routeIs('admin.guru.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.guru.index') }}">
                             <span class="menu-icon">
@@ -104,7 +78,6 @@
                         </a>
                     </li>
 
-                    {{-- Galeri --}}
                     <li class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.galeri.index') }}">
                             <span class="menu-icon">
@@ -117,7 +90,6 @@
                         </a>
                     </li>
 
-                    {{-- Berita --}}
                     <li class="{{ request()->routeIs('admin.berita.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.berita.index') }}">
                             <span class="menu-icon">
@@ -130,7 +102,6 @@
                         </a>
                     </li>
 
-                    {{-- Ekstrakurikuler --}}
                     <li class="{{ request()->routeIs('admin.eskul.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.eskul.index') }}">
                             <span class="menu-icon">
@@ -143,7 +114,6 @@
                         </a>
                     </li>
 
-                    {{-- Profil Sekolah --}}
                     <li class="{{ request()->routeIs('admin.profil.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.profil.index') }}">
                             <span class="menu-icon">
@@ -156,32 +126,25 @@
                         </a>
                     </li>
 
-                    {{-- Data Pengelola --}}
-                    <li class="{{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
-                        <a href="{{ route('admin.user.index') }}">
-                            <span class="menu-icon">
-                                <i class="fa-solid fa-users"></i>
-                            </span>
-
-                            <span class="menu-text">
-                                Data Pengelola
-                            </span>
-                        </a>
-                    </li>
+                    @if (Auth::user()->role == 'admin')
+                        <li class="{{ request()->routeIs('admin.user.*') ? 'active' : '' }}">
+                            <a href="{{ route('admin.user.index') }}">
+                                <span class="menu-icon">
+                                    <i class="fa-solid fa-users"></i>
+                                </span>
+                                <span class="menu-text">
+                                    Data Pengelola
+                                </span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             </nav>
         </aside>
 
-        {{-- ==========================================
-             MAIN AREA
-        =========================================== --}}
         <div class="admin-main" id="adminMain">
-            {{-- ==========================================
-                 HEADER
-            =========================================== --}}
             <header class="admin-header">
                 <div class="header-left">
-                    {{-- Sidebar Toggle --}}
                     <button
                         type="button"
                         class="sidebar-toggle"
@@ -191,30 +154,13 @@
                         <i class="fa-solid fa-bars"></i>
                     </button>
 
-                    {{-- Page Title --}}
                     <div class="header-title">
                         <h1>
                             @yield('title')
                         </h1>
-
-                        {{-- Breadcrumb --}}
-                        {{-- <div class="breadcrumb">
-                           <a href="{{ route('admin.dashboard') }}">
-                                Home
-                            </a>
-
-                            <span>/</span>
-
-                            <span>
-                                @yield('title')
-                            </span>
-                        </div> --}}
                     </div>
                 </div>
 
-                {{-- ==========================================
-                     ADMIN PROFILE
-                =========================================== --}}
                 <div class="admin-profile-wrapper">
                     <input type="checkbox" id="profileToggle" class="profile-checkbox">
 
@@ -241,16 +187,10 @@
                 </div>
             </header>
 
-            {{-- ==========================================
-                 CONTENT
-            =========================================== --}}
             <main class="admin-content" id="main-content">
                 @yield('content')
             </main>
 
-            {{-- ==========================================
-                 FOOTER
-            =========================================== --}}
             <footer class="admin-footer">
                 <p>
                     &copy; 2026 {{ $profilSekolah->nama_sekolah . '.' }}
@@ -262,20 +202,11 @@
 
     <script src="{{ asset('assets/dist/js/bootstrap.bundle.min.js') }}"></script>
 
-    {{-- ==========================================
-         JQUERY
-    =========================================== --}}
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-    {{-- ==========================================
-         DATATABLES
-    =========================================== --}}
     <script src="{{ asset('assets/datatables/js/datatables.js') }}"></script>
     <script src="{{ asset('assets/datatables/js/datatables.min.js') }}"></script>
 
-    {{-- ==========================================
-         CUSTOM JS
-    =========================================== --}}
     <script src="{{ asset('assets/js/custom/admin.js') }}"></script>
 
     <script>

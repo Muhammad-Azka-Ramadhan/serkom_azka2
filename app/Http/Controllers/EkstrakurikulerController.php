@@ -113,7 +113,7 @@ class EkstrakurikulerController extends Controller
         return redirect()->route('admin.eskul.index')->with('success', 'Data berhasil dihapus');
     }
 
-    public function publicEkstrakurikuler() {
+    public function public() {
         $profilSekolah = ProfilSekolah::first();
         $ekstrakurikuler = Ekstrakurikuler::paginate(3);
         $guru = Guru::all();

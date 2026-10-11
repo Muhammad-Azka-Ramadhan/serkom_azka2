@@ -63,7 +63,7 @@ class BeritaController extends Controller
             $profilSekolah = ProfilSekolah::first();
             $berita = Berita::findOrFail(Crypt::decrypt($id));
             $user = User::all();
-    
+
             return view('admin.berita.edit', compact('user', 'berita', 'profilSekolah'));
         }
         catch (Exception $e){
@@ -111,7 +111,7 @@ class BeritaController extends Controller
         return redirect()->route('admin.berita.index')->with('success', 'Data berhasil dihapus.');
     }
 
-    public function publicBerita() {
+    public function public() {
         $profilSekolah = ProfilSekolah::first();
         $berita = Berita::latest('tanggal')->paginate(6);
 
@@ -121,14 +121,14 @@ class BeritaController extends Controller
         ));
     }
 
-    public function publicDetailBerita($id) {
+    public function showPublic($id) {
         try {
             $profilSekolah = ProfilSekolah::first();
             $berita = Berita::findOrFail(Crypt::decrypt($id));
             return view('public.berita.detail', compact('berita', 'profilSekolah'));
         }
         catch (Exception $e) {
-            return redirect()->route('public.berita')->with('error', 'Berita tidak ditemukan.');
+            return redirect()->route('public.berita');
         }
     }
 }

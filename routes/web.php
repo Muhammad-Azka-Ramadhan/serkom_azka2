@@ -23,27 +23,29 @@ Route::middleware('guest')->group(function () {
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [DashboardController::class, 'publicBeranda'])->name('public.beranda');
-Route::get('/profil', [ProfilSekolahController::class, 'publicProfil_sekolah'])->name('public.profil');
+Route::get('/profil', [ProfilSekolahController::class, 'public'])->name('public.profil');
 
 Route::prefix('ekstrakurikuler')->group(function () {
-    Route::get('/', [EkstrakurikulerController::class, 'publicEkstrakurikuler'])->name('public.eskul');
+    Route::get('/', [EkstrakurikulerController::class, 'public'])->name('public.eskul');
     Route::get('/detail/{id}', [EkstrakurikulerController::class, 'showPublic'])->name('public.eskul.detail');
 });
 
-Route::get('/galeri', [GaleriController::class, 'publicGaleri'])->name('public.galeri');
+Route::prefix('galeri')->group(function () {
+    Route::get('/', [GaleriController::class, 'public'])->name('public.galeri');
+    Route::get('/detail{id}', [GaleriController::class, 'showPublic'])->name('public.galeri.detail');
+});
 
 Route::prefix('/guru')->group(function () {
-    Route::get('/', [GuruController::class, 'publicGuru'])->name('public.guru');
-    Route::get('/detail/{id}', [GuruController::class, 'publicDetailGuru'])->name('public.guru.detail');
+    Route::get('/', [GuruController::class, 'public'])->name('public.guru');
+    Route::get('/detail/{id}', [GuruController::class, 'showPublic'])->name('public.guru.detail');
 });
 
 Route::prefix('/berita')->group(function () {
-    Route::get('/', [BeritaController::class, 'publicBerita'])->name('public.berita');
-    Route::get('/detail/{id}', [BeritaController::class, 'publicDetailBerita'])->name('public.berita.detail');
+    Route::get('/', [BeritaController::class, 'public'])->name('public.berita');
+    Route::get('/detail/{id}', [BeritaController::class, 'showPublic'])->name('public.berita.detail');
 });
 
 Route::middleware('auth')->prefix('admin')->group(function () {
-
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
     Route::prefix('/galeri')->group(function () {
@@ -91,7 +93,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::post('/store', [GuruController::class, 'store'])->name('admin.guru.store');
             Route::get('/edit/{id}', [GuruController::class, 'edit'])->name('admin.guru.edit');
             Route::put('/update/{id}', [GuruController::class, 'update'])->name('admin.guru.update');
-            Route::delete('/{id}', [GuruController::class, 'destroy'])->name('admin.guru.destroy'); 
+            Route::delete('/{id}', [GuruController::class, 'destroy'])->name('admin.guru.destroy');
         });
     });
 
@@ -99,7 +101,7 @@ Route::middleware('auth')->prefix('admin')->group(function () {
         Route::get('/', [ProfilSekolahController::class, 'index'])->name('admin.profil.index');
         Route::middleware('role:admin')->group(function () {
             Route::get('/edit/{id}', [ProfilSekolahController::class, 'edit'])->name('admin.profil.edit');
-            Route::put('/{id}', [ProfilSekolahController::class, 'update'])->name('admin.profil.update'); 
+            Route::put('/{id}', [ProfilSekolahController::class, 'update'])->name('admin.profil.update');
         });
     });
     Route::middleware('role:admin')->group(function () {
@@ -110,6 +112,6 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
             Route::put('/update/{id}', [UserController::class, 'update'])->name('admin.user.update');
             Route::delete('/destroy/{id}', [UserController::class, 'destroy'])->name('admin.user.destroy');
-        }); 
+        });
     });
-}); 
+});

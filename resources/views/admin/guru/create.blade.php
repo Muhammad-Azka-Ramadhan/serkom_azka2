@@ -5,11 +5,8 @@
 @section('content')
 
 <div class="container-fluid py-4">
-
-    {{-- Error Validation --}}
     @if ($errors->any())
         <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
-
             <strong>
                 <i class="fa-solid fa-circle-exclamation me-1"></i>
                 Terdapat kesalahan:
@@ -27,16 +24,11 @@
                 data-bs-dismiss="alert"
                 aria-label="Close">
             </button>
-
         </div>
     @endif
 
-    {{-- Card --}}
     <div class="card border-0 shadow-sm">
-
-        {{-- Header --}}
         <div class="card-header bg-white border-0 px-4 pt-4">
-
             <h4 class="fw-semibold mb-1">
                 Tambah Guru
             </h4>
@@ -44,24 +36,17 @@
             <p class="text-muted small mb-0">
                 Tambahkan data guru baru ke dalam sistem.
             </p>
-
         </div>
 
-        {{-- Body --}}
         <div class="card-body px-4 pb-4">
-
             <form
                 action="{{ route('admin.guru.store') }}"
                 method="POST"
                 enctype="multipart/form-data">
-
                 @csrf
 
                 <div class="row g-4">
-
-                    {{-- Nama --}}
                     <div class="col-md-6">
-
                         <label for="nama" class="form-label fw-semibold">
                             Nama Guru
                         </label>
@@ -71,14 +56,11 @@
                             name="nama_guru"
                             id="nama"
                             class="form-control"
-                            value="{{ old('nama_guru') }}"
+                            value=""
                             placeholder="Masukkan nama guru">
-
                     </div>
 
-                    {{-- NIP --}}
                     <div class="col-md-6">
-
                         <label for="nip" class="form-label fw-semibold">
                             NIP
                         </label>
@@ -88,14 +70,11 @@
                             name="nip"
                             id="nip"
                             class="form-control"
-                            value="{{ old('nip') }}"
+                            value=""
                             placeholder="Masukkan NIP">
-
                     </div>
 
-                    {{-- Mapel --}}
                     <div class="col-md-6">
-
                         <label for="mapel" class="form-label fw-semibold">
                             Mata Pelajaran
                         </label>
@@ -105,14 +84,11 @@
                             name="mapel"
                             id="mapel"
                             class="form-control"
-                            value="{{ old('mapel') }}"
+                            value=""
                             placeholder="Masukkan mata pelajaran">
-
                     </div>
 
-                    {{-- Foto --}}
                     <div class="col-md-6">
-
                         <label for="foto" class="form-label fw-semibold">
                             Foto
                         </label>
@@ -126,21 +102,13 @@
                         <div class="form-text">
                             Pilih foto guru yang akan digunakan.
                         </div>
-
                     </div>
-
                 </div>
 
-                {{-- Button --}}
                 <div class="d-flex gap-2 mt-4 pt-3 border-top">
-
-                    <button
-                        type="submit"
-                        class="btn btn-simpan px-4">
-
+                    <button type="submit" class="btn btn-simpan px-4">
                         <i class="fa-solid fa-save me-1"></i>
                         Simpan
-
                     </button>
 
                     <a
@@ -149,17 +117,10 @@
 
                         <i class="fa-solid fa-arrow-left me-1"></i>
                         Kembali
-
                     </a>
-
                 </div>
-
             </form>
-
         </div>
-
     </div>
-
 </div>
-
 @endsection

@@ -286,7 +286,7 @@ button {
 }
 
 /* =========================================================
-   9. HEADER TITLE & BREADCRUMB
+   9. HEADER TITLE
    ========================================================= */
 
 .header-title {
@@ -304,28 +304,6 @@ button {
     font-size: 21px;
     font-weight: 500;
     line-height: 1;
-}
-
-.breadcrumb {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-
-    color: #6B7785;
-    font-size: 13px;
-    white-space: nowrap;
-}
-
-.breadcrumb a {
-    color: var(--primary);
-}
-
-.breadcrumb a:hover {
-    color: var(--primary-dark);
-}
-
-.breadcrumb span:nth-child(2) {
-    color: #B1BAC4;
 }
 
 /* =========================================================
@@ -806,10 +784,6 @@ body.sidebar-collapsed .menu-icon {
 
     .header-title h1 {
         font-size: 17px;
-    }
-
-    .breadcrumb {
-        display: none;
     }
 
     .admin-profile span {

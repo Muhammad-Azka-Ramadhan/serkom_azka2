@@ -29,7 +29,10 @@ class BeritaController extends Controller
     public function create() {
         $profilSekolah = ProfilSekolah::first();
         $user = User::all();
-        return view('admin.berita.create', compact('user', 'profilSekolah'));
+        return view('admin.berita.create', compact(
+            'user',
+            'profilSekolah'
+        ));
     }
 
     public function store(Request $request) {
@@ -64,7 +67,11 @@ class BeritaController extends Controller
             $berita = Berita::findOrFail(Crypt::decrypt($id));
             $user = User::all();
 
-            return view('admin.berita.edit', compact('user', 'berita', 'profilSekolah'));
+            return view('admin.berita.edit', compact(
+                'user',
+                'berita',
+                'profilSekolah'
+            ));
         }
         catch (Exception $e){
             return redirect()->route('admin.berita.index')->with('error', 'Berita tidak ditemukan.');
@@ -125,7 +132,10 @@ class BeritaController extends Controller
         try {
             $profilSekolah = ProfilSekolah::first();
             $berita = Berita::findOrFail(Crypt::decrypt($id));
-            return view('public.berita.detail', compact('berita', 'profilSekolah'));
+            return view('public.berita.detail', compact(
+                'berita',
+                'profilSekolah'
+            ));
         }
         catch (Exception $e) {
             return redirect()->route('public.berita');

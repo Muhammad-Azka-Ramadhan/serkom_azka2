@@ -2,10 +2,10 @@
 <html lang="id">
 <head>
     <meta charset="utf-8">
-    <title>Login - Admin | {{ $profilSekolah->nama_sekolah }}</title>
+    <title>Login | {{ $profilSekolah->nama_sekolah }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Halaman login admin SMPN 1 Padakembang">
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('storage/' . $profilSekolah->logo) }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/typography.css') }}">
@@ -69,15 +69,8 @@
                             </span>
 
                             <input type="email" id="email" name="email" class="form-control"
-                                placeholder="Masukkan email" required>
+                                placeholder="Masukkan email">
                         </div>
-
-                        {{-- @error('email')
-                            <div class="text-danger small mt-1">
-                                {{ $message }}
-                            </div>
-                        @enderror --}}
-
                     </div>
 
                     <div class="mb-4">
@@ -89,14 +82,8 @@
                             </span>
 
                             <input type="password" id="password" name="password" class="form-control"
-                                placeholder="Masukkan password" required>
+                                placeholder="Masukkan password">
                         </div>
-
-                        {{-- @error('password')
-                            <div class="text-danger small mt-1">
-                                {{ $message }}
-                            </div>
-                        @enderror --}}
                     </div>
 
                     <button type="submit" class="btn btn-login">
@@ -108,7 +95,9 @@
                 <div class="login-footer">
                     <p>
                         &copy; {{ date('Y') }}
-                        <span>{{ $profilSekolah->nama_sekolah }}</span>
+                        <a href="{{ route('public.beranda') }}">
+                            <span>{{ $profilSekolah->nama_sekolah }}</span>
+                        </a>
                     </p>
                 </div>
             </div>

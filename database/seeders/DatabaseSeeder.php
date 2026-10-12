@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         // User::factory(10)->create();
 
         User::factory()->create([
@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
             ProfilSekolahSeeder::class,
             EkstrakurikulerSeeder::class,
             BeritaSeeder::class,
-            GaleriSeeder::class
+            GaleriSeeder::class,
+            MapelSeeder::class
         ]);
     }
 }

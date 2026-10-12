@@ -89,4 +89,10 @@ class SiswaController extends Controller
 
         return redirect()->route('admin.siswa.index')->with('success', 'Data siswa berhasil dihapus');
     }
+
+    public function public() {
+        $siswa = Siswa::paginate(3);
+        $profilSekolah = ProfilSekolah::first();
+        return view('public.siswa.index', compact('siswa', 'profilSekolah'));
+    }
 }

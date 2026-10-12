@@ -47,7 +47,7 @@
 
                             <p class="text-muted small mb-2">NIP. {{ $item->nip }}</p>
 
-                            <span class="badge bg-primary-subtle text-primary">{{ $item->mapel }}</span>
+                            <span class="badge bg-primary-subtle text-primary">{{ $item->mapel->nama_mapel }}</span>
                         </div>
                     </div>
                 </div>

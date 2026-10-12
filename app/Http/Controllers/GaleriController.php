@@ -113,14 +113,20 @@ class GaleriController extends Controller
     public function public() {
         $profilSekolah = ProfilSekolah::first();
         $galeri = Galeri::latest('tanggal')->paginate(6);
-        return view('public.galeri.index', compact('profilSekolah', 'galeri'));
+        return view('public.galeri.index', compact(
+            'profilSekolah',
+            'galeri'
+        ));
     }
 
     public function showPublic($id) {
         try {
             $profilSekolah = ProfilSekolah::first();
             $galeri = Galeri::findOrFail(Crypt::decrypt($id));
-            return view('public.galeri.detail', compact('profilSekolah', 'galeri'));
+            return view('public.galeri.detail', compact(
+                'profilSekolah',
+                'galeri'
+            ));
         }
         catch (Exception $e) {
             return redirect()->route('public.galeri');

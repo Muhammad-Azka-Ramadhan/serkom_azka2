@@ -16,22 +16,22 @@ class GuruSeeder extends Seeder
         //
         Guru::create([
             'nama_guru' => 'Cecep Cepi',
+            // 'id_mapel' => 1,
             'nip' => '1010101010',
-            'mapel' => 'Bahasa Indonesia',
             'foto' => ''
         ]);
-        
+
         Guru::create([
             'nama_guru' => 'Reni Nur',
+            // 'id_mapel' => 2,
             'nip' => '2020202021',
-            'mapel' => 'Matematika',
             'foto' => ''
         ]);
-        
+
         Guru::create([
             'nama_guru' => 'Dedeh Rokayah',
+            // 'id_mapel' => 3,
             'nip' => '2020202023',
-            'mapel' => 'Bahasa Inggris',
             'foto' => ''
         ]);
     }

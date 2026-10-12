@@ -14,4 +14,8 @@ class Guru extends Model
     public function ekstrakurikuler() {
         return $this->hasMany(Ekstrakurikuler::class, 'id_guru', 'id');
     }
+
+    public function mapel() {
+        return $this->belongsTo(Mapel::class, 'id_mapel', 'id');
+    }
 }

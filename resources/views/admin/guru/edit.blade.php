@@ -81,13 +81,13 @@
                             Mata Pelajaran
                         </label>
 
-                        <input
-                            type="text"
-                            name="mapel"
-                            id="mapel"
-                            class="form-control"
-                            value="{{ old('mapel', $guru->mapel) }}"
-                            placeholder="Masukkan mata pelajaran">
+                        <select name="id_mapel" id="mapel" class="form-select">
+                            @foreach ($mapel as $item)
+                            <option value="{{ $item->id }}"{{ $item->id == $guru->id_mapel ? 'selected' : '' }}>
+                                {{ $item->nama_mapel }}
+                            </option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="col-md-6">

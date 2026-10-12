@@ -273,7 +273,16 @@
                             <span class="fw-bold text-success">MISI</span>
                         </div>
 
-                        <p class="mb-0 lh-lg text-muted">{!! nl2br(e($profilSekolah->misi ?? '-')) !!}</p>
+                        @php
+                        $array_misi = array_filter(array_map('trim', explode('.', $profilSekolah->misi)))
+                        @endphp
+
+                        <ol class="text-decoration-none">
+                            @foreach ($array_misi as $poin)
+                            <li>{{ $poin }}</li>
+                            <br>
+                            @endforeach
+                        </ol>
                     </div>
                 </div>
             </div>
@@ -323,17 +332,21 @@
                         </a>
 
                         <div class="card-body p-4">
-                            <a href="{{ route('public.eskul.detail', Crypt::encrypt($item->id)) }}" class="text-decoration-none">
+                            <div class="small text-secondary mb-2">
+                                    <i class="fas fa-calendar-alt me-1"></i>
+                                    {{ $item->jadwal_latihan }}
+                            </div>
+
+                            <a href="{{ route('public.eskul.detail', Crypt::encrypt($item->id)) }}?from=beranda" class="text-decoration-none">
                                 <h5 class="fw-bold mb-2 public-card-title">
                                     {{ $item->nama_eskul }}
                                 </h5>
                             </a>
 
-                            @if (!empty($item->deskripsi))
-                                <p class="text-secondary mb-0">
-                                    {{ Str::limit(strip_tags($item->deskripsi), 100, '...') }}
-                                </p>
-                            @endif
+                            <div class="small text-secondary mb-0 ">
+                                <i class="fa-solid fa-user"></i>
+                                Pembina : {{ $item->guru->nama_guru }}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -385,7 +398,7 @@
                                 <h6 class="fw-bold mb-2 d-flex justify-content-center public-card-title">{{ $item->nama_guru ?? '-' }}</h6>
                             </a>
 
-                            <small class="text-muted d-flex justify-content-center">Mapel : {{ $item->mapel }}</small>
+                            <small class="text-muted d-flex justify-content-center">Mapel : {{ $item->mapel->nama_mapel }}</small>
                         </div>
                     </div>
                 </div>

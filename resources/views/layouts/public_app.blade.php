@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ asset('assets/dist/css/bootstrap.min.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/css/custom/public.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/custom/admin.css') }}">
+
+
+    <link rel="icon" type="image/png" href="{{ asset('storage/' . $profilSekolah->logo) }}">
 </head>
 
 <body>
@@ -18,8 +22,7 @@
             <div class="container">
                 <a
                     href="{{ route('public.beranda') }}"
-                    class="navbar-brand d-flex align-items-center gap-3"
-                >
+                    class="navbar-brand d-flex align-items-center gap-3">
                     @if (!empty($profilSekolah->logo) && Storage::disk('public')->exists($profilSekolah->logo))
                         <img
                             src="{{ asset('storage/' . $profilSekolah->logo) }}"
@@ -66,9 +69,11 @@
                             'public.beranda' => 'Beranda',
                             'public.profil' => 'Profil Sekolah',
                             'public.eskul' => 'Ekstrakurikuler',
+                            'public.siswa' => 'Siswa',
                             'public.guru' => 'Guru',
                             'public.berita' => 'Berita',
                             'public.galeri' => 'Galeri',
+                            'public.profilDiri' => 'Profil Pribadi'
                         ];
 
                     @endphp

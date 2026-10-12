@@ -40,7 +40,7 @@
 
                     <div>
                         <small class="text-secondary d-block mb-1">Mata Pelajaran</small>
-                        <div class="fw-semibold">{{ $guru->mapel ?? '-' }}</div>
+                        <div class="fw-semibold">{{ $guru->mapel->nama_mapel ?? '-' }}</div>
                     </div>
                 </div>
             </div>

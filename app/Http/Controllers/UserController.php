@@ -14,7 +14,10 @@ class UserController extends Controller
     public function index() {
         $user = User::all();
         $profilSekolah = ProfilSekolah::first();
-        return view('admin.user.index', compact('user', 'profilSekolah'));
+        return view('admin.user.index', compact(
+            'user',
+            'profilSekolah'
+        ));
     }
 
     public function create() {
@@ -49,7 +52,10 @@ class UserController extends Controller
         try {
             $user = User::findOrFail(Crypt::decrypt($id));
             $profilSekolah = ProfilSekolah::first();
-            return view('admin.user.edit', compact('user', 'profilSekolah'));       
+            return view('admin.user.edit', compact(
+                'user',
+                'profilSekolah'
+            ));
         }
         catch (Exception $e) {
             return redirect()->route('admin.user.index')->with('error', 'Data user tidak ditemukan.');

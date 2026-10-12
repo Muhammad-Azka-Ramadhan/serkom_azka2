@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkstrakurikulerController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\ProfilDiriController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
@@ -23,7 +24,12 @@ Route::middleware('guest')->group(function () {
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/', [DashboardController::class, 'publicBeranda'])->name('public.beranda');
+
+Route::get('/profil-saya', [ProfilDiriController::class, 'index'])->name('public.profilDiri');
+
 Route::get('/profil', [ProfilSekolahController::class, 'public'])->name('public.profil');
+
+Route::get('/siswa', [SiswaController::class, 'public'])->name('public.siswa');
 
 Route::prefix('ekstrakurikuler')->group(function () {
     Route::get('/', [EkstrakurikulerController::class, 'public'])->name('public.eskul');

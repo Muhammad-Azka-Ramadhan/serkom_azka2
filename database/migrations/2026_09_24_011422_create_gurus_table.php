@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('guru', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('id_mapel')->nullable()->constrained('mapel', 'id')->onUpdate('cascade')->onDelete('set null');
             $table->string('nama_guru', 40);
             $table->string('nip', 15);
-            $table->string('mapel', 40);
             $table->string('foto', 100)->nullable();
             $table->timestamps();
         });

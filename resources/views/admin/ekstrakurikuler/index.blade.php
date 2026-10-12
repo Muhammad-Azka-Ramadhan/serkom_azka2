@@ -9,7 +9,7 @@
         <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
             <i class="fa-solid fa-circle-check me-2"></i>
             {{ session('success') }}
-            
+
             <button
                 type="button"
                 class="btn-close"
@@ -73,7 +73,7 @@
                                 <td style="text-align: center" class="fw-semibold">{{ $item->nama_eskul }}</td>
                                 <td style="text-align: center">{{ $item->guru->nama_guru ?? '-' }}</td>
                                 <td style="text-align: center">{{ $item->jadwal_latihan }}</td>
-                                <td style="text-align: center" class="text-start">{{ $item->deskripsi }}</td>
+                                <td style="text-align: center" class="text-start">{{ Str::limit($item->deskripsi, 100, '...') }}</td>
                                 <td style="text-align: center">
                                     <img
                                         src="{{ asset('storage/' . $item->gambar) }}"

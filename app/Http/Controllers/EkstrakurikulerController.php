@@ -65,10 +65,11 @@ class EkstrakurikulerController extends Controller
             $profilSekolah = ProfilSekolah::first();
             $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
             $guru = Guru::all();
-            return view(
-                'admin.ekstrakurikuler.edit',
-                compact(['ekstrakurikuler', 'guru', 'profilSekolah'])
-            );
+            return view('admin.ekstrakurikuler.edit', compact(
+                'ekstrakurikuler',
+                'guru',
+                'profilSekolah'
+            ));
         }
         catch (Exception $e) {
             return redirect()->route('admin.eskul.index')->with('error', 'Data Ekstrakurikuler tidak ditemukan');
@@ -117,7 +118,11 @@ class EkstrakurikulerController extends Controller
         $profilSekolah = ProfilSekolah::first();
         $ekstrakurikuler = Ekstrakurikuler::paginate(3);
         $guru = Guru::all();
-        return view('public.ekstrakurikuler.index', compact('profilSekolah', 'ekstrakurikuler', 'guru'));
+        return view('public.ekstrakurikuler.index', compact(
+            'profilSekolah',
+            'ekstrakurikuler',
+            'guru'
+        ));
     }
 
     public function showPublic($id) {
@@ -125,7 +130,11 @@ class EkstrakurikulerController extends Controller
             $profilSekolah = ProfilSekolah::first();
             $ekstrakurikuler = Ekstrakurikuler::findOrFail(Crypt::decrypt($id));
             $guru = Guru::all();
-            return view('public.ekstrakurikuler.detail', compact('profilSekolah', 'ekstrakurikuler', 'guru'));
+            return view('public.ekstrakurikuler.detail', compact(
+                'profilSekolah',
+                'ekstrakurikuler',
+                'guru'
+            ));
         }
         catch (Exception $e) {
             return redirect()->route('public.eskul');

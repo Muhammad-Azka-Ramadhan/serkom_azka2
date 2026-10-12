@@ -6,7 +6,7 @@
 
 <div class="container-fluid py-4">
     @session('success')
-        <h5 class="fw-bold mb-2">
+        <h5 class="fw-bold mb-5">
             {{ session('success') }}
         </h5>
     @endsession
@@ -146,7 +146,11 @@
                         @forelse ($galeriTerbaru as $item)
                             <div class="col-6">
                                 <div class="dashboard-gallery-item">
+                                    @if ($item->kategori === 'Video')
+                                    <video src="{{ asset('storage/' . $item->file) }}" class="object-fit-cover w-100"></video>
+                                    @else
                                     <img src="{{ asset('storage/' . $item->file) }}" alt="{{ $item->judul }}">
+                                    @endif
                                     <div class="dashboard-gallery-title">{{ $item->judul }}</div>
                                 </div>
                             </div>

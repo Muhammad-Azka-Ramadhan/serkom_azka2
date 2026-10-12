@@ -76,6 +76,17 @@
                             </span>
                         </a>
                     </li>
+                    
+                    <li class="{{request()->routeIs('admin.mapel.*') ? 'active' : ''}}">
+                        <a href="{{route('admin.mapel.index')}}">
+                            <span class="menu-icon">
+                                <i class="fa-solid fa-book"></i>
+                            </span>
+                            <span class="menu-text">
+                                Mapel
+                            </span>
+                        </a>
+                    </li>
 
                     <li class="{{ request()->routeIs('admin.galeri.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.galeri.index') }}">

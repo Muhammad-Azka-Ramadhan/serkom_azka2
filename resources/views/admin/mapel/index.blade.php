@@ -43,7 +43,7 @@
 
                 @if (Auth::user()->role === 'admin')
                 <a
-                    href="{{ route('admin.siswa.create') }}"
+                    href="{{ route('admin.mapel.create') }}"
                     class="btn btn-add">
 
                     <i class="fa-solid fa-plus me-1"></i>
@@ -69,16 +69,16 @@
                     </thead>
 
                     <tbody>
-                        @foreach ($siswa as $item)
+                        @foreach ($mapel as $item)
                             <tr>
                                 <td style="text-align: center">{{ $loop->iteration }}</td>
-                                <td style="text-align: center">{{ $item->mapel }}</td>
+                                <td style="text-align: center">{{ $item->nama_mapel }}</td>
                                 @if (Auth::user()->role === 'admin')
                                     <td style="text-align: center">
                                         <div class="d-flex justify-content-center gap-2">
                                             {{-- Edit --}}
                                             <a
-                                                href="{{ route('admin.siswa.edit', Crypt::encrypt($item->id)) }}"
+                                                href="{{ route('admin.mapel.edit', Crypt::encrypt($item->id)) }}"
                                                 class="btn btn-sm btn-outline-primary"
                                                 title="Edit">
 

@@ -82,7 +82,7 @@
                                 <td style="text-align: center">{{ $loop->iteration }}</td>
                                 <td style="text-align: center" class="fw-semibold">{{ $item->nama_guru }}</td>
                                 <td style="text-align: center">{{ $item->nip }}</td>
-                                <td style="text-align: center">{{ $item->mapel->nama_mapel }}</td>
+                                <td style="text-align: center">{{ $item->mapel->nama_mapel ?? '-' }}</td>
                                 <td style="text-align: center">
                                     <img
                                         src="{{ asset('storage/' . $item->foto) }}"

@@ -135,7 +135,7 @@
                 </div>
 
                 <div class="d-flex gap-2 mt-4 pt-3 border-top">
-                    <button type="submit class="btn btn-simpan px-4">
+                    <button type="submit" class="btn btn-simpan px-4">
                         <i class="fa-solid fa-save me-1"></i>
                         Simpan
                     </button>

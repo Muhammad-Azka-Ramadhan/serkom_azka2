@@ -222,7 +222,7 @@
 
                                 <div>
                                     <div class="fw-semibold">{{ $item->nama_guru }}</div>
-                                    <small class="text-muted">{{ $item->mapel }}</small>
+                                    <small class="text-muted">{{ $item->mapel->nama_mapel }}</small>
                                 </div>
                             </div>
                         </div>

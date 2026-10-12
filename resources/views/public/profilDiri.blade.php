@@ -27,7 +27,7 @@
                         <img src="{{ asset('assets/images/Muhammad Azka Ramadhan (1).JPG') }}"
                              alt="Foto Profil"
                              class="img-fluid rounded-3 shadow-sm mb-4"
-                             style="width: 100%; max-width: 280px; height: 320px; object-fit: cover;">
+                             style="width: 100%; max-width: 280px; height: 320px; object-fit: contain;">
 
                         <h4 class="fw-bold mb-2">
                             Muhammad Azka Ramadhan
@@ -39,7 +39,7 @@
                         </p>
 
                         <span class="badge bg-primary px-3 py-2">
-                            Pengembangan Perangkat Lunak dan Gim
+                            Rekayasa Perangkat Lunak
                         </span>
                     </div>
                 </div>

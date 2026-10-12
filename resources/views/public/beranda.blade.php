@@ -398,7 +398,7 @@
                                 <h6 class="fw-bold mb-2 d-flex justify-content-center public-card-title">{{ $item->nama_guru ?? '-' }}</h6>
                             </a>
 
-                            <small class="text-muted d-flex justify-content-center">Mapel : {{ $item->mapel->nama_mapel }}</small>
+                            <small class="text-muted d-flex justify-content-center">Mapel : {{ $item->mapel->nama_mapel ?? '-' }}</small>
                         </div>
                     </div>
                 </div>

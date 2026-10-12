@@ -6,10 +6,12 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EkstrakurikulerController;
 use App\Http\Controllers\GaleriController;
 use App\Http\Controllers\GuruController;
+use App\Http\Controllers\MapelController;
 use App\Http\Controllers\ProfilDiriController;
 use App\Http\Controllers\ProfilSekolahController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
+use App\Models\Mapel;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -100,6 +102,17 @@ Route::middleware('auth')->prefix('admin')->group(function () {
             Route::get('/edit/{id}', [GuruController::class, 'edit'])->name('admin.guru.edit');
             Route::put('/update/{id}', [GuruController::class, 'update'])->name('admin.guru.update');
             Route::delete('/{id}', [GuruController::class, 'destroy'])->name('admin.guru.destroy');
+        });
+    });
+
+    Route::prefix('mapel')->group(function () {
+        Route::get('/', [MapelController::class, 'index'])->name('admin.mapel.index');
+        Route::middleware('role:admin')->group(function () {
+            Route::get('/create', [MapelController::class, 'create'])->name('admin.mapel.create');
+            Route::post('/store', [MapelController::class, 'store'])->name('admin.mapel.store');
+            Route::get('/edit/{id}', [MapelController::class, 'edit'])->name('admin.mapel.edit');
+            Route::put('/update/{id}', [MapelController::class, 'update'])->name('admin.mapel.update');
+            Route::delete('/{id}', [MapelController::class, 'destroy'])->name('admin.mapel.destroy');
         });
     });
 
